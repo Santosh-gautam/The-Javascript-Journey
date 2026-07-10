@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `f4646e8`
+**Latest Scaffold Commit**: `9207e53`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -24,7 +24,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **11-Projects** | ✅ Completed | 5 | 100% |
 | **12-Polyfills** | ✅ Completed | 13 | 100% |
 | **13-Machine-Coding** | ✅ Completed | 5 | 100% |
-| **14-Cheat-Sheets** | 🗺️ Outline Only | - | 0% |
+| **14-Cheat-Sheets** | ✅ Completed | 3 | 100% |
 | **15-Revision** | 🗺️ Outline Only | - | 0% |
 | **16-Resources** | 🗺️ Outline Only | - | 0% |
 
@@ -155,9 +155,10 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [13-04] Typeahead / Autocomplete (`13-Machine-Coding/13-04-typeahead.md`)
 - [x] [13-05] File Explorer / Nested Comments (`13-Machine-Coding/13-05-file-explorer.md`)
 
-#### Module 14: Cheat Sheets (v1.0 - Outline Only)
-
-- Visual quick-reference cards.
+### 📝 Module 14: Cheat Sheets (v1.0)
+- [x] [14-01] JS Core Engine (`14-Cheat-Sheets/14-01-js-core-engine.md`)
+- [x] [14-02] DOM Manipulation & Events (`14-Cheat-Sheets/14-02-dom-manipulation-and-events.md`)
+- [x] [14-03] Async Patterns (`14-Cheat-Sheets/14-03-async-patterns.md`)
 
 #### Module 15: Revision (v1.0 - Outline Only)
 
