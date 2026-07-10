@@ -1,5 +1,7 @@
 # Curriculum Progress Checklist
 
+**Latest Scaffold Commit**: `b56df62`
+
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
 ---
@@ -12,8 +14,8 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **01-Getting-Started** | ✅ Completed | 1 | 100% |
 | **02-Environment-Setup** | ✅ Completed | 1 | 100% |
 | **03-JavaScript-Fundamentals** | ✅ Completed | 5 | 100% |
-| **04-Core-JavaScript** | 🗺️ Outline Only | - | 0% |
-| **05-Asynchronous-JavaScript** | 🗺️ Outline Only | - | 0% |
+| **04-Core-JavaScript** | ✅ Completed | 9 | 100% |
+| **05-Asynchronous-JavaScript** | ✅ Completed | 8 | 100% |
 | **06-Browser** | 🗺️ Outline Only | - | 0% |
 | **07-Advanced-JavaScript** | 🗺️ Outline Only | - | 0% |
 | **08-Performance** | 🗺️ Outline Only | - | 0% |
@@ -50,17 +52,30 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [03-04] Control Flow (`03-JavaScript-Fundamentals/03-04-control-flow.md`)
 - [x] [03-05] Loops (`03-JavaScript-Fundamentals/03-05-loops.md`)
 
+### 🧠 Module 04: Core JavaScript (v1.0)
+- [x] [04-01] Functions & Execution Context (`04-Core-JavaScript/04-01-functions-and-execution-context.md`)
+- [x] [04-02] Scope Chain & Lexical Environment (`04-Core-JavaScript/04-02-scope-chain-and-lexical-environment.md`)
+- [x] [04-03] Hoisting (`04-Core-JavaScript/04-03-hoisting.md`)
+- [x] [04-04] Closures (`04-Core-JavaScript/04-04-closures.md`)
+- [x] [04-05] The `this` Keyword (`04-Core-JavaScript/04-05-this-keyword.md`)
+- [x] [04-06] Prototype & Prototype Chain (`04-Core-JavaScript/04-06-prototype-and-prototype-chain.md`)
+- [x] [04-07] Classes & Inheritance (`04-Core-JavaScript/04-07-classes-and-inheritance.md`)
+- [x] [04-08] Modules (`04-Core-JavaScript/04-08-modules.md`)
+- [x] [04-09] Error Handling (`04-Core-JavaScript/04-09-error-handling.md`)
+
 ---
 
 ### 🗺️ Future Modules (Outline Only - Chapters Not Yet Created)
 
-#### Module 04: Core JavaScript (v1.0 - Outline Only)
-
-- Scope, Hoisting, Execution Context, Closures, `this`, Functions.
-
-#### Module 05: Asynchronous JavaScript (v1.0 - Outline Only)
-
-- Event Loop, Callbacks, Promises, Async/Await, Web Fetch APIs.
+### ⚡ Module 05: Asynchronous JavaScript (v1.0)
+- [x] [05-01] Callbacks & Callback Hell (`05-Asynchronous-JavaScript/05-01-callbacks-and-callback-hell.md`)
+- [x] [05-02] The Event Loop & Queues (`05-Asynchronous-JavaScript/05-02-event-loop-and-queues.md`)
+- [x] [05-03] Promises (`05-Asynchronous-JavaScript/05-03-promises.md`)
+- [x] [05-04] Promise Combinators (`05-Asynchronous-JavaScript/05-04-promise-combinators.md`)
+- [x] [05-05] Async / Await (`05-Asynchronous-JavaScript/05-05-async-await.md`)
+- [x] [05-06] Async / Await Internals (`05-Asynchronous-JavaScript/05-06-async-await-internals.md`)
+- [x] [05-07] Fetch API & Async Patterns (`05-Asynchronous-JavaScript/05-07-fetch-api-and-async-patterns.md`)
+- [x] [05-08] Async Debugging & Common Bugs (`05-Asynchronous-JavaScript/05-08-async-debugging-and-bugs.md`)
 
 #### Module 06: Browser (v1.0 - Outline Only)
 
