@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `b56df62`
+**Latest Scaffold Commit**: `cb81be7`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -16,7 +16,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **03-JavaScript-Fundamentals** | ✅ Completed | 5 | 100% |
 | **04-Core-JavaScript** | ✅ Completed | 9 | 100% |
 | **05-Asynchronous-JavaScript** | ✅ Completed | 8 | 100% |
-| **06-Browser** | 🗺️ Outline Only | - | 0% |
+| **06-Browser** | ✅ Completed | 8 | 100% |
 | **07-Advanced-JavaScript** | 🗺️ Outline Only | - | 0% |
 | **08-Performance** | 🗺️ Outline Only | - | 0% |
 | **09-Debugging** | 🗺️ Outline Only | - | 0% |
@@ -77,9 +77,15 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [05-07] Fetch API & Async Patterns (`05-Asynchronous-JavaScript/05-07-fetch-api-and-async-patterns.md`)
 - [x] [05-08] Async Debugging & Common Bugs (`05-Asynchronous-JavaScript/05-08-async-debugging-and-bugs.md`)
 
-#### Module 06: Browser (v1.0 - Outline Only)
-
-- DOM, Event Delegation, Local/Session Storage, Cookies.
+### 🌐 Module 06: Browser (v1.0)
+- [x] [06-01] DOM & Traversal (`06-Browser/06-01-dom-and-traversal.md`)
+- [x] [06-02] DOM Selection (`06-Browser/06-02-dom-selection.md`)
+- [x] [06-03] DOM Manipulation (`06-Browser/06-03-dom-manipulation.md`)
+- [x] [06-04] Event Flow (`06-Browser/06-04-event-flow.md`)
+- [x] [06-05] Event Listeners (`06-Browser/06-05-event-listeners.md`)
+- [x] [06-06] Browser Storage APIs (`06-Browser/06-06-browser-storage.md`)
+- [x] [06-07] Timers & Animation (`06-Browser/06-07-timers-and-animation.md`)
+- [x] [06-08] The Rendering Pipeline (`06-Browser/06-08-rendering-pipeline.md`)
 
 #### Module 07: Advanced JavaScript (v1.0 - Outline Only)
 
