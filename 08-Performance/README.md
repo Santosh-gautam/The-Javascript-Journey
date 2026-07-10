@@ -1,12 +1,24 @@
 # Module 08: Performance
 
-> **Notice**: Scope outline only — full chapter content not yet written
+This module covers code and environment optimization patterns, execution analytics, memory lifecycle profiles, resource loading sizes, and multi-threading models.
 
-This module will outline strategies to optimize JavaScript execution, focusing on GC timings, memory leaks, and rate limit optimizations.
+## 📋 Module Overview
 
-## 🗺️ Future Chapter Roadmap
+In this module, we will explore:
+- Performance measurements using the User Timing and Paint APIs.
+- Internal engine compiler compilation details (hidden shapes, inline caches).
+- Memory heap leak diagnostics.
+- Bundle weight reduction methods.
+- Lazy loading designs.
+- Multi-threading background scripts (Web Workers).
 
-- `[ ]` **08-01: Memory Management & Garbage Collection** — Allocations, Heap scopes, and mark-and-sweep behaviors.
-- `[ ]` **08-02: Diagnosing Memory Leaks** — Finding leaks from lingering variables and detached nodes.
-- `[ ]` **08-03: Rate Limiting (Debounce & Throttle)** — Managing event frequencies dynamically.
-- `[ ]` **08-04: Code Splitting & Imports** — Optimizing startup weights with dynamic loading.
+---
+
+## 🏁 Chapter Checklist
+
+- [x] [08-01: Performance Measurement](08-01-performance-measurement.md) — Performance API, marks, measures, paint timings.
+- [x] [08-02: Code Optimization Techniques](08-02-code-optimization-techniques.md) — V8 hidden classes, inline caching, shape compilation.
+- [x] [08-03: Memory Leaks](08-03-memory-leaks.md) — Memory leaks detection, tracking retainers, and GC details.
+- [x] [08-04: Bundle Size Optimization](08-04-bundle-size-optimization.md) — Bundle size, tree-shaking, minification concepts.
+- [x] [08-05: Lazy Loading](08-05-lazy-loading.md) — Code splitting, lazy loading resources, intersection observer loads.
+- [x] [08-06: Web Workers](08-06-web-workers.md) — Multi-threading threads, worker message passing, offscreen canvas.

@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `b2268c4`
+**Latest Scaffold Commit**: `c1e85f3`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -18,7 +18,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **05-Asynchronous-JavaScript** | ✅ Completed | 8 | 100% |
 | **06-Browser** | ✅ Completed | 8 | 100% |
 | **07-Advanced-JavaScript** | ✅ Completed | 10 | 100% |
-| **08-Performance** | 🗺️ Outline Only | - | 0% |
+| **08-Performance** | ✅ Completed | 6 | 100% |
 | **09-Debugging** | 🗺️ Outline Only | - | 0% |
 | **10-Interview-Preparation** | 🗺️ Outline Only | - | 0% |
 | **11-Projects** | 🗺️ Outline Only | - | 0% |
@@ -99,9 +99,13 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [07-09] WeakMap & WeakSet (`07-Advanced-JavaScript/07-09-weakmap-and-weakset.md`)
 - [x] [07-10] Property Descriptors (`07-Advanced-JavaScript/07-10-property-descriptors.md`)
 
-#### Module 08: Performance (v1.0 - Outline Only)
-
-- Memory Leaks, Garbage Collection, Debounce, Throttle.
+### ⚡ Module 08: Performance (v1.0)
+- [x] [08-01] Performance Measurement (`08-Performance/08-01-performance-measurement.md`)
+- [x] [08-02] Code Optimization Techniques (`08-Performance/08-02-code-optimization-techniques.md`)
+- [x] [08-03] Memory Leaks (`08-Performance/08-03-memory-leaks.md`)
+- [x] [08-04] Bundle Size Optimization (`08-Performance/08-04-bundle-size-optimization.md`)
+- [x] [08-05] Lazy Loading (`08-Performance/08-05-lazy-loading.md`)
+- [x] [08-06] Web Workers (`08-Performance/08-06-web-workers.md`)
 
 #### Module 09: Debugging (v1.0 - Outline Only)
 
