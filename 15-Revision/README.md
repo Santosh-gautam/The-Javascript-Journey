@@ -1,11 +1,14 @@
 # Module 15: Revision
 
-> **Notice**: Scope outline only — full chapter content not yet written
+This module covers interactive flashcards, conceptual matching grids, and summary sheets for quick pre-interview JavaScript revision.
 
-This module will host high-density flashcard structures, fast-track diagnostic checks, and brief revision cards.
+## 📋 Module Overview
 
-## 🗺️ Future Revision Roadmap
+In this module, we will explore:
+- Flashcards & Summaries covering core JavaScript, asynchronous engines, browser DOM models, and advanced coding patterns.
 
-- `[ ]` **15-01: Engine Internals Flashcards** — Questions targeting V8 execution context and memory heap.
-- `[ ]` **15-02: Scoping & Binding Review** — Checking scope resolutions and closures behavior.
-- `[ ]` **15-03: Asynchronous Loops Review** — Task ordering logs and promise chains.
+---
+
+## 🏁 Chapter Checklist
+
+- [x] [15-01: Flashcards & Summaries](15-01-flashcards-and-summaries.md) — Self-assessment cards, conceptual matching grids, quick-revision sheets.
