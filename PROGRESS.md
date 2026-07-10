@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `538665e`
+**Latest Scaffold Commit**: `0fa20cc`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -20,7 +20,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **07-Advanced-JavaScript** | ✅ Completed | 10 | 100% |
 | **08-Performance** | ✅ Completed | 6 | 100% |
 | **09-Debugging** | ✅ Completed | 10 | 100% |
-| **10-Interview-Preparation** | 🗺️ Outline Only | - | 0% |
+| **10-Interview-Preparation** | ✅ Completed | 5 | 100% |
 | **11-Projects** | 🗺️ Outline Only | - | 0% |
 | **12-Polyfills** | 🗺️ Outline Only | - | 0% |
 | **13-Machine-Coding** | 🗺️ Outline Only | - | 0% |
@@ -119,9 +119,12 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [09-09] Production Debugging (`09-Debugging/09-09-production-debugging.md`)
 - [x] [09-10] Bug Detective Challenges (`09-Debugging/09-10-bug-detective-challenges.md`)
 
-#### Module 10: Interview Preparation (v1.0 - Outline Only)
-
-- Curated conceptual questions, output predictors, whiteboard style coding.
+### 💼 Module 10: Interview Preparation (v1.0)
+- [x] [10-01] Core JS Questions (`10-Interview-Preparation/10-01-core-js-questions.md`)
+- [x] [10-02] Coding Patterns (`10-Interview-Preparation/10-02-coding-patterns.md`)
+- [x] [10-03] System Design Basics (`10-Interview-Preparation/10-03-system-design-basics.md`)
+- [x] [10-04] Behavioral & Technical (`10-Interview-Preparation/10-04-behavioral-and-technical.md`)
+- [x] [10-05] Trick Questions & Output Predictors (`10-Interview-Preparation/10-05-trick-questions.md`)
 
 #### Module 11: Projects (v1.0 - Outline Only)
 
