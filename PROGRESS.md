@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `c1e85f3`
+**Latest Scaffold Commit**: `538665e`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -19,7 +19,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **06-Browser** | ✅ Completed | 8 | 100% |
 | **07-Advanced-JavaScript** | ✅ Completed | 10 | 100% |
 | **08-Performance** | ✅ Completed | 6 | 100% |
-| **09-Debugging** | 🗺️ Outline Only | - | 0% |
+| **09-Debugging** | ✅ Completed | 10 | 100% |
 | **10-Interview-Preparation** | 🗺️ Outline Only | - | 0% |
 | **11-Projects** | 🗺️ Outline Only | - | 0% |
 | **12-Polyfills** | 🗺️ Outline Only | - | 0% |
@@ -107,9 +107,17 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [08-05] Lazy Loading (`08-Performance/08-05-lazy-loading.md`)
 - [x] [08-06] Web Workers (`08-Performance/08-06-web-workers.md`)
 
-#### Module 09: Debugging (v1.0 - Outline Only)
-
-- Chrome DevTools, Breakpoints, Call Stack, Performance/Memory tabs.
+### 🔍 Module 09: Debugging (v1.0)
+- [x] [09-01] Debugging Mindset (`09-Debugging/09-01-debugging-mindset.md`)
+- [x] [09-02] Errors & Stack Traces (`09-Debugging/09-02-errors-and-stack-traces.md`)
+- [x] [09-03] Chrome DevTools (`09-Debugging/09-03-chrome-devtools.md`)
+- [x] [09-04] VS Code Debugger (`09-Debugging/09-04-vscode-debugger.md`)
+- [x] [09-05] Breakpoints & Watch (`09-Debugging/09-05-breakpoints-and-watch.md`)
+- [x] [09-06] Debugging Async Code (`09-Debugging/09-06-debugging-async-code.md`)
+- [x] [09-07] DOM & Event Debugging (`09-Debugging/09-07-dom-and-event-debugging.md`)
+- [x] [09-08] Heap Snapshot Analysis (`09-Debugging/09-08-heap-snapshot-analysis.md`)
+- [x] [09-09] Production Debugging (`09-Debugging/09-09-production-debugging.md`)
+- [x] [09-10] Bug Detective Challenges (`09-Debugging/09-10-bug-detective-challenges.md`)
 
 #### Module 10: Interview Preparation (v1.0 - Outline Only)
 
