@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `cb81be7`
+**Latest Scaffold Commit**: `b2268c4`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -17,7 +17,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **04-Core-JavaScript** | ✅ Completed | 9 | 100% |
 | **05-Asynchronous-JavaScript** | ✅ Completed | 8 | 100% |
 | **06-Browser** | ✅ Completed | 8 | 100% |
-| **07-Advanced-JavaScript** | 🗺️ Outline Only | - | 0% |
+| **07-Advanced-JavaScript** | ✅ Completed | 10 | 100% |
 | **08-Performance** | 🗺️ Outline Only | - | 0% |
 | **09-Debugging** | 🗺️ Outline Only | - | 0% |
 | **10-Interview-Preparation** | 🗺️ Outline Only | - | 0% |
@@ -87,9 +87,17 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [06-07] Timers & Animation (`06-Browser/06-07-timers-and-animation.md`)
 - [x] [06-08] The Rendering Pipeline (`06-Browser/06-08-rendering-pipeline.md`)
 
-#### Module 07: Advanced JavaScript (v1.0 - Outline Only)
-
-- Prototypes, Classes, Currying, Memoization, Proxy, Generators.
+### 🚀 Module 07: Advanced JavaScript (v1.0)
+- [x] [07-01] Design Patterns (`07-Advanced-JavaScript/07-01-design-patterns.md`)
+- [x] [07-02] Functional Programming (`07-Advanced-JavaScript/07-02-functional-programming.md`)
+- [x] [07-03] Currying & Partial Application (`07-Advanced-JavaScript/07-03-currying-and-partial-application.md`)
+- [x] [07-04] Memoization (`07-Advanced-JavaScript/07-04-memoization.md`)
+- [x] [07-05] Debounce & Throttle (`07-Advanced-JavaScript/07-05-debounce-and-throttle.md`)
+- [x] [07-06] Proxy & Reflect (`07-Advanced-JavaScript/07-06-proxy-and-reflect.md`)
+- [x] [07-07] Symbols (`07-Advanced-JavaScript/07-07-symbols.md`)
+- [x] [07-08] Generators & Iterators (`07-Advanced-JavaScript/07-08-generators-and-iterators.md`)
+- [x] [07-09] WeakMap & WeakSet (`07-Advanced-JavaScript/07-09-weakmap-and-weakset.md`)
+- [x] [07-10] Property Descriptors (`07-Advanced-JavaScript/07-10-property-descriptors.md`)
 
 #### Module 08: Performance (v1.0 - Outline Only)
 
