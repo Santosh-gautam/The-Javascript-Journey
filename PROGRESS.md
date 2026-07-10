@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `812f506`
+**Latest Scaffold Commit**: `f4646e8`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -23,7 +23,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **10-Interview-Preparation** | ✅ Completed | 5 | 100% |
 | **11-Projects** | ✅ Completed | 5 | 100% |
 | **12-Polyfills** | ✅ Completed | 13 | 100% |
-| **13-Machine-Coding** | 🗺️ Outline Only | - | 0% |
+| **13-Machine-Coding** | ✅ Completed | 5 | 100% |
 | **14-Cheat-Sheets** | 🗺️ Outline Only | - | 0% |
 | **15-Revision** | 🗺️ Outline Only | - | 0% |
 | **16-Resources** | 🗺️ Outline Only | - | 0% |
@@ -148,9 +148,12 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [12-12] Polyfill for deep clone (`12-Polyfills/12-12-deep-clone-polyfill.md`)
 - [x] [12-13] Polyfill for flatten array (`12-Polyfills/12-13-flatten-array-polyfill.md`)
 
-#### Module 13: Machine Coding (v1.0 - Outline Only)
-
-- Frontend machine coding templates.
+### 💻 Module 13: Machine Coding (v1.0)
+- [x] [13-01] Carousel (`13-Machine-Coding/13-01-carousel.md`)
+- [x] [13-02] Infinite Scroll (`13-Machine-Coding/13-02-infinite-scroll.md`)
+- [x] [13-03] Star Rating (`13-Machine-Coding/13-03-star-rating.md`)
+- [x] [13-04] Typeahead / Autocomplete (`13-Machine-Coding/13-04-typeahead.md`)
+- [x] [13-05] File Explorer / Nested Comments (`13-Machine-Coding/13-05-file-explorer.md`)
 
 #### Module 14: Cheat Sheets (v1.0 - Outline Only)
 
