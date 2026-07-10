@@ -1,10 +1,12 @@
 # The JavaScript Journey 🚀
 
 > **"Don't memorize JavaScript. Understand how JavaScript thinks."**
+>
+> **16 Modules | 92 Chapters | MIT Licensed**
 
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
-[![Progress](https://img.shields.io/badge/progress-0%25-orange.svg)](PROGRESS.md)
+[![Progress](https://img.shields.io/badge/progress-100%25-brightgreen.svg)](PROGRESS.md)
 [![Aesthetics](https://img.shields.io/badge/aesthetics-premium-purple.svg)](#)
 [![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg)](#)
 
@@ -61,19 +63,19 @@ This repository is split into 17 version-tracked modules:
 - **[01-Getting-Started](01-Getting-Started/README.md) (`v1.0`)** — What is JavaScript? Engines, JIT compilation, and environments.
 - **[02-Environment-Setup](02-Environment-Setup/README.md) (`v1.0`)** — Setting up Node.js, VS Code, and Chrome DevTools.
 - **[03-JavaScript-Fundamentals](03-JavaScript-Fundamentals/README.md) (`v1.0`)** — Variables, types, operators, coercion, control flow, loops.
-- **[04-Core-JavaScript](04-Core-JavaScript/README.md) (`v1.0` - Outline)** — Functions, scope, execution context, hoisting, closures, and `this`.
-- **[05-Asynchronous-JavaScript](05-Asynchronous-JavaScript/README.md) (`v1.0` - Outline)** — Event Loop, Microtask Queue, Promises, Async/Await, and Fetch.
-- **[06-Browser](06-Browser/README.md) (`v1.0` - Outline)** — DOM manipulation, Event bubbling/capturing, delegation, and Web Storage.
-- **[07-Advanced-JavaScript](07-Advanced-JavaScript/README.md) (`v1.0` - Outline)** — Prototypes, Classes, Currying, Memoization, Proxies, and Generators.
-- **[08-Performance](08-Performance/README.md) (`v1.0` - Outline)** — Garbage collection, memory leaks, Debouncing, and Throttling.
-- **[09-Debugging](09-Debugging/README.md) (`v1.0` - Outline)** — Complete guide to DevTools, breakpoints, stack traces, and Heap Snapshots.
-- **[10-Interview-Preparation](10-Interview-Preparation/README.md) (`v1.0` - Outline)** — Curated technical questions, wrong paths, and system mockings.
-- **[11-Projects](11-Projects/README.md) (`v1.0` - Outline)** — Practical coding projects applying what we learned.
-- **[12-Polyfills](12-Polyfills/README.md) (`v1.0` - Outline)** — Building array methods, Promises, and bindings from scratch.
-- **[13-Machine-Coding](13-Machine-Coding/README.md) (`v1.0` - Outline)** — Real frontend machine coding challenges.
-- **[14-Cheat-Sheets](14-Cheat-Sheets/README.md) (`v1.0` - Outline)** — Reference cards for quick lookups.
-- **[15-Revision](15-Revision/README.md) (`v1.0` - Outline)** — High-density revision notes for last-minute preparation.
-- **[16-Resources](16-Resources/README.md) (`v1.0` - Outline)** — Books, specifications, and articles for further reading.
+- **[04-Core-JavaScript](04-Core-JavaScript/README.md) (`v1.0`)** — Functions, scope, execution context, hoisting, closures, and `this`.
+- **[05-Asynchronous-JavaScript](05-Asynchronous-JavaScript/README.md) (`v1.0`)** — Event Loop, Microtask Queue, Promises, Async/Await, and Fetch.
+- **[06-Browser](06-Browser/README.md) (`v1.0`)** — DOM manipulation, Event bubbling/capturing, delegation, and Web Storage.
+- **[07-Advanced-JavaScript](07-Advanced-JavaScript/README.md) (`v1.0`)** — Prototypes, Classes, Currying, Memoization, Proxies, and Generators.
+- **[08-Performance](08-Performance/README.md) (`v1.0`)** — Garbage collection, memory leaks, Debouncing, and Throttling.
+- **[09-Debugging](09-Debugging/README.md) (`v1.0`)** — Complete guide to DevTools, breakpoints, stack traces, and Heap Snapshots.
+- **[10-Interview-Preparation](10-Interview-Preparation/README.md) (`v1.0`)** — Curated technical questions, wrong paths, and system mockings.
+- **[11-Projects](11-Projects/README.md) (`v1.0`)** — Practical coding projects applying what we learned.
+- **[12-Polyfills](12-Polyfills/README.md) (`v1.0`)** — Building array methods, Promises, and bindings from scratch.
+- **[13-Machine-Coding](13-Machine-Coding/README.md) (`v1.0`)** — Real frontend machine coding challenges.
+- **[14-Cheat-Sheets](14-Cheat-Sheets/README.md) (`v1.0`)** — Reference cards for quick lookups.
+- **[15-Revision](15-Revision/README.md) (`v1.0`)** — High-density revision notes for last-minute preparation.
+- **[16-Resources](16-Resources/README.md) (`v1.0`)** — Books, specifications, and articles for further reading.
 
 ---
 
