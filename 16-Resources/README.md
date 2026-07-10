@@ -1,11 +1,14 @@
 # Module 16: Resources
 
-> **Notice**: Scope outline only — full chapter content not yet written
+This module covers the comprehensive resource directory linking key books, documentation portals, spec registries, and visual tools.
 
-This module will list reference links, documentation sites, specification references, and books for deep-diving study.
+## 📋 Module Overview
 
-## 🗺️ Future Resource Roadmap
+In this module, we will explore:
+- A compiled directory of curated books, links, dynamic reference tools, specifications, and study guides.
 
-- `[ ]` **16-01: Specifications & Documentation** — ECMA-262 specifications, MDN web docs, V8 compiler blogs.
-- `[ ]` **16-02: Book Collections** — Industry literature like "You Don't Know JS", "Eloquent JavaScript", and others.
-- `[ ]` **16-03: Performance Profiling Tooling** — Profilers, heap collectors, and monitoring tools.
+---
+
+## 🏁 Chapter Checklist
+
+- [x] [16-01: Resource Directory](16-01-resource-directory.md) — Compiled links to specs, blogs, tools, books, and study guides.

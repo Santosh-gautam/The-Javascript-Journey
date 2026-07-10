@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `9c0420f`
+**Latest Scaffold Commit**: `c7ec3d6`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -26,7 +26,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **13-Machine-Coding** | ✅ Completed | 5 | 100% |
 | **14-Cheat-Sheets** | ✅ Completed | 3 | 100% |
 | **15-Revision** | ✅ Completed | 1 | 100% |
-| **16-Resources** | 🗺️ Outline Only | - | 0% |
+| **16-Resources** | ✅ Completed | 1 | 100% |
 
 ---
 
@@ -163,6 +163,5 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 ### 🧠 Module 15: Revision (v1.0)
 - [x] [15-01] Flashcards & Summaries (`15-Revision/15-01-flashcards-and-summaries.md`)
 
-#### Module 16: Resources (v1.0 - Outline Only)
-
-- External guides, specs, and reference libraries.
+### 📚 Module 16: Resources (v1.0)
+- [x] [16-01] Resource Directory (`16-Resources/16-01-resource-directory.md`)
