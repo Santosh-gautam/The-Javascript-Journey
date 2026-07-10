@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `c7ec3d6`
+**Latest Scaffold Commit**: `0b2069f`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
