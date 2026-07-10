@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `0fa20cc`
+**Latest Scaffold Commit**: `58611c6`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -21,7 +21,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **08-Performance** | ✅ Completed | 6 | 100% |
 | **09-Debugging** | ✅ Completed | 10 | 100% |
 | **10-Interview-Preparation** | ✅ Completed | 5 | 100% |
-| **11-Projects** | 🗺️ Outline Only | - | 0% |
+| **11-Projects** | ✅ Completed | 5 | 100% |
 | **12-Polyfills** | 🗺️ Outline Only | - | 0% |
 | **13-Machine-Coding** | 🗺️ Outline Only | - | 0% |
 | **14-Cheat-Sheets** | 🗺️ Outline Only | - | 0% |
@@ -126,9 +126,12 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [10-04] Behavioral & Technical (`10-Interview-Preparation/10-04-behavioral-and-technical.md`)
 - [x] [10-05] Trick Questions & Output Predictors (`10-Interview-Preparation/10-05-trick-questions.md`)
 
-#### Module 11: Projects (v1.0 - Outline Only)
-
-- Hands-on Javascript applications.
+### 🛠️ Module 11: Projects (v1.0)
+- [x] [11-01] Spec - Todo App (`11-Projects/11-01-todo-app-spec.md`)
+- [x] [11-02] Spec - Debounced Search (`11-Projects/11-02-debounced-search-spec.md`)
+- [x] [11-03] Spec - Custom Promise.all (`11-Projects/11-03-custom-promise-all-spec.md`)
+- [x] [11-04] Spec - Event Emitter (`11-Projects/11-04-event-emitter-spec.md`)
+- [x] [11-05] Spec - Virtual DOM (`11-Projects/11-05-virtual-dom-spec.md`)
 
 #### Module 12: Polyfills (v1.0 - Outline Only)
 
