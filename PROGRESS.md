@@ -1,6 +1,6 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `58611c6`
+**Latest Scaffold Commit**: `812f506`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
@@ -22,7 +22,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **09-Debugging** | ✅ Completed | 10 | 100% |
 | **10-Interview-Preparation** | ✅ Completed | 5 | 100% |
 | **11-Projects** | ✅ Completed | 5 | 100% |
-| **12-Polyfills** | 🗺️ Outline Only | - | 0% |
+| **12-Polyfills** | ✅ Completed | 13 | 100% |
 | **13-Machine-Coding** | 🗺️ Outline Only | - | 0% |
 | **14-Cheat-Sheets** | 🗺️ Outline Only | - | 0% |
 | **15-Revision** | 🗺️ Outline Only | - | 0% |
@@ -133,9 +133,20 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 - [x] [11-04] Spec - Event Emitter (`11-Projects/11-04-event-emitter-spec.md`)
 - [x] [11-05] Spec - Virtual DOM (`11-Projects/11-05-virtual-dom-spec.md`)
 
-#### Module 12: Polyfills (v1.0 - Outline Only)
-
-- Implementing core JS APIs from scratch.
+### 🧩 Module 12: Polyfills (v1.0)
+- [x] [12-01] Polyfill for map (`12-Polyfills/12-01-map-polyfill.md`)
+- [x] [12-02] Polyfill for filter (`12-Polyfills/12-02-filter-polyfill.md`)
+- [x] [12-03] Polyfill for reduce (`12-Polyfills/12-03-reduce-polyfill.md`)
+- [x] [12-04] Polyfill for forEach (`12-Polyfills/12-04-foreach-polyfill.md`)
+- [x] [12-05] Polyfill for bind (`12-Polyfills/12-05-bind-polyfill.md`)
+- [x] [12-06] Polyfill for call (`12-Polyfills/12-06-call-polyfill.md`)
+- [x] [12-07] Polyfill for apply (`12-Polyfills/12-07-apply-polyfill.md`)
+- [x] [12-08] Polyfill for Promise (`12-Polyfills/12-08-promise-polyfill.md`)
+- [x] [12-09] Polyfill for Promise.all (`12-Polyfills/12-09-promise-all-polyfill.md`)
+- [x] [12-10] Polyfill for debounce (`12-Polyfills/12-10-debounce-polyfill.md`)
+- [x] [12-11] Polyfill for throttle (`12-Polyfills/12-11-throttle-polyfill.md`)
+- [x] [12-12] Polyfill for deep clone (`12-Polyfills/12-12-deep-clone-polyfill.md`)
+- [x] [12-13] Polyfill for flatten array (`12-Polyfills/12-13-flatten-array-polyfill.md`)
 
 #### Module 13: Machine Coding (v1.0 - Outline Only)
 
