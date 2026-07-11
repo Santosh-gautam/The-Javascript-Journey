@@ -45,3 +45,8 @@ blob-report/
 playwright/.cache/
 /tests/
 playwright.config.js
+
+# Internal agent files (not for public repo)
+VERIFICATION-REPORT.md
+PROJECT-REPORT.md
+test-results/
