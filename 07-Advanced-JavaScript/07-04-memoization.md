@@ -320,13 +320,75 @@ In the next chapter, we will study **Debounce & Throttle**. We will explore how 
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Expensive calculations baar baar same inputs pe repeat hote hain — CPU waste hota hai.
-- **Concept**: Memoization caching technique hai — results ek map mein store karo, same input pe stored result return karo.
-- **Key Pattern**: const memo = {}; function fib(n) { if (n in memo) return memo[n]; return memo[n] = fib(n-1) + fib(n-2); }.
-- **Common Mistake**: Non-pure functions memoize karna — side effects ya mutable inputs hain to cached results galat honge.
-## 19. Completion Checklist
+### Concept kya hai
+
+Memoization ek caching technique hai — ek function ke results ko store karo inputs ke basis pe. Jab same input dobara aaye, computed answer nahi karo — cache se return karo. Classic use case: recursive Fibonacci — bina memoization ib(40) exponential time leta hai, memoization ke saath linear. Trade-off: speed ke liye memory use hoti hai.
+
+### Andar kya hota hai (Internal Working)
+
+Memoize wrapper ek closure ke andar ek Map (ya object) cache rakhta hai. V8 is cache Map ka reference Heap pe tab tak rakhta hai jab tak memoized function ka reference active hai — garbage collected nahi hoga.
+
+Map.has() aur Map.get() — average **O(1)** time complexity. Hash-based lookup. Cache key generation expensive ho sakti hai agar complex objects arguments hain — JSON.stringify use karte hain toh O(n) serialization cost.
+
+**Memory concern**: Cache unbounded hai — function sab unique inputs ke results store karta rehta hai. Production mein LRU cache (Least Recently Used) prefer karo — size limit ke saath.
+
+### Code Example samjho
+
+`javascript
+// Without memoization: fib(40) billions of redundant calls
+function fib(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2); // fib(38) kai baar call hoga!
+}
+
+// With memoization: O(n) time
+function memoize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) return cache.get(key); // Cache hit!
+    const result = fn.apply(this, args);
+    cache.set(key, result);                     // Store result
+    return result;
+  };
+}
+
+const memoFib = memoize(function fib(n) {
+  if (n <= 1) return n;
+  return memoFib(n - 1) + memoFib(n - 2);
+});
+console.log(memoFib(40)); // Instant!
+`
+
+**Line by line:**
+- const cache = new Map() — closure mein cache. Har call ke liye persist.
+- JSON.stringify(args) — arguments ko string key mein convert. [40] → "[40]".
+- if (cache.has(key)) return cache.get(key) — cache hit: O(1) return, zero computation.
+- n.apply(this, args) — cache miss: actually compute karo.
+- cache.set(key, result) — future calls ke liye store karo.
+- memoFib(40) — pehle memoFib(39) call, jo memoFib(38) call karta hai... har value ek baar compute hoti hai, cache mein store. N unique values = N computations total.
+
+### Sabse badi galti log karte hain
+
+Non-pure functions memoize karna — functions jinke results external state pe depend karte hain:
+
+`javascript
+let taxRate = 0.18;
+const memoCalc = memoize(price => price * (1 + taxRate));
+memoCalc(100); // 118 — cached
+taxRate = 0.05;
+memoCalc(100); // Still 118 — stale cache! Bug!
+`
+
+Memoization sirf pure functions ke saath hi correct kaam karta hai.
+
+### Yaad rakhne ki cheez
+
+**Memoization = cache + pure function + same input → same output assumption.** Sirf expensive, pure functions ko memoize karo. Non-pure ya side effects wale functions memoize karne se stale/wrong results milenge.
+
+## 20. Completion Checklist
 
 - [ ] I can write a single-argument memoize wrapper.
 - [ ] I understand how argument serialization generates cache keys.

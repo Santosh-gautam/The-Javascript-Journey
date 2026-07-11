@@ -290,13 +290,62 @@ In the next chapter, we will study **Proxy & Reflect**. We will explore meta-pro
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Scroll/resize/keypress events bahut baar fire hote hain — har event pe expensive operation karna performance ruin karta hai.
-- **Concept**: Debounce: events ka "burst" khatam hone ka wait karta hai; Throttle: fixed rate pe execute karta hai regardless of events.
-- **Key Pattern**: Search input ke liye debounce (300ms after typing stops); scroll handler ke liye throttle (max once per 100ms).
-- **Common Mistake**: Debounce aur throttle swap karna — search mein throttle lagane se last keystroke miss ho sakta hai.
-## 19. Completion Checklist
+### Concept kya hai
+
+High-frequency events (scroll, resize, keypress, mousemove) bahut baar fire hote hain — per second 60-100 times. Agar har fire pe expensive operation karo (API call, DOM update) — performance ruin. Do solutions: **Debounce** — events ka "burst" khatam hone ka wait karo, phir ek baar execute karo (typing stop hone ke 300ms baad search karo). **Throttle** — fixed time window mein maximum ek baar execute karo chahe kitni bhi baar event fire ho (scroll pe maximum har 100ms mein ek baar check karo).
+
+### Andar kya hota hai (Internal Working)
+
+**Debounce**: Ek closure variable 	imeoutId hota hai. Har event pe:
+1. clearTimeout(timeoutId) — pichla scheduled timer cancel karo (macrotask queue se remove).
+2. Naya setTimeout(fn, delay) — naya macrotask schedule karo.
+3. Jab events band ho jaate hain, last timer delay ms ke baad fire hota hai — n ek baar chalti hai.
+
+**Throttle** (timestamp-based): Ek closure variable lastExecTime hota hai. Har event pe:
+1. 
+ow = Date.now().
+2. if (now - lastExecTime >= wait) — enough time elapsed?
+3. Haan: n execute, lastExecTime = now.
+4. Nahi: event ignore.
+
+### Code Example samjho
+
+`javascript
+// Debounce implementation
+function debounce(fn, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);                      // Previous cancel
+    timeoutId = setTimeout(() => {
+      fn.apply(this, args);                        // Delay ke baad execute
+    }, delay);
+  };
+}
+
+// Usage: search input pe 300ms debounce
+const searchInput = document.getElementById("search");
+searchInput.addEventListener("input", debounce(function(e) {
+  fetchResults(e.target.value); // Sirf typing ruk jaane ke 300ms baad
+}, 300));
+`
+
+**Line by line:**
+- let timeoutId — closure mein stored. Sab event calls yahi share karte hain.
+- Har keystroke: clearTimeout(timeoutId) — pichla pending timer cancel. setTimeout(fn, 300) — naya timer.
+- User typing karte rehta hai → timers cancel hote rehte hain. Typing ruk gayi 300ms ke liye → timer finally fire hota hai → etchResults ek baar call hoti hai.
+- .apply(this, args) — 	his context aur arguments preserve karo.
+
+### Sabse badi galti log karte hain
+
+Debounce aur Throttle use cases swap karna. Search input ke liye throttle lagana — user ke last keystroke ke baad next throttle window mein search nahi hogi, galat/partial result. Scroll ke liye debounce lagana — user scroll karte rehta hai, action kabhi fire nahi hogi jab tak scroll band na ho — useless. Match the tool to the use case.
+
+### Yaad rakhne ki cheez
+
+**Debounce = typing/search (fire after activity stops). Throttle = scroll/resize (fire at max rate, not more).** clearTimeout debounce ka core mechanism hai — har call pichla timer cancel karta hai.
+
+## 20. Completion Checklist
 
 - [ ] I can write a custom debounce wrapper.
 - [ ] I understand how to write a throttle wrapper using locks.

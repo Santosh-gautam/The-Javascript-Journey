@@ -320,13 +320,58 @@ In the next chapter, we will study the **Polyfill for Promise**. We will explore
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Function.prototype.apply polyfill — call se difference sirf arguments pass karne ka tarika hai.
-- **Concept**: pply(ctx, argsArray) ek array ke form mein arguments leta hai — call individually leta hai.
-- **Key Pattern**: Function.prototype.myApply = function(ctx, args = []) { ctx = ctx || globalThis; const sym = Symbol(); ctx[sym] = this; const result = ctx[sym](...args); delete ctx[sym]; return result; }.
-- **Common Mistake**: rgs null check bhoolna — agar pply(ctx, null) call hota hai to ...null throw karta hai.
-## 19. Completion Checklist
+### Concept kya hai
+
+Function.prototype.apply Polyfill coordinates arguments passing as array layouts. Unlike call which accepts comma-separated lists, pply accepts parameters as single array-like structures. Core cases: **Arguments arrays type validations** (throws type error if args is non-object primitive), **Global fallback** and **Symbol mapping**.
+
+### Andar kya hota hai (Internal Working)
+
+Apply execution details:
+1. **Parameter validations**: If second argument is omitted, treats as empty list []. If it represents a primitive non-object value, throws TypeError.
+2. **Dynamic bindings**: Attached via Symbol to normalized context object.
+3. **Method execution**: JavaScript executes method spreading the arguments array, then cleans up keys.
+
+### Code Example samjho
+
+`javascript
+// Good: Apply polyfill with validations and symbol attachments
+Function.prototype.myApply = function(thisArg, argsArray) {
+  if (typeof this !== "function") throw new TypeError("Apply target must be callable");
+  
+  // Arguments validation
+  if (argsArray !== null && argsArray !== undefined && typeof argsArray !== "object") {
+    throw new TypeError("CreateListFromArrayLike called on non-object");
+  }
+  
+  const context = (thisArg === null || thisArg === undefined) ? globalThis : Object(thisArg);
+  const fnKey = Symbol("tempFn");
+  context[fnKey] = this;
+  
+  // If argsArray is null/undefined, default to empty array
+  const finalArgs = argsArray ? [...argsArray] : [];
+  const result = context[fnKey](...finalArgs);
+  
+  delete context[fnKey];
+  return result;
+};
+`
+
+**Line by line:**
+- 	ypeof argsArray !== "object" — checks if arguments array is valid object representation. Throws type error on non-objects.
+- inalArgs = argsArray ? [...argsArray] : [] — normalizes values arrays list safely.
+- context[fnKey](...finalArgs) — spreads arguments array inside temporary method execution.
+
+### Sabse badi galti log karte hain
+
+Second argument validations skip dynamic array copy spreads directly. If user passes non-array object primitive, raw javascript spread operation throws generic crash messages instead of spec-compliant exceptions. Always pre-validate input types.
+
+### Yaad rakhne ki cheez
+
+**Verify second argument is object array-like before execution, default to empty array for undefined parameters.**
+
+## 20. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.apply` polyfill.
 - [ ] I understand how to validate array-like arguments.

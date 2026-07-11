@@ -295,15 +295,63 @@ In the next chapter, we will study the **Polyfill for call**. We will explore dy
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Function.prototype.bind ko scratch se implement karna — 	his binding aur partial application dono banana hota hai.
-- **Concept**: ind(ctx, ...args) ek naya function return karta hai jo hamesha ctx ke saath call hoga aur rgs pre-fill honge.
-- **Key Pattern**: Function.prototype.myBind = function(ctx, ...args) { const fn = this; return function(...args2) { return fn.apply(ctx, [...args, ...args2]); }; }.
-- **Common Mistake**: 
-ew ke saath inded function call karne ka behavior ignore karna — 
-ew se 	his override ho jata hai.
-## 19. Completion Checklist
+### Concept kya hai
+
+Function.prototype.bind Polyfill is a standard implementation representing function currying and dynamic execution contexts bindings. ind returns a **new function** with locked execution context and pre-loaded arguments values. Core cases: **Prototype preservation** (ensuring returning function prototype chain links back to parent prototype) and **
+ew constructor context overrides** (if returning function is called as constructor, 	his should point to new instance).
+
+### Andar kya hota hai (Internal Working)
+
+Bind execution internals:
+1. **Bound Function object instantiation**: Target returns a new closure function tracking scope inputs.
+2. **Dynamic arguments concat**: Arguments passed during ind and subsequent runtime execution are merged: oundArgs.concat(newArgs).
+3. **Constructor calls checks**: If V8 detects bound function invoked with 
+ew keyword, 	his context binding shifts automatically from bound argument back to the new instance created by the constructor.
+
+### Code Example samjho
+
+`javascript
+// Good: Bind polyfill with constructor overrides and arguments concat
+Function.prototype.myBind = function(thisArg, ...boundArgs) {
+  if (typeof this !== "function") throw new TypeError("Bind target must be callable");
+  
+  const originalFn = this;
+  
+  function boundFunction(...newArgs) {
+    // Check if called as constructor: this instanceof boundFunction
+    const isConstructor = this instanceof boundFunction;
+    const context = isConstructor ? this : thisArg;
+    return originalFn.apply(context, boundArgs.concat(newArgs));
+  }
+  
+  // Preserve prototype chain
+  if (originalFn.prototype) {
+    boundFunction.prototype = Object.create(originalFn.prototype);
+  }
+  
+  return boundFunction;
+};
+`
+
+**Line by line:**
+- 	his instanceof boundFunction — detects if execution context was created via 
+ew operator. If true, allows 
+ew constructor pattern overrides.
+- oundArgs.concat(newArgs) — merges pre-loaded arguments with runtime arguments.
+- Object.create(originalFn.prototype) — ensures subclass prototype inheritance chain matches parent function configuration.
+
+### Sabse badi galti log karte hain
+
+Subclass prototype chain link skip target code. Skipping prototype connection breaks 
+ew constructor instantiations, causing instances to lose access to parent class methods.
+
+### Yaad rakhne ki cheez
+
+**ind returns a new pre-loaded function, prototype linkage is necessary for subclass constructors compatibility.**
+
+## 20. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.bind` polyfill.
 - [ ] I understand how arguments are concatenated in currying.

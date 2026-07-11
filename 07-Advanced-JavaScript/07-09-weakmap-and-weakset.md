@@ -303,13 +303,53 @@ In the final chapter of this module, we will study **Property Descriptors**. We 
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Object ke saath metadata associate karna — regular Map object ke strong reference se garbage collection block hoti thi.
-- **Concept**: WeakMap aur WeakSet weak references rakhte hain — jab object koi aur reference nahi rakhta to GC free kar sakta hai.
-- **Key Pattern**: const cache = new WeakMap(); function process(obj) { if(cache.has(obj)) return cache.get(obj); ... cache.set(obj, result); }.
-- **Common Mistake**: WeakMap ko iterable samajhna — .keys(), .values(), .size nahi hota; GC ke sath leak-free private storage ke liye hai.
-## 19. Completion Checklist
+### Concept kya hai
+
+WeakMap aur WeakSet standard Map aur Set ke weak variants hain. Dono mein simple rule hai: **keys/elements hamesha objects (ya unregistered symbols) hi honi chahiye, primitives nahi.** Aur doosra rule: ye references **weak** hote hain — matlab GC (Garbage Collector) object ko collect karne se nahi rokta agar koi strong reference na bacha ho. Iska use elements metadata cache karne, event listener associations track karne, ya private data maintain karne ke liye hota hai bina memory leak ki chinta kiye.
+
+### Andar kya hota hai (Internal Working)
+
+Normal Map keys ka **strong reference** rakhta hai. Agar tum DOM element Map mein store karo aur DOM se use remove kar do, standard Map use clean nahi hone dega (memory leak).
+
+WeakMap mein:
+1. Keys ko weak tables mein store kiya jaata hai. V8 garbage collection passes mein root reachability verify karta hai.
+2. Agar key object sirf WeakMap se reachable hai, toh object ko **dead** mark kiya jaata hai.
+3. Heap space reclaim ho jaati hai aur map slot empty ho jaata hai.
+4. **Non-iterable behavior**: Kyunki GC unpredictable time pe run karta hai, WeakMap ki keys list deterministic nahi hoti, isiliye .keys(), .values(), .forEach() ya .size properties design-wise missing hain.
+
+### Code Example samjho
+
+`javascript
+// Good: WeakMap metadata association
+const elementMetadata = new WeakMap();
+
+let button = document.createElement("button");
+elementMetadata.set(button, { clickedCount: 0 }); // Key is object
+
+document.body.appendChild(button);
+button.remove(); // DOM se remove kiya
+
+button = null; // Script reference clear kiya
+// WeakMap auto-cleanup: button ab GC se collect ho jayega!
+`
+
+**Line by line:**
+- const elementMetadata = new WeakMap() — WeakMap create kiya.
+- elementMetadata.set(button, ...) — element ko key banaya. Registry weak hai.
+- utton.remove() aur utton = null — ab browser memory mein button object ka koi strong pointer nahi bacha.
+- GC pass aayega: key utton unreachable hai, memory free ho jayegi. Standard Map hota toh button memory leak ban jaata.
+
+### Sabse badi galti log karte hain
+
+WeakMap ke keys mein primitives (strings, numbers) use karna: weakMap.set('id', { name: 'Ravi' }) — TypeError dega. Primitives gc-eligible objects nahi hote aur inki life cycle predictable keys ki tarah treat nahi ki ja sakti.
+
+### Yaad rakhne ki cheez
+
+**WeakMap = Weak references = Auto-cleanup for Objects.** Iteration supported nahi hota. DOM node association track karne aur memory leaks avoid karne ke liye sabse best tool hai.
+
+## 20. Completion Checklist
 
 - [ ] I can explain the difference between strong and weak references.
 - [ ] I understand why weak collections are non-iterable.

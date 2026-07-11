@@ -278,13 +278,67 @@ In the next chapter, we will study the **Polyfill for deep clone**. We will expl
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Scroll events pe har frame function call — throttle se fixed interval pe ek baar call.
-- **Concept**: Throttle: ek call ko allow karo, phir wait ms ke liye block karo — timestamps ya flags se implement.
-- **Key Pattern**: unction throttle(fn, wait) { let last = 0; return function(...args) { const now = Date.now(); if(now - last >= wait) { last = now; fn.apply(this, args); } }; }.
-- **Common Mistake**: Leading aur trailing calls ka behavior confuse karna — decide karo kya chahiye aur implement karo consistently.
-## 19. Completion Checklist
+### Concept kya hai
+
+Throttle Polyfill rate-limiting execution functions coordinate standard helper wraps. Throttling checks limit frequencies to maximum once per configured time window frame. Core cases: **Locking states checks** (blocking execution if throttle window is active), **Trailing edge execution** (saving intermediate arguments to fire once lock window closes) and **Context preservation**.
+
+### Andar kya hota hai (Internal Working)
+
+Throttler coordination internals:
+1. **Lock status persistence**: Throttler registers boolean variable inThrottle inside heap scope closure variables.
+2. **Trailing parameters buffers**: Intermediate method calls store latest parameters in savedArgs and savedContext slots.
+3. **Timer release loops**: After timer expires: if savedArgs contains values, executes callback immediately, restarts timer lock, and clears buffers. Otherwise releases lock.
+
+### Code Example samjho
+
+`javascript
+function throttle(func, limit) {
+  if (typeof func !== "function") throw new TypeError("First argument must be a function");
+  
+  let inThrottle = false;
+  let savedArgs = null;
+  let savedContext = null;
+  
+  return function(...args) {
+    if (!inThrottle) {
+      func.apply(this, args); // Leading execution
+      inThrottle = true;
+      
+      const timeout = () => {
+        if (savedArgs) {
+          func.apply(savedContext, savedArgs); // Trailing execution
+          savedArgs = null;
+          savedContext = null;
+          setTimeout(timeout, limit); // Restart lock
+        } else {
+          inThrottle = false; // Release lock
+        }
+      };
+      setTimeout(timeout, limit);
+    } else {
+      savedArgs = args; // Store intermediate call parameters
+      savedContext = this;
+    }
+  };
+}
+`
+
+**Line by line:**
+- if (!inThrottle) — checks if loop lock is released. Fires immediately on first execution (leading edge).
+- savedArgs = args; savedContext = this — buffers latest calls parameters if loop lock is active.
+- 	imeout callback — runs when limit interval ends. If buffered parameters exist, triggers trailing execution and extends lock. Otherwise, releases lock.
+
+### Sabse badi galti log karte hain
+
+Trailing edge execution implementation skip parameters. Skipping trailing edge loses the user's final input coordinates if they happened inside the lock window (e.g. final window resize size). Always buffer final event states.
+
+### Yaad rakhne ki cheez
+
+**Use closure variables to persist throttle locks and trailing arguments buffers across callback events.**
+
+## 20. Completion Checklist
 
 - [ ] I can write a custom throttle polyfill helper.
 - [ ] I understand the difference between debounce and throttle.

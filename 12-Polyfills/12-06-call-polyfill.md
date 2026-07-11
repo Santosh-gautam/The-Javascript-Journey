@@ -300,13 +300,55 @@ In the next chapter, we will study the **Polyfill for apply**. We will explore a
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Function.prototype.call polyfill — temporary 	his binding ke liye.
-- **Concept**: call(ctx, arg1, arg2) function ko ctx as 	his ke saath call karta hai — arguments individually pass hote hain.
-- **Key Pattern**: Function.prototype.myCall = function(ctx, ...args) { ctx = ctx || globalThis; const sym = Symbol(); ctx[sym] = this; const result = ctx[sym](...args); delete ctx[sym]; return result; }.
-- **Common Mistake**: Symbol use na karna — property name clash ho sakta hai; unique key ke liye Symbol() use karo.
-## 19. Completion Checklist
+### Concept kya hai
+
+Function.prototype.call Polyfill functions execution dynamic context mapping standard implementation hai. call function ko immediately run karta hai first argument ko 	his target set karke. Core cases: **Global fallback** (if context is null/undefined, defaults to globalThis), **Primitive wrapper coercion** (if context is string/number, wraps to Object) and **Collision-free key mapping** (binding function dynamically on context using a unique Symbol).
+
+### Andar kya hota hai (Internal Working)
+
+Call resolution internals:
+1. **Context normalizations**: Primitive check conversions create dynamic Object wrappers: Object(thisArg).
+2. **Dynamic property mapping**: Function is attached temporarily to context object as property.
+3. **Execution sweeps**: JavaScript triggers method execution, records results, and deletes dynamic key references to prevent object pollution.
+
+### Code Example samjho
+
+`javascript
+// Good: Call polyfill with primitive safety and symbol mapping
+Function.prototype.myCall = function(thisArg, ...args) {
+  if (typeof this !== "function") throw new TypeError("Call target must be callable");
+  
+  // Normalization context
+  const context = (thisArg === null || thisArg === undefined) ? globalThis : Object(thisArg);
+  
+  // Unique Symbol to prevent key collision
+  const fnKey = Symbol("tempFn");
+  context[fnKey] = this; // Attach function reference
+  
+  const result = context[fnKey](...args); // Execute method
+  delete context[fnKey]; // Cleanup property
+  
+  return result;
+};
+`
+
+**Line by line:**
+- Object(thisArg) — wraps primitive numbers or strings into Object instances.
+- Symbol("tempFn") — prevents overwriting existing keys on context objects.
+- context[fnKey](...args) — executes target method using implicit context binding.
+- delete context[fnKey] — ensures cleanup step cleans object state.
+
+### Sabse badi galti log karte hain
+
+Static names as function attachment keys (context.fn = this). If context object already has "fn" key, it gets overwritten and lost permanently. Always use Symbol keys.
+
+### Yaad rakhne ki cheez
+
+**Use unique Symbols to attach temporary function references to context objects, delete keys after execution.**
+
+## 20. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.call` polyfill.
 - [ ] I understand how the dynamic `this` binding is established using property access.

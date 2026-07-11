@@ -289,15 +289,43 @@ In the next chapter, we explore **Array By-Copy Methods** (`toReversed`, `toSort
 
 ---
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: File handles, DB connections manually close karne padte the — error pe leak ho jate the.
-- **Concept**: `using` ek naya keyword hai jo block exit hone pe automatically `[Symbol.dispose]()` call karta hai.
-- **Key Pattern**: `await using db = await Database.connect()` — block khatam hote hi connection close.
-- **Common Mistake**: Normal objects pe `using` mat lagao — sirf wahi objects jinka `[Symbol.dispose]` defined ho.
-- **LIFO Order**: Multiple resources reverse order mein close hote hain — last declared, first disposed.
+### Concept kya hai
 
----
+Explicit Resource Management (using aur wait using) code resources (db connections, file handles, memory loops sockets) ko automatically cleanup and release karne ka ES2025 standard is. using variables block scope coordinates exits triggers directly, garbage collection sweeps coordinates dependencies resolve target checks. Eliminates verbose manual try-finally cleanup boilerplates.
+
+### Andar kya hota hai (Internal Working)
+
+Resource unwinding pipeline:
+1. **Dispose stack instantiation**: When V8 compiles using x = resource, it registers object and pushes target x[Symbol.dispose] method reference onto current block execution's internal dispose stack.
+2. **LIFO stack execution**: When block scope exits (via return, throw or normal fall-through), V8 pops stack elements LIFO (Last In First Out) order executing registered dispose calls automatically.
+3. **Error suppression**: If both main code blocks and dispose function throw errors, V8 suppresses secondary errors returning unified SuppressedError metadata instances containing both errors information.
+
+### Code Example samjho
+
+`javascript
+// Good: Auto cleanup Database connection using resource management
+async function processQuery() {
+  // Connection automatically closes when block scope exits!
+  await using db = await Database.connect();
+  const results = await db.query("SELECT * FROM users");
+  return results;
+}
+`
+
+**Line by line:**
+- wait using db = ... — instantiates resource connections. Registers db[Symbol.asyncDispose] handler inside current block's dispose stack.
+- db.query(...) — executes queries logic. If it throws, V8 still unwinds dispose stack.
+- Block exit — engine runs async dispose callbacks automatically, closing db handles safely. No connections leak.
+
+### Sabse badi galti log karte hain
+
+Standard using syntax with objects missing Symbol.dispose implementation definitions. If object does not implement dispose interfaces, engine throws TypeErrors instantly at execution start. Always ensure target resource implements dispose specifications.
+
+### Yaad rakhne ki cheez
+
+**using automatically disposes resources at block scope exits in LIFO sequence.**
 
 ## 20. Completion Checklist
 

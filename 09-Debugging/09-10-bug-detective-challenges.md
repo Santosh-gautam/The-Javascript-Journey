@@ -253,9 +253,34 @@ When debugging application failures:
 
 Congratulations on completing the Debugging curriculum! You are now equipped to trace, profile, and fix complex production issues.
 
-## 🇮🇳 Hinglish Summary
+## 🇮🇳 Hindi Explanation
 
-- **Problem**: Theory padhne se practical debugging skill nahi milti — real bugs solve karne ki practice chahiye.
-- **Concept**: Bug detective challenges real-world scenarios hain — closure bugs, async timing issues, prototype chain surprises.
-- **Key Pattern**: Har challenge mein: pehle expected behavior samjho → actual behavior note karo → root cause dhundho → fix karo → verify karo.
-- **Common Mistake**: Answer dekhna before trying — debugging skills sirf practice se aate hain, shortcuts nahi chalte.
+### Concept kya hai
+
+Debugging theoretical concepts seekhne se nahi aati — real codes ke bugs analyze and resolve practice steps tests validation se complex patterns solve hote hain. Is chapter mein three challenges solved benchmarks maps parameters trace details run check setup analysis complete parameters validation guides details compile rules use case scenarios explore kiye gaye hain: async loops scoping, tabs switches memory leaks aur V8 deoptimizations shapes shapes.
+
+### Andar kya hota hai (Internal Working)
+
+Challenges engine patterns:
+1. **Scoping inside setTimeouts**: setTimeout(attempt(n), delay) immediate invocation recursive call frame synchronously stack execute check runs, callback execution reference stack registers bypass values are lost dynamically context stack.
+2. **Hidden classes transitions**: Object keys property updates dynamically add maps structures polymorphic states compiler loops check de-optimizations registers. All instances must share similar schemas dynamically contexts constructor functions levels.
+
+### Code Example samjho
+
+`javascript
+// Fixed: pass callback function inside timer triggers
+setTimeout(() => attempt(attemptNumber + 1), delayMs);
+`
+
+**Line by line:**
+- () => attempt(...) — anonymous callback reference created.
+- V8 routes function context parameters, registers delay timers.
+- After timer completes, callback executes recursively, keeping control flow asynchronous and correct.
+
+### Sabse badi galti log karte hain
+
+Challenge solution codes direct copy check run loop before reproducing error locally. Debugging analysis requires observing variables, using breakpoints and Heap comparison metrics to prove assumptions scientifically.
+
+### Yaad rakhne ki cheez
+
+**Systematic investigations and diagnostic steps confirm root cause before code changes.**

@@ -337,13 +337,55 @@ In the next chapter, we will study the **Polyfill for Promise.all**. We will exp
 ---
 
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: Promise ka internal state machine samajhna — pending → ulfilled/ejected ek-directional transition.
-- **Concept**: Promise ek state machine hai — esolve/eject call hone pe state change hota hai, .then() callbacks queue hote hain.
-- **Key Pattern**: State store karo, callbacks queue karo, esolve pe sab queued callbacks call karo — microtask scheduling zaruri hai.
-- **Common Mistake**: Multiple resolve calls allow karna — first call ke baad state lock hona chahiye; baad ke calls ignore karo.
-## 19. Completion Checklist
+### Concept kya hai
+
+Promise Polyfill standard promises specification (Promises/A+) custom state machine design implement targets coordinates. Promise polyfill objects state transitions pending to fulfilled or rejected rule sequences lock coordinate details. Core cases: **Microtask callbacks scheduling** (queueMicrotask falls setup), **Callback arrays queues** and **Chaining recursion resolutions**.
+
+### Andar kya hota hai (Internal Working)
+
+Promise polyfill tracking internals:
+1. **Queues arrays allocations**: If .then() is called during pending state, callbacks are registered inside array queues: 	his.onFulfilledCallbacks and 	his.onRejectedCallbacks.
+2. **Microtasks resolution scheduling**: Callback functions are wrapped and pushed to Event Loop Microtask Queue using queueMicrotask or fallback setTimeout loops to run asynchronously.
+3. **Recursive Resolution Procedure**: esolvePromise checks output type. If output is another Promise, it chains fulfillment automatically.
+
+### Code Example samjho
+
+`javascript
+class MyPromise {
+  constructor(executor) {
+    this.state = "pending";
+    this.value = undefined;
+    this.onFulfilledCallbacks = [];
+    
+    const resolve = (value) => {
+      if (this.state === "pending") {
+        this.state = "fulfilled";
+        this.value = value;
+        // Schedule callback execution on microtask queue
+        this.onFulfilledCallbacks.forEach(cb => queueMicrotask(cb));
+      }
+    };
+    try { executor(resolve); } catch(e) { /* handle */ }
+  }
+}
+`
+
+**Line by line:**
+- 	his.state = "pending" — initial state representation.
+- 	his.onFulfilledCallbacks = [] — stores callbacks when Promise is not yet resolved.
+- queueMicrotask(cb) — schedules callback execution asynchronously in V8 microtask queue.
+
+### Sabse badi galti log karte hain
+
+Callbacks synchronously execution call inside resolve. If callbacks run immediately instead of microtask queues scheduling, it violates Promises/A+ specifications, breaking async sequencing codes. Always wrap triggers inside queueMicrotask blocks.
+
+### Yaad rakhne ki cheez
+
+**Promises callbacks must execute asynchronously inside microtask queues context frames.**
+
+## 20. Completion Checklist
 
 - [ ] I can write a custom Promise state machine class.
 - [ ] I understand how states are locked upon settling.

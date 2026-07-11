@@ -307,15 +307,42 @@ In the next chapter, we explore **Set Operations** — new ES2025 methods on `Se
 
 ---
 
-## 19. 🇮🇳 Hinglish Summary
+## 19. 🇮🇳 Hindi Explanation
 
-- **Problem**: `sort()` aur `reverse()` original array ko mutate kar dete the — React aur functional code mein bug hote the.
-- **Concept**: `toSorted()`, `toReversed()`, `toSpliced()`, `with()` — ye sab naya copy return karte hain, original safe rehta hai.
-- **Key Pattern**: `arr.toSorted((a, b) => b - a)` — descending sort bina mutation ke.
-- **Common Mistake**: `toSorted()` bina comparator ke numbers ko lexicographically sort karta hai — `[10,9].toSorted()` dega `[10,9]` nahi, `[10,9]`... actually numbers ke liye comparator dena padega.
-- **Chaining**: Ye sab chain ho sakte hain kyunki har method naya array deta hai.
+### Concept kya hai
 
----
+ES2024 Array by-copy methods (	oReversed(), 	oSorted(), 	oSpliced(), with()) array mutations concerns resolve kartay hain. Traditional array methods (sort(), everse(), splice()) original array to directly modify/mutate kartay hain (causing state sync bugs in React/Redux architectures). By-copy methods original arrays untouched copy sequences return options features.
+
+### Andar kya hota hai (Internal Working)
+
+By copy allocations:
+1. **Implicit allocation copies**: Calling .toSorted() internally performs array copy checks (equivalent to shallow copying [...this]) in Heap memory, applies sorting algorithms on the copy, and returns the sorted instance.
+2. **Index update allocations**: with(index, value) instantiates new array copies matching source, then updates target index position value before returning.
+
+### Code Example samjho
+
+`javascript
+// Good: React-safe sorted array extraction
+const scores = [70, 95, 82];
+
+// Returns a new sorted array, original array stays unchanged!
+const sorted = scores.toSorted((a, b) => b - a);
+
+console.log(sorted); // [95, 82, 70]
+console.log(scores); // [70, 95, 82] — Original unchanged!
+`
+
+**Line by line:**
+- scores.toSorted(...) — instantiates copy inside Heap, runs TimSort sorting algorithm on the copy, and returns new instance.
+- console.log(scores) — original array values layout unchanged. Safe from state mutation bugs.
+
+### Sabse badi galti log karte hain
+
+React states modification loops mein legacy .sort() or .reverse() call directly execute checks. These methods mutate original state references bypassing React component re-rendering triggers. Always use by-copy variants inside state updates.
+
+### Yaad rakhne ki cheez
+
+**	oSorted, 	oReversed, 	oSpliced and with return new arrays, leaving original instances untouched.**
 
 ## 20. Completion Checklist
 
