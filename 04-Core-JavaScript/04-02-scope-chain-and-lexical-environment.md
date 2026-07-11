@@ -312,6 +312,13 @@ Now that we know how variables trace their paths up the scope chain, we need to 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Variable resolution ke rules samjhe bina scope-related bugs fix karna mushkil hota hai.
+- **Concept**: Scope Chain ek chain of Lexical Environments hai — inner scope se bahar ki taraf variable dhundha jata hai.
+- **Key Pattern**: Variable current scope mein nahi mila to outer scope check hota hai, jab tak global scope tak na pahunche.
+- **Common Mistake**: Dynamic scope (calling context) aur Lexical scope (where function is written) ko mix karna — JS lexical hai.
 ## 19. Completion Checklist
 
 - [ ] I can explain what a Lexical Environment is.

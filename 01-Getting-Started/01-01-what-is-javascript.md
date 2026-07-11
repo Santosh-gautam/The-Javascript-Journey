@@ -302,6 +302,13 @@ Now that we understand how the engine compiles and executes JavaScript code, we 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Developers JavaScript use karte hain bina ye jaane ki engine actually code kaise run karta hai.
+- **Concept**: JavaScript ek single-threaded, interpreted (JIT compiled) language hai jo browser aur Node.js dono mein chalta hai.
+- **Key Pattern**: V8 engine code ko bytecode mein compile karta hai, phir hot paths ko machine code mein optimize karta hai.
+- **Common Mistake**: JavaScript ko sirf "browser language" samajhna — Node.js mein bhi same engine use hota hai.
 ## 19. Completion Checklist
 
 - [ ] I can explain what JIT compilation is and why it's faster than pure interpretation.

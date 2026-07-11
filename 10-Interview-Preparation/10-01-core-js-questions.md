@@ -232,6 +232,13 @@ In the next chapter, we will study **Coding Patterns**. We will explore essentia
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Interview mein JavaScript questions pe shallow answers dena — examiner deeper follow-up questions karta hai.
+- **Concept**: Core JS questions: hoisting, closures, 	his, event loop, prototypes — ye sab V8 engine level pe explain karna padta hai.
+- **Key Pattern**: Har answer mein: definition → analogy → code example → engine-level explanation — interviewer impressed hoga.
+- **Common Mistake**: Memorize karna bina samjhe — interviewer ek bhi follow-up question se expose kar dega; deeply understand karo.
 ## 10. Completion Checklist
 
 - [ ] I can explain closures and prototype chains using technical terms.

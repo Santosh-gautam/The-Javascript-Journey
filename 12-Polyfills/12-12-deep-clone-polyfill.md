@@ -299,6 +299,13 @@ In the final chapter of this module, we will study the **Polyfill for flatten ar
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Objects copy karna — shallow copy se nested objects shared reference rehta hai, unexpected mutations hote hain.
+- **Concept**: Deep clone: recursively har nested object/array ko copy karo — original se poori tarah independent copy.
+- **Key Pattern**: unction deepClone(val) { if(typeof val !== 'object' || val === null) return val; if(Array.isArray(val)) return val.map(deepClone); return Object.fromEntries(Object.entries(val).map(([k,v]) => [k, deepClone(v)])); }.
+- **Common Mistake**: Circular references handle na karna — infinite recursion hoga; WeakMap se visited track karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom deep clone polyfill.

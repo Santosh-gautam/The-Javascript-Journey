@@ -313,6 +313,13 @@ In the next chapter, we will study **Bundle Size Optimization**. We will explore
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: JavaScript ke GC ke bawajood memory leaks hote hain — app dheere dheere slow hota rehta hai.
+- **Concept**: Common leaks: forgotten event listeners, closures holding large data, detached DOM nodes, global variable accumulation.
+- **Key Pattern**: Event listeners emoveEventListener se cleanup karo; WeakMap use karo DOM node pe metadata ke liye.
+- **Common Mistake**: Detached DOM nodes — element remove kiya DOM se but JS variable still reference kar raha hai — GC collect nahi kar sakta.
 ## 19. Completion Checklist
 
 - [ ] I can describe how the Mark-and-Sweep algorithm works.

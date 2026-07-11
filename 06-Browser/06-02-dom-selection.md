@@ -280,6 +280,13 @@ Now that we know how to select elements, we will explore how to modify them. In 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Sahi DOM element select karna — galat selector se wrong elements select ho jate hain.
+- **Concept**: querySelector (pehla match), querySelectorAll (sab), getElementById, getElementsByClassName — sab ka alag use case hai.
+- **Key Pattern**: document.querySelector('#id .class[data-attr]') — full CSS selector power milti hai.
+- **Common Mistake**: querySelectorAll ka result live nahi hota (static NodeList) — getElementsByClassName live hota hai; dono confuse karna.
 ## 19. Completion Checklist
 
 - [ ] I can distinguish between static NodeLists and live HTMLCollections.

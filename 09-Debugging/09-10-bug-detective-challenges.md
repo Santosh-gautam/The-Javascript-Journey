@@ -252,3 +252,10 @@ When debugging application failures:
 - [ ] Initialize object fields together to keep V8 compiled shapes fast.
 
 Congratulations on completing the Debugging curriculum! You are now equipped to trace, profile, and fix complex production issues.
+
+## 🇮🇳 Hinglish Summary
+
+- **Problem**: Theory padhne se practical debugging skill nahi milti — real bugs solve karne ki practice chahiye.
+- **Concept**: Bug detective challenges real-world scenarios hain — closure bugs, async timing issues, prototype chain surprises.
+- **Key Pattern**: Har challenge mein: pehle expected behavior samjho → actual behavior note karo → root cause dhundho → fix karo → verify karo.
+- **Common Mistake**: Answer dekhna before trying — debugging skills sirf practice se aate hain, shortcuts nahi chalte.

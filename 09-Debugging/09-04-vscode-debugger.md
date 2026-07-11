@@ -259,6 +259,13 @@ In the next chapter, we will study **Breakpoints & Watch**. We will explore cond
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: console.log debugging slow aur clunky hai — variable state check karne ke liye code edit karna padta tha.
+- **Concept**: VS Code Debugger launch.json se configure hota hai — breakpoints, watch expressions, call stack sab IDE mein.
+- **Key Pattern**: .vscode/launch.json mein "type": "node" ya "chrome" — F5 press karo aur debugging start.
+- **Common Mistake**: launch.json properly configure na karna — wrong port ya program path se debugger attach nahi hota.
 ## 19. Completion Checklist
 
 - [ ] I can create and configure a `.vscode/launch.json` file.

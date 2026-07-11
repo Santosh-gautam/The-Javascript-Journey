@@ -271,6 +271,13 @@ In the final chapter of this module, we will explore **Error Handling**. We will
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Global scope pollution aur spaghetti code — sab kuch ek file mein likhna scalable nahi tha.
+- **Concept**: ES Modules (import/export) se code modular, reusable, aur tree-shakable banta hai.
+- **Key Pattern**: export default ek cheez export karta hai; export { name } named export hai — import { name } from './file.js'.
+- **Common Mistake**: equire() (CommonJS) aur import (ESM) mix karna — Node.js mein type bata ke use karo (.mjs ya "type":"module").
 ## 19. Completion Checklist
 
 - [ ] I can distinguish between CJS and ESM architectures.

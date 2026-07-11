@@ -378,6 +378,13 @@ We have completed **Module 11: Projects**! You have mastered Vanilla JS architec
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Poora real DOM re-render karna expensive hai — sirf jo change hua wo update karo.
+- **Concept**: Virtual DOM: JS object tree hai (VNode) — diff algorithm se purana aur naya tree compare karo — sirf changes patch karo real DOM mein.
+- **Key Pattern**: unction diff(old, new) → patches; function patch(element, patches) → real DOM update.
+- **Common Mistake**: VNode mein key prop bhool jaana — lists ke liye keys zaruri hain correct diff ke liye.
 ## 19. Completion Checklist
 
 - [ ] I understand the concept and memory advantages of Virtual DOM.

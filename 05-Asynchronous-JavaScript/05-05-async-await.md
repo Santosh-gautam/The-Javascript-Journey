@@ -301,6 +301,13 @@ In the next chapter, we will look at the **Internal Working of Async/Await**. We
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Promise chaining bhi complex ho sakta tha — .then().then() mein error handling awkward tha.
+- **Concept**: sync/await Promises ke upar syntactic sugar hai — async code synchronous jaisa readable lagta hai.
+- **Key Pattern**: const data = await fetch(url).then(r => r.json()) — 	ry/catch se errors handle karo.
+- **Common Mistake**: wait ko sync function ke bahar use karna — SyntaxError aata hai; Top-level await sirf ESM mein kaam karta hai.
 ## 19. Completion Checklist
 
 - [ ] I can write async functions and linearize promise checks.

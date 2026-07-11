@@ -319,6 +319,13 @@ In the next chapter, we will study **Debounce & Throttle**. We will explore how 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Expensive calculations baar baar same inputs pe repeat hote hain — CPU waste hota hai.
+- **Concept**: Memoization caching technique hai — results ek map mein store karo, same input pe stored result return karo.
+- **Key Pattern**: const memo = {}; function fib(n) { if (n in memo) return memo[n]; return memo[n] = fib(n-1) + fib(n-2); }.
+- **Common Mistake**: Non-pure functions memoize karna — side effects ya mutable inputs hain to cached results galat honge.
 ## 19. Completion Checklist
 
 - [ ] I can write a single-argument memoize wrapper.

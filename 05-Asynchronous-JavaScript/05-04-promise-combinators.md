@@ -261,6 +261,13 @@ In the next chapter, we will study **Async / Await**. We will explore how to wri
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Multiple async operations ko manage karna — kab sab ka wait karna hai, kab sirf pehle wale ka.
+- **Concept**: 4 combinators: Promise.all (sab ya fail), Promise.allSettled (sab settle), Promise.race (pehla), Promise.any (pehla success).
+- **Key Pattern**: Parallel requests ke liye Promise.all([fetch1, fetch2, fetch3]) — sequential se bahut faster.
+- **Common Mistake**: Promise.all mein ek bhi reject ho to poora fail — agar partial success chahiye to Promise.allSettled use karo.
 ## 19. Completion Checklist
 
 - [ ] I can distinguish between the 4 Promise combinators.

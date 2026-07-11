@@ -341,6 +341,13 @@ In the next chapter, we will study the **Spec - Event Emitter**. We will explore
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Promise.all internals samajhna — native implementation ke peeche kya logic hai.
+- **Concept**: Saare promises parallel mein start karo, ek counter rakho — jab sab settle hon (ya ek reject ho) to resolve/reject karo.
+- **Key Pattern**: esults[i] = val; if(++resolved === promises.length) resolve(results) — order preserve karo.
+- **Common Mistake**: Sequential await karna — or loop mein wait lagate hain to parallel nahi hota; sab ek saath start karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom `Promise.all` polyfill from scratch.

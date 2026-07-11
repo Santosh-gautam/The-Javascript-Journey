@@ -302,6 +302,13 @@ In the final chapter of this module, we will study **Property Descriptors**. We 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Object ke saath metadata associate karna — regular Map object ke strong reference se garbage collection block hoti thi.
+- **Concept**: WeakMap aur WeakSet weak references rakhte hain — jab object koi aur reference nahi rakhta to GC free kar sakta hai.
+- **Key Pattern**: const cache = new WeakMap(); function process(obj) { if(cache.has(obj)) return cache.get(obj); ... cache.set(obj, result); }.
+- **Common Mistake**: WeakMap ko iterable samajhna — .keys(), .values(), .size nahi hota; GC ke sath leak-free private storage ke liye hai.
 ## 19. Completion Checklist
 
 - [ ] I can explain the difference between strong and weak references.

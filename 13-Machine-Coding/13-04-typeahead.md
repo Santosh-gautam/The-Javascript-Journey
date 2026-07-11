@@ -465,6 +465,13 @@ In the next chapter, we will study **File Explorer / Nested Comments**. We will 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Search input pe suggestions dikhana — keyboard navigation, accessibility, debounce sab sath.
+- **Concept**: Debounce + filter/fetch → suggestions list render → ArrowUp/Down/Enter keyboard handlers → selection on Enter.
+- **Key Pattern**: input.addEventListener('keydown', e => { if(e.key === 'ArrowDown') selectNext(); else if(e.key === 'Enter') confirmSelection(); }).
+- **Common Mistake**: Accessibility ignore karna — ria-activedescendant, ole="listbox", ole="option" — screen readers ke liye zaruri hain.
 ## 19. Completion Checklist
 
 - [ ] I can write a debounced, accessible Typeahead widget.

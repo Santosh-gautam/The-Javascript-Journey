@@ -314,6 +314,13 @@ In the next chapter, we will explore **Operators & Coercion**. We will look at h
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Primitives aur objects ka alag behavior (by value vs by reference) confusing bugs deta hai.
+- **Concept**: 7 primitives hain (string, number, boolean, null, undefined, symbol, bigint) — baaki sab objects.
+- **Key Pattern**: 	ypeof null === "object" ek historical bug hai — null check ke liye === null use karo.
+- **Common Mistake**: Objects pass karte waqt "copy" samajhna — dono variables same reference point karte hain.
 ## 19. Completion Checklist
 
 - [ ] I can list all 7 primitive data types in JavaScript.

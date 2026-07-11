@@ -266,6 +266,13 @@ In the next chapter, we will study **Currying & Partial Application**. We will e
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Mutable state aur side effects se bugs track karna mushkil hota hai — state kab kahan change hua?
+- **Concept**: FP mein pure functions (same input → same output, no side effects) aur immutable data prefer karte hain.
+- **Key Pattern**: const result = data.filter(isValid).map(transform).reduce(aggregate, initial) — pure function pipeline.
+- **Common Mistake**: "Pure function" ko "no async" samajhna — async bhi pure ho sakta hai agar same input pe same Promise state return kare.
 ## 19. Completion Checklist
 
 - [ ] I can write pure functions with no side effects.

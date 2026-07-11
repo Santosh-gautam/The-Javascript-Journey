@@ -298,6 +298,13 @@ In the next chapter, we will study the **Polyfill for reduce**. We will explore 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: ilter ko scratch se likhna — interview mein common ask hai; native behavior exactly mirror karna hota hai.
+- **Concept**: ilter sirf wahi elements return karta hai jinke liye callback 	rue return kare — new array, original untouched.
+- **Key Pattern**: Array.prototype.myFilter = function(fn) { const res = []; for(let i=0; i<this.length; i++) if(fn(this[i], i, this)) res.push(this[i]); return res; }.
+- **Common Mistake**: length maintain karna ignore karna — sparse array mein missing indices bhi handle karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Array.prototype.filter` polyfill.

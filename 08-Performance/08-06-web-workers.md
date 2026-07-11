@@ -320,6 +320,13 @@ We have completed **Module 08: Performance**! You have mastered performance meas
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Heavy computation main thread pe karna — UI freeze ho jata hai, user interactions block hoti hain.
+- **Concept**: Web Workers background threads mein code chalate hain — main thread se isolated, postMessage se communicate karte hain.
+- **Key Pattern**: const w = new Worker('worker.js'); w.postMessage(data); w.onmessage = e => use(e.data);.
+- **Common Mistake**: DOM access Worker mein karna — Workers ke paas DOM access nahi hota; sirf data processing Workers mein karo.
 ## 19. Completion Checklist
 
 - [.] I can spawn and communicate with dedicated Web Workers.

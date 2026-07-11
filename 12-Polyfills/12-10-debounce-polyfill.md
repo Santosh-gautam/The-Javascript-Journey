@@ -286,6 +286,13 @@ In the next chapter, we will study the **Polyfill for throttle**. We will explor
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Rapid events pe function bar bar call hota hai — debounce se last call ke baad delay ke baad execute ho.
+- **Concept**: Debounce: timer reset karo har call pe — sirf jab events ruk jaye tab execute ho.
+- **Key Pattern**: unction debounce(fn, delay) { let timer; return function(...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), delay); }; }.
+- **Common Mistake**: 	his context lose karna — arrow function ya .apply(this, args) use karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom debounce polyfill helper.

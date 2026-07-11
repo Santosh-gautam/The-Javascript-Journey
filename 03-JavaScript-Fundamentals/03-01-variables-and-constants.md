@@ -329,6 +329,13 @@ Now that we know how variables hold reference identifiers in memory, we need to 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: ar se variable leakage aur unexpected hoisting bugs hote the.
+- **Concept**: let block-scoped hai, const immutable binding deta hai — ar almost kabhi use mat karo.
+- **Key Pattern**: const by default use karo, sirf jab reassignment chahiye tab let use karo.
+- **Common Mistake**: const ko "immutable object" samajhna — const sirf binding fix karta hai, object ke properties badal sakte hain.
 ## 19. Completion Checklist
 
 - [ ] I can describe the differences between function scope and block scope.

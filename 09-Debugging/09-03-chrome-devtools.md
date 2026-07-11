@@ -254,6 +254,13 @@ In the next chapter, we will study the **VS Code Debugger**. We will explore lau
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: console.log only debugging — inefficient, code modify karna padta hai, production mein kaam nahi karta.
+- **Concept**: Chrome DevTools: Sources panel (breakpoints), Network tab (API calls), Performance tab (flame chart), Memory tab (heap).
+- **Key Pattern**: Sources panel mein file open karo, line number click karo breakpoint lagane ke liye — execution wahan ruk jaayegi.
+- **Common Mistake**: DevTools Console mein errors ignore karna — har Uncaught error investigate karo chahe UI "work" karta dikh raha ho.
 ## 19. Completion Checklist
 
 - [ ] I can use advanced console APIs like `table` and `group`.

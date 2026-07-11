@@ -305,6 +305,13 @@ In the next chapter, we will study **Functional Programming**. We will explore p
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Code architecture ke bina large applications spaghetti code ban jate hain — maintain karna impossible.
+- **Concept**: Design patterns proven solutions hain recurring problems ke liye — Singleton, Observer, Factory, Module pattern, etc.
+- **Key Pattern**: Module Pattern: const counter = (() => { let c = 0; return { inc: () => ++c, get: () => c }; })() — private state.
+- **Common Mistake**: Har jagah pattern force karna — simple problems ke liye over-engineering counterproductive hai.
 ## 19. Completion Checklist
 
 - [ ] I can implement Singleton classes in JavaScript.

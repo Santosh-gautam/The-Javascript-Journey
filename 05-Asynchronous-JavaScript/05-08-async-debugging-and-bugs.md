@@ -317,6 +317,13 @@ We have completed **Module 05: Asynchronous JavaScript**! You have mastered call
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Async code mein bugs dhundna synchronous code se zyada mushkil hota hai — stack traces incomplete hote hain.
+- **Concept**: Common async bugs: unhandled rejections, race conditions, memory leaks in forgotten listeners, fire-and-forget errors.
+- **Key Pattern**: DevTools mein "Async" checkbox enable karo — async call stacks dikhega, real source of error samjha aayega.
+- **Common Mistake**: sync function ko wait kiye bina call karna — error silently swallow ho jata hai, no catch triggered.
 ## 19. Completion Checklist
 
 - [ ] I can explain how race conditions occur and how to prevent them.

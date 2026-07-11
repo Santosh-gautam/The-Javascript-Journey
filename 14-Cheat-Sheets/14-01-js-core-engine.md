@@ -302,6 +302,13 @@ In the next chapter, we will study the **DOM Manipulation & Events Cheat Sheet**
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: Quick reference card — V8 engine, Call Stack, Memory Heap, Scope Chain, Closures, Hoisting rules ek jagah.
+- **Usage**: Interview se pehle ya complex debugging se pehle ek baar scan karo — sab key concepts refresh ho jaate hain.
+- **Key Tip**: Cheat sheet padh ke bas kaam nahi karega — pehle chapters padhke samjho, phir cheat sheet revision ke liye.
+- **Common Mistake**: Cheat sheet se direct seekhne ki koshish karna — context nahi hoga, sab rote-learned lagega.
 ## 19. Completion Checklist
 
 - [ ] I understand the difference between the Call Stack and the Heap.

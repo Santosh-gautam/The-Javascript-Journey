@@ -279,6 +279,13 @@ In the next chapter, we will explore **Prototypes & the Prototype Chain**. We wi
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: 	his ka value unpredictable lagta hai — different contexts mein alag alag value hoti hai.
+- **Concept**: 	his call karne ka context depend karta hai — kaise call kiya, explicit binding, ya arrow function.
+- **Key Pattern**: Arrow functions ka apna 	his nahi hota — ye enclosing lexical scope ka 	his use karte hain.
+- **Common Mistake**: Method ko callback mein pass karte waqt 	his lose ho jata hai — .bind(this) ya arrow function use karo.
 ## 19. Completion Checklist
 
 - [ ] I can describe the 5 binding rules of the `this` keyword.

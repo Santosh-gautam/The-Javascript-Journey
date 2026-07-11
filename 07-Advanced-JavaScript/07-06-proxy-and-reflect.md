@@ -318,6 +318,14 @@ In the next chapter, we will study **Symbols**. We will explore JavaScript's uni
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Object operations (get, set, delete) intercept karna — validation, logging, reactive systems banana difficult tha.
+- **Concept**: Proxy object operations ko intercept karta hai via "traps" — get, set, has, deleteProperty, etc.
+- **Key Pattern**: 
+ew Proxy(target, { set(obj, key, val) { validate(val); obj[key] = val; return true; } }) — reactive validation.
+- **Common Mistake**: Proxy pe Reflect use karna bhoolna — Reflect.set(obj, key, val) correct default behavior preserve karta hai.
 ## 19. Completion Checklist
 
 - [ ] I can create Proxy instances with get/set traps.

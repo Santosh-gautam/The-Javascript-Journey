@@ -317,6 +317,13 @@ In the next chapter, we will learn about **Modules**. We will explore how JavaSc
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Prototype-based inheritance ka syntax verbose aur confusing tha — code maintain karna mushkil tha.
+- **Concept**: ES6 class syntax Prototype ke upar ek sugar coating hai — internally prototype chain hi use hoti hai.
+- **Key Pattern**: class Dog extends Animal { constructor() { super(); } } — super() parent constructor call karna zaroori hai.
+- **Common Mistake**: Classes ko "real classes" samajhna (Java jaisi) — JavaScript mein ye sirf prototype chain ka cleaner syntax hai.
 ## 19. Completion Checklist
 
 - [ ] I can write standard classes and subclass extensions.

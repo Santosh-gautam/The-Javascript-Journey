@@ -283,6 +283,13 @@ We have completed **Module 14: Cheat Sheets**! You have compiled reference cards
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: Async JavaScript quick reference — callbacks, Promises, async/await, combinators, event loop diagram.
+- **Key Pattern**: Promise.all parallel hai; Promise.allSettled sab ka wait; Promise.race pehla; Promise.any pehla success.
+- **Key Tip**: Event loop order: Sync code → Microtasks (Promises) → Macrotasks (setTimeout, setInterval).
+- **Common Mistake**: sync/await ko "blocking" samajhna — ye sirf async operations ko synchronous jaisa readable banate hain, block nahi karte.
 ## 19. Completion Checklist
 
 - [ ] I understand Promise states and transition rules.

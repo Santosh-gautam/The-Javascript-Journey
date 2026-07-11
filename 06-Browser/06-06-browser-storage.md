@@ -274,6 +274,13 @@ In the next chapter, we will study **Timers & Animation**. We will compare `setT
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Server side state store karna user experience ke liye zaruri hai — data page reload ke baad bhi rehna chahiye.
+- **Concept**: localStorage (persistent), sessionStorage (tab-only), IndexedDB (large structured data) — teen alag storage options.
+- **Key Pattern**: localStorage.setItem('key', JSON.stringify(obj)) aur JSON.parse(localStorage.getItem('key')).
+- **Common Mistake**: Sensitive data (passwords, tokens) localStorage mein store karna — XSS se accessible hai; secure cookies use karo.
 ## 19. Completion Checklist
 
 - [ ] I can select the correct browser storage API for different use cases.

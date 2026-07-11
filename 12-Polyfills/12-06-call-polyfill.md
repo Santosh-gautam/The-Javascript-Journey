@@ -299,6 +299,13 @@ In the next chapter, we will study the **Polyfill for apply**. We will explore a
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Function.prototype.call polyfill — temporary 	his binding ke liye.
+- **Concept**: call(ctx, arg1, arg2) function ko ctx as 	his ke saath call karta hai — arguments individually pass hote hain.
+- **Key Pattern**: Function.prototype.myCall = function(ctx, ...args) { ctx = ctx || globalThis; const sym = Symbol(); ctx[sym] = this; const result = ctx[sym](...args); delete ctx[sym]; return result; }.
+- **Common Mistake**: Symbol use na karna — property name clash ho sakta hai; unique key ke liye Symbol() use karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.call` polyfill.

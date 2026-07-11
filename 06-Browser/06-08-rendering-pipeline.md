@@ -310,6 +310,13 @@ We have completed **Module 06: Browser**! You have mastered the DOM structure, s
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: DOM changes se janky UI aur laggy scrolling — unnecessary layout recalculations cause karte hain.
+- **Concept**: Browser pipeline: JavaScript → Style → Layout → Paint → Composite — har step cost karta hai.
+- **Key Pattern**: CSS 	ransform aur opacity sirf Composite step trigger karte hain — ye fastest animations hain.
+- **Common Mistake**: JS mein element.offsetTop read karna aur phir style change karna — forced synchronous layout reflow hota hai.
 ## 19. Completion Checklist
 
 - [ ] I can describe the steps of the Critical Rendering Path.

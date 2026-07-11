@@ -321,6 +321,13 @@ In the final chapter of this module, we will explore **Async Debugging & Common 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: XMLHttpRequest verbose aur callback-based tha — modern async patterns ke saath integrate nahi karta tha.
+- **Concept**: etch() ek Promise-based HTTP client hai — Response object milta hai, .json() / .text() se data extract karo.
+- **Key Pattern**: const res = await fetch(url); if (!res.ok) throw new Error(res.status); const data = await res.json();.
+- **Common Mistake**: etch() sirf network error pe reject hota hai — 404/500 responses ok: false ke saath resolve hote hain, throw nahi karte.
 ## 19. Completion Checklist
 
 - [ ] I can verify HTTP response states using `response.ok`.

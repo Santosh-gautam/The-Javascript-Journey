@@ -318,6 +318,13 @@ We have completed **Module 10: Interview Preparation**! You have mastered core c
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Trick questions — output predict karna bina proper JavaScript knowledge ke.
+- **Concept**: Classic traps: 	ypeof null, NaN === NaN, [] + [], {} + [],  .1 + 0.2, hoisting aur TDZ.
+- **Key Pattern**: 	ypeof null === 'object' (bug); NaN !== NaN (use Number.isNaN()); [] + [] === ''; {} + [] === 0 (block + unary plus).
+- **Common Mistake**: Guess karna without reasoning — interviewer reasoning process dekhna chahta hai, correct answer se zyada.
 ## 19. Completion Checklist
 
 - [ ] I understand how variable shadowing behaves in blocks.

@@ -339,6 +339,13 @@ We have completed **Module 15: Revision**! You have compiled interactive study c
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: Last-minute revision ke liye high-density flashcards aur concept summaries.
+- **Strategy**: Spaced repetition use karo — aaj padho, kal quiz karo, 3 din baad phir — long-term retention ke liye.
+- **Key Tip**: Flashcards ko passive mat padho — ek taraf dekho, answer karo dimag mein, phir check karo — active recall.
+- **Common Mistake**: Exam se ek raat pehle saari revision karna — 1-2 hafta pehle se spaced revision shuru karo.
 ## 19. Completion Checklist
 
 - [ ] I have reviewed all 10 core flashcards.

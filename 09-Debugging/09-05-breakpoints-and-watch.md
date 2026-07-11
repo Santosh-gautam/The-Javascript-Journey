@@ -276,6 +276,13 @@ In the next chapter, we will study **Debugging Async Code**. We will explore asy
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Code execution step karna aur state track karna manually — variables ki values dhundna mushkil.
+- **Concept**: Breakpoints execution pause karte hain; Watch expressions variables automatically monitor karte hain; Step Over/Into/Out controls.
+- **Key Pattern**: Conditional breakpoints right-click se — count > 100 pe hi ruko, har iteration pe nahi.
+- **Common Mistake**: Ek hi jagah baar baar F8 dabana — Step Into (F11) vs Step Over (F10) ka difference samjho.
 ## 19. Completion Checklist
 
 - [ ] I can configure conditional breakpoints in VS Code.

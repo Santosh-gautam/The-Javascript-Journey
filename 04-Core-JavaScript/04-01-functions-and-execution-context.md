@@ -306,6 +306,13 @@ Now that we understand how execution frames are created, we need to look at how 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Developers samajh nahi paate ki JavaScript mein ek function call hone pe exactly kya hota hai memory mein.
+- **Concept**: Har function call ek naya Execution Context banata hai — Global EC already exist karta hai page load pe.
+- **Key Pattern**: Call Stack mein GEC bottom pe hota hai; har function call uske upar push hota hai aur return pe pop.
+- **Common Mistake**: Execution Context aur Scope ko same samajhna — EC runtime mein banta hai, Scope compile time pe decide hota hai.
 ## 19. Completion Checklist
 
 - [ ] I can describe GEC vs. FEC.

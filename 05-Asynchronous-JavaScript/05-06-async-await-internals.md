@@ -341,6 +341,13 @@ Now that we understand how asynchronous functions compile and execute at the eng
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: sync/await magic lagte hain — log samajh nahi paate internally kya ho raha hai.
+- **Concept**: sync function har wait pe ek implicit Promise chain create karta hai — internally generators jaisi mechanism use hoti hai.
+- **Key Pattern**: wait current execution suspend karta hai, microtask queue mein Promise settle hone ka wait karta hai, phir resume hota hai.
+- **Common Mistake**: Sequential wait se unnecessary delay — parallel karne ke liye wait Promise.all([a(), b()]) use karo.
 ## 19. Completion Checklist
 
 - [ ] I can write and iterate over generator functions.

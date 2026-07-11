@@ -336,6 +336,13 @@ In the next chapter, we will study the **Polyfill for Promise.all**. We will exp
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Promise ka internal state machine samajhna — pending → ulfilled/ejected ek-directional transition.
+- **Concept**: Promise ek state machine hai — esolve/eject call hone pe state change hota hai, .then() callbacks queue hote hain.
+- **Key Pattern**: State store karo, callbacks queue karo, esolve pe sab queued callbacks call karo — microtask scheduling zaruri hai.
+- **Common Mistake**: Multiple resolve calls allow karna — first call ke baad state lock hona chahiye; baad ke calls ignore karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom Promise state machine class.

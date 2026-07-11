@@ -279,6 +279,13 @@ In the next chapter, we will study the **Polyfill for bind**. We will explore fu
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: orEach polyfill — side effects ke liye iteration, undefined return karta hai.
+- **Concept**: orEach har element pe callback call karta hai — kuch return nahi karta, chaining nahi hoti.
+- **Key Pattern**: Array.prototype.myForEach = function(fn) { for(let i=0; i<this.length; i++) fn(this[i], i, this); }.
+- **Common Mistake**: orEach se reak karne ki koshish karna — nahi hota; reak chahiye to regular or loop use karo ya some().
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Array.prototype.forEach` polyfill.

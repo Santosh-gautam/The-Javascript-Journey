@@ -291,6 +291,13 @@ In the next chapter, we will study **Code Optimization Techniques**. We will exp
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Optimization karna bina measure kiye — galat jagah time waste hoti hai (premature optimization).
+- **Concept**: performance.now() high-resolution timestamps deta hai; Chrome DevTools Performance tab flame chart dikhata hai.
+- **Key Pattern**: const t0 = performance.now(); doWork(); console.log(performance.now() - t0, 'ms');.
+- **Common Mistake**: console.time() production mein chhod dena — performance overhead add hota hai; measure karo, phir remove karo.
 ## 19. Completion Checklist
 
 - [ ] I can write microsecond-level benchmarks using `performance.now()`.

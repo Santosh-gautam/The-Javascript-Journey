@@ -294,6 +294,13 @@ In the next chapter, we will learn about **Control Flow**. We will explore how c
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: == (loose equality) type coercion karta hai — unexpected 	rue mil sakta hai.
+- **Concept**: JavaScript types automatically convert hote hain operations mein — isko type coercion kehte hain.
+- **Key Pattern**: Hamesha === (strict equality) use karo — == avoid karo production code mein.
+- **Common Mistake**:   == false ka 	rue hona surprising lagta hai — === se ye bug nahi hota.
 ## 19. Completion Checklist
 
 - [ ] I understand the difference between `==` and `===`.

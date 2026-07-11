@@ -296,6 +296,13 @@ In the next chapter, we will study **Memoization**. We will explore how to cache
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Functions ka reuse karna alag arguments ke saath — repetitive partial config pass karna hota tha.
+- **Concept**: Currying ek function ko unary functions ki chain mein convert karta hai — (a,b,c) banta hai (a)(b)(c).
+- **Key Pattern**: const add = a => b => a + b; const add5 = add(5); add5(3); // 8 — pre-configured functions.
+- **Common Mistake**: Currying aur Partial Application ko same samajhna — Partial Application kuch arguments fix karta hai, sabko unary nahi banata.
 ## 19. Completion Checklist
 
 - [ ] I can write curried function signatures manually.

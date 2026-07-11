@@ -1,12 +1,12 @@
 # Curriculum Progress Checklist
 
-**Latest Scaffold Commit**: `99165b1`
+**Latest Scaffold Commit**: `99165b1` | **Module 17 Added**: `2026-07-11`
 
 This document tracks your progress through **The JavaScript Journey**. Mark checkboxes (`[x]`) as you complete each chapter.
 
 ---
 
-## 🧭 Curriculum Status (v1.0.0)
+## 🧭 Curriculum Status (v1.0.0 + v1.2.0)
 
 | Module | Status | Core Chapters | Completeness |
 | :--- | :--- | :--- | :--- |
@@ -27,6 +27,7 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 | **14-Cheat-Sheets** | ✅ Completed | 3 | 100% |
 | **15-Revision** | ✅ Completed | 1 | 100% |
 | **16-Resources** | ✅ Completed | 1 | 100% |
+| **17-Modern-JavaScript-ES2026** | ✅ Completed | 7 | 100% |
 
 ---
 
@@ -165,3 +166,12 @@ This document tracks your progress through **The JavaScript Journey**. Mark chec
 
 ### 📚 Module 16: Resources (v1.0)
 - [x] [16-01] Resource Directory (`16-Resources/16-01-resource-directory.md`)
+
+### ⚡ Module 17: Modern JavaScript — ES2025/ES2026 (v1.2)
+- [x] [17-01] Temporal API (`17-Modern-JavaScript-ES2026/17-01-temporal-api.md`)
+- [x] [17-02] Explicit Resource Management — `using` / `await using` (`17-Modern-JavaScript-ES2026/17-02-explicit-resource-management.md`)
+- [x] [17-03] Array By-Copy Methods — `toReversed`, `toSorted`, `toSpliced`, `with` (`17-Modern-JavaScript-ES2026/17-03-array-by-copy-methods.md`)
+- [x] [17-04] Set Operations (`17-Modern-JavaScript-ES2026/17-04-set-operations.md`)
+- [x] [17-05] Iterator Helpers & `Iterator.concat` (`17-Modern-JavaScript-ES2026/17-05-iterator-helpers-and-iterator-concat.md`)
+- [x] [17-06] `Promise.try` & `Array.fromAsync` (`17-Modern-JavaScript-ES2026/17-06-promise-try-and-array-fromAsync.md`)
+- [x] [17-07] `RegExp.escape`, `Float16Array`, `Math.sumPrecise`, `Error.isError`, `Uint8Array` base64/hex (`17-Modern-JavaScript-ES2026/17-07-regexp-escape-and-misc.md`)

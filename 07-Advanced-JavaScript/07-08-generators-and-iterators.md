@@ -310,6 +310,13 @@ In the next chapter, we will study **WeakMap & WeakSet**. We will explore how th
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Infinite sequences ya lazy data pipelines implement karna arrays se possible nahi — sab memory mein chahiye hoga.
+- **Concept**: Generator unction* ek lazy sequence producer hai — yield pe pause, .next() pe resume.
+- **Key Pattern**: unction* range(s, e) { for(let i=s; i<=e; i++) yield i; } — or...of ke saath use karo.
+- **Common Mistake**: Generator return value {value, done} object hai — or...of automatically handle karta hai, manual .next() pe dhyan dena padta hai.
 ## 19. Completion Checklist
 
 - [ ] I can write custom iterators manually.

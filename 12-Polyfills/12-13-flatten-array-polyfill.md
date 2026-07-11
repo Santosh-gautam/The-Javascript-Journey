@@ -316,6 +316,13 @@ We have completed **Module 12: Polyfills**! You have built custom spec-compliant
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Nested arrays ko flatten karna — ek level ya infinite depth — native lat() se pehle manual implement karna tha.
+- **Concept**: Recursive flatten: agar element array hai to recurse, warna push karo — depth parameter control karo.
+- **Key Pattern**: unction flatten(arr, depth = 1) { return depth > 0 ? arr.reduce((a, v) => a.concat(Array.isArray(v) ? flatten(v, depth-1) : v), []) : arr.slice(); }.
+- **Common Mistake**: Infinite depth support bhoolna — Infinity pass karne pe bhi kaam karna chahiye.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Array.prototype.flat` polyfill.

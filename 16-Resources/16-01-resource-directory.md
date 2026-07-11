@@ -223,6 +223,13 @@ We have successfully completed all **16 Modules** of **The JavaScript Journey** 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: Curated reading list — specifications, books, tools, aur articles agle level ke liye.
+- **Top Resources**: MDN Web Docs (reference), ECMAScript spec (source of truth), "You Don't Know JS" series (deep dive), V8 blog (engine internals).
+- **Key Tip**: Resources explore karo curiosity se — sab kuch ek saath padhne ki zarurat nahi; specific topic pe deep dive karo.
+- **Common Mistake**: Resource hoarding karna — zyada resources save karna aur padhna nahi — ek cheez complete karo pehle.
 ## 19. Completion Checklist
 
 - [ ] I have reviewed the official specifications links.

@@ -293,6 +293,13 @@ In the next chapter, we will study **Memory Leaks**. We will learn about JavaScr
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Slow JavaScript code without knowing what to optimize — guessing se time waste.
+- **Concept**: V8 optimization: Hidden Classes, Inline Caching, avoid polymorphic functions — consistent object shapes rakhna.
+- **Key Pattern**: Properties ek hi order mein add karo constructors mein — V8 same Hidden Class reuse karta hai, IC hits hote hain.
+- **Common Mistake**: Object shape mid-flight change karna (property add/delete after creation) — Hidden Class deoptimization hoti hai.
 ## 19. Completion Checklist
 
 - [ ] I can write objects that share hidden class structures.

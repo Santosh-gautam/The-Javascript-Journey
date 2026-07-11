@@ -297,6 +297,13 @@ In the final chapter of this module, we will study the **Async Patterns Cheat Sh
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: DOM API quick reference — selection, manipulation, event methods ek saath.
+- **Key Methods**: querySelector, createElement, ppendChild, classList.toggle, ddEventListener — ye sab DOM work ke backbone hain.
+- **Key Tip**: Event delegation pattern yaad rakho — parent pe ek listener lagao, children pe alag alag nahi.
+- **Common Mistake**: Cheat sheet mein sirf method names dekho — arguments aur return values bhi matter karte hain, MDN se verify karo.
 ## 19. Completion Checklist
 
 - [ ] I understand selector performance profiles.

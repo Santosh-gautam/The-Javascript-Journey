@@ -324,6 +324,13 @@ Now that we understand how callbacks defer code execution, we need to inspect th
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Nested callbacks (callback hell / "pyramid of doom") — code unreadable, unmaintainable ho jata hai.
+- **Concept**: Callback ek function hai jo dusre function ko argument mein pass hota hai — async operations complete hone pe call hota hai.
+- **Key Pattern**: Callback hell se bachne ke liye Promises ya async/await use karo — ya named functions se flatten karo.
+- **Common Mistake**: Error-first callback convention bhoolna — pehla argument hamesha err hona chahiye Node.js style mein.
 ## 19. Completion Checklist
 
 - [ ] I can describe synchronous versus asynchronous callbacks.

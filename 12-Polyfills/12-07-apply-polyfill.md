@@ -319,6 +319,13 @@ In the next chapter, we will study the **Polyfill for Promise**. We will explore
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Function.prototype.apply polyfill — call se difference sirf arguments pass karne ka tarika hai.
+- **Concept**: pply(ctx, argsArray) ek array ke form mein arguments leta hai — call individually leta hai.
+- **Key Pattern**: Function.prototype.myApply = function(ctx, args = []) { ctx = ctx || globalThis; const sym = Symbol(); ctx[sym] = this; const result = ctx[sym](...args); delete ctx[sym]; return result; }.
+- **Common Mistake**: rgs null check bhoolna — agar pply(ctx, null) call hota hai to ...null throw karta hai.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.apply` polyfill.

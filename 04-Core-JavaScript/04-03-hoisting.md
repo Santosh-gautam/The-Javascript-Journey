@@ -302,6 +302,13 @@ Now that we understand hoisting phases and memory allocation, we can explore how
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: ar ke saath declare karne se pehle use karne par undefined milta tha — confusing behavior.
+- **Concept**: Hoisting matlab hai ki declarations compile phase mein upar move ho jati hain — but let/const Temporal Dead Zone mein hote hain.
+- **Key Pattern**: unction declarations poori hoist hoti hain; let/const hoist hoti hain but access karne se pehle initialize nahi hoti.
+- **Common Mistake**: let ko "not hoisted" samajhna — hoist hota hai but TDZ mein hota hai — access karo to ReferenceError milega.
 ## 19. Completion Checklist
 
 - [ ] I can describe the two-pass execution cycle of JavaScript engines.

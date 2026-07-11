@@ -286,6 +286,14 @@ Now that we understand prototypal linkage, we can explore how modern JavaScript 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Classes se pehle inheritance implement karna manual aur confusing tha — prototype chain ka concept hidden tha.
+- **Concept**: Har object ka ek [[Prototype]] hota hai — property lookup chain se upar jata hai jab tak 
+ull na mile.
+- **Key Pattern**: Object.create(proto) se naya object banao jo proto ko prototype ke taur pe use kare.
+- **Common Mistake**: __proto__ directly modify karna — performance hit deta hai; Object.create() ya Object.setPrototypeOf() prefer karo.
 ## 19. Completion Checklist
 
 - [ ] I can describe the prototype inheritance lookup process.

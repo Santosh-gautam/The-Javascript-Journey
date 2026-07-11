@@ -2,7 +2,7 @@
 
 > **"Don't memorize JavaScript. Understand how JavaScript thinks."**
 >
-> **16 Modules | 92 Chapters | MIT Licensed**
+> **18 Modules | 99 Chapters | MIT Licensed**
 
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
@@ -76,6 +76,7 @@ This repository is split into 17 version-tracked modules:
 - **[14-Cheat-Sheets](14-Cheat-Sheets/README.md) (`v1.0`)** — Reference cards for quick lookups.
 - **[15-Revision](15-Revision/README.md) (`v1.0`)** — High-density revision notes for last-minute preparation.
 - **[16-Resources](16-Resources/README.md) (`v1.0`)** — Books, specifications, and articles for further reading.
+- **[17-Modern-JavaScript-ES2026](17-Modern-JavaScript-ES2026/README.md) (`v1.2`)** — Temporal API, Explicit Resource Management (`using`/`await using`), Array By-Copy Methods, Set Operations, Iterator Helpers, `Promise.try`, `Array.fromAsync`, `RegExp.escape`, `Float16Array`, and more.
 
 ---
 
@@ -118,7 +119,8 @@ Every concept file contains exactly these 20 sections:
 
 This curriculum is versioned to match industry expectations:
 
-- **`v1.0.0` (Core Javascript)**: Focuses strictly on core JavaScript engines, syntax, DOM, asynchronous patterns, and polyfills. (Current)
+- **`v1.0.0` (Core Javascript)**: Focuses strictly on core JavaScript engines, syntax, DOM, asynchronous patterns, and polyfills. (Completed)
+- **`v1.2.0` (Modern JavaScript ES2025/ES2026)**: Covers Stage 4 proposals including Temporal API, Explicit Resource Management, Array By-Copy Methods, Set Operations, Iterator Helpers, `Promise.try`, `Array.fromAsync`, and miscellaneous new built-ins. (Current)
 - **`v2.0.0` (Node & React Foundations)**: Focuses on how these concepts translate into server-side Node runtime behaviors and client-side React rendering cycles (Future).
 - **`v3.0.0` (TypeScript & System Design)**: Scaling JavaScript applications with typed constructs, architecture patterns, and design systems (Future).
 

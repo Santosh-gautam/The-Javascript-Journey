@@ -360,6 +360,13 @@ In the next chapter, we will study the **Polyfill for forEach**. We will explore
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: educe ka polyfill — initial value ke saath aur bina dono cases handle karne hote hain.
+- **Concept**: educe array ko ek single value mein compress karta hai — accumulator pattern.
+- **Key Pattern**: Initial value nahi diya to pehla element accumulator hai, loop index 1 se start hota hai.
+- **Common Mistake**: Empty array pe educe bina initial value ke call karna — TypeError aata hai; hamesha initial value dene ki habit banao.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Array.prototype.reduce` polyfill.

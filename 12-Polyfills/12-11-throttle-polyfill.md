@@ -277,6 +277,13 @@ In the next chapter, we will study the **Polyfill for deep clone**. We will expl
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Scroll events pe har frame function call — throttle se fixed interval pe ek baar call.
+- **Concept**: Throttle: ek call ko allow karo, phir wait ms ke liye block karo — timestamps ya flags se implement.
+- **Key Pattern**: unction throttle(fn, wait) { let last = 0; return function(...args) { const now = Date.now(); if(now - last >= wait) { last = now; fn.apply(this, args); } }; }.
+- **Common Mistake**: Leading aur trailing calls ka behavior confuse karna — decide karo kya chahiye aur implement karo consistently.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom throttle polyfill helper.

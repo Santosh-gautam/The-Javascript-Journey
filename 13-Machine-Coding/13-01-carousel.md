@@ -377,6 +377,13 @@ In the next chapter, we will study **Infinite Scroll**. We will explore Intersec
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Image carousel UI — smooth slide transitions, next/prev buttons, GPU accelerated movement.
+- **Concept**: 	ranslate3d CSS property use karo — hardware acceleration enable hota hai, janky animations nahi hote.
+- **Key Pattern**: 	rack.style.transform = translate3d(-%, 0, 0) — currentIndex track karo, buttons se update karo.
+- **Common Mistake**: left property animate karna instead of 	ransform — left layout reflow trigger karta hai, performance kharab.
 ## 19. Completion Checklist
 
 - [ ] I can write a hardware-accelerated Carousel component in Vanilla JS.

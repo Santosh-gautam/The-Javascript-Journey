@@ -286,6 +286,13 @@ In the next chapter, we will study the **Polyfill for filter**. We will explore 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Array.prototype.map nahi hota tha purane environments mein; ya interview mein scratch se implement karna hota hai.
+- **Concept**: map har element pe callback call karta hai aur naya array return karta hai — original untouched.
+- **Key Pattern**: Array.prototype.myMap = function(fn) { const res = []; for(let i=0; i<this.length; i++) res.push(fn(this[i], i, this)); return res; }.
+- **Common Mistake**: Sparse arrays handle karna bhoolna — in operator se check karo ki index exist karta hai ya nahi.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Array.prototype.map` polyfill.

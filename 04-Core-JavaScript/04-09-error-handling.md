@@ -317,6 +317,13 @@ We have completed **Module 04: Core JavaScript**! You have mastered execution co
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Unhandled errors crash karte hain program — user ko blank screen milti hai aur debugging mushkil hoti hai.
+- **Concept**: 	ry/catch/finally se sync errors handle hote hain; async errors ke liye .catch() ya 	ry/catch with wait.
+- **Key Pattern**: Custom error classes banao: class ValidationError extends Error { constructor(msg) { super(msg); this.name = 'ValidationError'; } }.
+- **Common Mistake**: sync function mein 	ry/catch bhoolna — unhandled promise rejections app crash kar sakte hain.
 ## 19. Completion Checklist
 
 - [ ] I can write try-catch-finally structures.

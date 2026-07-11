@@ -319,6 +319,13 @@ We have completed **Module 07: Advanced JavaScript**! You have mastered design p
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Object properties ko read-only ya non-enumerable banana — accidental overwrites se protection nahi thi.
+- **Concept**: Har property ke 4 attributes hote hain: alue, writable, enumerable, configurable — Object.defineProperty se control karo.
+- **Key Pattern**: Object.defineProperty(obj, 'id', { value: 1, writable: false, enumerable: false, configurable: false }) — truly private.
+- **Common Mistake**: Object.freeze() shallow hai — nested objects ke properties still mutable hain; deep freeze recursively karna padega.
 ## 19. Completion Checklist
 
 - [ ] I can configure property descriptors using `Object.defineProperty`.

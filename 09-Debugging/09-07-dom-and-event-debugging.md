@@ -282,6 +282,13 @@ In the next chapter, we will study **Heap Snapshot Analysis**. We will explore m
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: DOM changes kab kahan ho rahe hain — event listeners kaunse elements pe hain, ye track karna mushkil.
+- **Concept**: DevTools Elements panel mein right-click → "Break on" → subtree modifications, attribute changes, node removal.
+- **Key Pattern**: getEventListeners(element) DevTools console mein — element pe sare listeners list ho jaate hain.
+- **Common Mistake**: Event listener debugging ke liye sirf JS source padhna — DevTools ka "Event Listeners" pane directly element pe listeners dikhata hai.
 ## 19. Completion Checklist
 
 - [ ] I know how to set DOM breakpoints on elements in DevTools.

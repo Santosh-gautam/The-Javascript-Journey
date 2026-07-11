@@ -288,6 +288,13 @@ Now that we know how to select and mutate DOM elements, we need to handle user i
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Direct DOM mutation loops mein — reflow aur repaint bar bar hote hain, performance slow hoti hai.
+- **Concept**: createElement, ppendChild, innerHTML, 	extContent, classList — DOM manipulate karne ke tools.
+- **Key Pattern**: DocumentFragment ya innerHTML batch update use karo instead of individual element inserts in a loop.
+- **Common Mistake**: innerHTML se user input inject karna — XSS vulnerability; 	extContent use karo untrusted content ke liye.
 ## 19. Completion Checklist
 
 - [ ] I can safely create and mount elements in the DOM.

@@ -400,6 +400,13 @@ In the next chapter, we will study the **Spec - Custom Promise.all**. We will ex
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Har keystroke pe API call karna — server overload aur poor UX.
+- **Concept**: Debounced search — user typing ruk jaaye 300ms ke baad API call karo, pehle nahi.
+- **Key Pattern**: input.addEventListener('input', debounce(search, 300)) — sirf last keystroke ke baad call.
+- **Common Mistake**: Debounce function ke andar timer variable declare karna — timer reference bahar hona chahiye closure mein.
 ## 19. Completion Checklist
 
 - [ ] I can write input listeners with debounce wrappers.

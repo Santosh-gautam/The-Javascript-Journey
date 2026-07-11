@@ -270,6 +270,13 @@ In the next chapter, we will study **Production Debugging**. We will explore pro
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Memory leak kahan hai — manually code padhne se large codebases mein impossible hota hai dhundhna.
+- **Concept**: Heap Snapshot Memory tab mein — do snapshots ke beech ka difference object leaks reveal karta hai.
+- **Key Pattern**: Action perform karo → Snapshot 1; repeat action → Snapshot 2; "Comparison" view mein naye objects dekho.
+- **Common Mistake**: Sirf ek snapshot lena — single snapshot useful nahi; two snapshots ka comparison leak pinpoint karta hai.
 ## 19. Completion Checklist
 
 - [ ] I can take heap snapshots in Chrome DevTools.

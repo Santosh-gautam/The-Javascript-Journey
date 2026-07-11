@@ -286,6 +286,13 @@ In the next chapter, we will study **Generators & Iterators**. We will explore h
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Object keys collision — different libraries same string keys use karte hain, conflict ho jata hai.
+- **Concept**: Symbol() globally unique identifier hai — Symbol('id') !== Symbol('id') hamesha 	rue.
+- **Key Pattern**: const ID = Symbol('id'); obj[ID] = 123; — string keys se collision impossible, or...in mein bhi nahi aata.
+- **Common Mistake**: Symbol.for('key') aur Symbol('key') ko same samajhna — Symbol.for global registry use karta hai, same key same symbol deta hai.
 ## 19. Completion Checklist
 
 - [ ] I can create unique Symbol primitive keys.

@@ -306,6 +306,13 @@ In the next chapter, we will study **DOM & Event Debugging**. We will explore ho
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Async code ka stack trace incomplete hota hai — kaha se Promise chain shuru hui pata nahi chalta.
+- **Concept**: Chrome DevTools mein "Async" call stack enable karo — await points pe stack trace preserve hota hai.
+- **Key Pattern**: DevTools → Settings → Experiments → "Capture async stack traces" enable karo.
+- **Common Mistake**: Promise.reject ko unhandled chhod dena — async context mein bhi 	ry/catch ya .catch() lagana zaroori hai.
 ## 19. Completion Checklist
 
 - [ ] I understand how async stack traces are reconstructed across Event Loop ticks.

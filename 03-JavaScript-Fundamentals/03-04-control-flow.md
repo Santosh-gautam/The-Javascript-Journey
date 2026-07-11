@@ -334,6 +334,13 @@ In the next chapter, we will learn about **Loops**. We will look at iteration me
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Complex if-else chains code ko unreadable aur bug-prone banate hain.
+- **Concept**: if/else, switch, ternary operator, aur optional chaining (?.) control flow ke tools hain.
+- **Key Pattern**: switch mein reak bhoolna common bug hai — har case ke baad reak lagao.
+- **Common Mistake**: Deep nested if-else ki jagah early return pattern use karo — code zyada readable hoga.
 ## 19. Completion Checklist
 
 - [ ] I can refactor nested conditionals into clean guard clauses.

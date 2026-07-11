@@ -289,6 +289,13 @@ In the next chapter, we will study **System Design Basics**. We will explore sca
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Coding interviews mein patterns nahi pata — same question alag form mein aane pe solve nahi ho paata.
+- **Concept**: Common patterns: sliding window, two pointers, frequency map, recursion with memoization — ek baar samjho, hazaron problems solve hote hain.
+- **Key Pattern**: Frequency map: const freq = {}; for(const c of str) freq[c] = (freq[c] || 0) + 1;
+- **Common Mistake**: Pattern dhundne se pehle brute force sochna — interviewer prefer karta hai ki pattern identity pehle explain karo.
 ## 19. Completion Checklist
 
 - [ ] I can write target search algorithms using the Two Pointers pattern.

@@ -380,6 +380,13 @@ In the next chapter, we will study the **Typeahead / Autocomplete** component. W
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Interactive star rating UI — hover effect, click to set, custom event dispatch.
+- **Concept**: data-value attribute se star value store karo, hover aur click events se CSS class update karo.
+- **Key Pattern**: star.addEventListener('click', () => { rating = star.dataset.value; dispatchEvent(new CustomEvent('rating-change', {detail: rating})); }).
+- **Common Mistake**: Hover aur selected state alag manage na karna — hover CSS aur selected state JS mein alag track karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a complete, accessible Star Rating component.

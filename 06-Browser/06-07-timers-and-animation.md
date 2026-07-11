@@ -318,6 +318,13 @@ In the final chapter of this module, we will explore the **Browser Rendering Pip
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: setInterval se animations janky hoti hain — frame rate sync nahi hoti browser ke rendering cycle se.
+- **Concept**: equestAnimationFrame(fn) browser ke paint cycle se sync karta hai — smooth 60fps animations ke liye ideal.
+- **Key Pattern**: const id = requestAnimationFrame(animate); function animate() { /* update */ requestAnimationFrame(animate); }.
+- **Common Mistake**: setInterval se animation karna — jab tab hidden ho to bhi chalta rehta hai; AF automatically pauses.
 ## 19. Completion Checklist
 
 - [ ] I can write smooth animations using `requestAnimationFrame`.

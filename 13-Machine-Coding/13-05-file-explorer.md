@@ -518,6 +518,13 @@ We have completed **Module 13: Machine Coding**! You have mastered Vanilla JS ca
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Nested tree structure UI — recursive rendering, collapse/expand, unknown depth.
+- **Concept**: Recursive component pattern — har node apne children ko render karta hai, same function call se.
+- **Key Pattern**: unction renderTree(node) { const li = createEl('li'); if(node.children) node.children.forEach(c => li.append(renderTree(c))); return li; }.
+- **Common Mistake**: Iterative approach se deeply nested trees — recursive cleaner hai; stack overflow ke liye practical depth limit set karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a recursive File Explorer / Nested Comments component.

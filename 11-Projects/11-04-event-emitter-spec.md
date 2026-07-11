@@ -352,6 +352,13 @@ In the final chapter of this module, we will study the **Spec - Virtual DOM**. W
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Components ke beech communication — tight coupling bina ek dusre ko directly call kiye.
+- **Concept**: EventEmitter pattern: on(event, fn), emit(event, data), off(event, fn) — pub/sub architecture.
+- **Key Pattern**: const listeners = {}; on(e, fn) { (listeners[e] = listeners[e] || []).push(fn); }; emit(e, d) { listeners[e]?.forEach(fn => fn(d)); }.
+- **Common Mistake**: off() implement na karna — memory leak hogi agar listeners remove nahi hote.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom Event Emitter class.

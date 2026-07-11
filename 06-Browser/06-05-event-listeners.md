@@ -280,6 +280,13 @@ Now that we know how to handle real-time user interactions, we need to inspect w
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Multiple listeners add karna aur remove karna — memory leaks aur duplicate handlers common issues hain.
+- **Concept**: ddEventListener(event, handler, options) preferred hai — named function use karo taaki emoveEventListener kaam kare.
+- **Key Pattern**: { once: true } option listener ko automatically remove karta hai after first fire — cleanup code nahi chahiye.
+- **Common Mistake**: Anonymous function emoveEventListener mein pass karna — naya reference hota hai, listener remove nahi hota, memory leak hota hai.
 ## 19. Completion Checklist
 
 - [ ] I can safely register and detach event listeners.

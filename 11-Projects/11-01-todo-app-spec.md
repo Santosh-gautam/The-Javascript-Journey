@@ -382,6 +382,13 @@ In the next chapter, we will study the **Spec - Debounced Search**. We will expl
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Purpose**: Vanilla JS mein Todo App — DOM manipulation, events, localStorage — sab ek saath practice.
+- **Concept**: State (todos array) → Render (DOM update) → Event Handlers (add/toggle/delete) — unidirectional data flow.
+- **Key Pattern**: 	odos = todos.map(t => t.id === id ? {...t, done: !t.done} : t); render(); — immutable state update.
+- **Common Mistake**: Directly DOM se state read karna — state ek JS object mein rakho, DOM sirf display layer hai.
 ## 19. Completion Checklist
 
 - [ ] I can write a state-driven Vanilla JS application.

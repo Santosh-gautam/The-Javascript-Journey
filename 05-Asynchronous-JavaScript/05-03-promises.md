@@ -301,6 +301,13 @@ In the next chapter, we will learn about **Promise Combinators**. We will explor
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Callbacks se error handling aur chaining messy thi — callback hell real problem tha.
+- **Concept**: Promise ek object hai jo 3 states mein hota hai: pending, ulfilled, ejected — async operations represent karta hai.
+- **Key Pattern**: etch(url).then(r => r.json()).then(data => use(data)).catch(err => handle(err)).
+- **Common Mistake**: .catch() lagana bhool jaana — unhandled rejection warning aata hai aur Node.js mein crash bhi ho sakta hai.
 ## 19. Completion Checklist
 
 - [ ] I can create and execute Promise constructors.

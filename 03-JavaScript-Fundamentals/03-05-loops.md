@@ -315,6 +315,13 @@ We have completed the **JavaScript Fundamentals** module. In the next phase of t
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Wrong loop type use karne se performance issues ya unexpected behavior hoti hai.
+- **Concept**: or, while, or...of (iterables), or...in (object keys) — har loop ka apna use case hai.
+- **Key Pattern**: Arrays ke liye or...of use karo, object keys ke liye or...in — or...in se array mat iterate karo.
+- **Common Mistake**: or...in se array iterate karna — inherited properties bhi aa sakti hain; or...of better hai.
 ## 19. Completion Checklist
 
 - [ ] I can explain the differences between `for`, `while`, and `do-while` loops.

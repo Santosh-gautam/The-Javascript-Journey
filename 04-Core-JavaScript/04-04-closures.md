@@ -293,6 +293,13 @@ Now that we understand how functions preserve variable references in memory, we 
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Outer function complete hone ke baad uske variables normally garbage collect ho jate hain — state preserve nahi hoti.
+- **Concept**: Closure ek inner function hai jo apne outer scope ke variables ko याद rakhta hai — V8 inhe Heap mein store karta hai.
+- **Key Pattern**: unction makeCounter() { let c = 0; return () => ++c; } — counter private rehta hai.
+- **Common Mistake**: ar wala loop closure bug — ar shared reference hoti hai; let se ek naya scope milta hai har iteration pe.
 ## 19. Completion Checklist
 
 - [ ] I can define what a closure is and why it exists.

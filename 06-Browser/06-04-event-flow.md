@@ -300,6 +300,13 @@ In the next chapter, we will study **Event Listeners**. We will explore how to b
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Event handlers kahan aur kab fire hote hain — bubbling vs capturing samjhe bina bugs aate hain.
+- **Concept**: Events teen phases mein travel karte hain: Capture (top → target), Target, Bubble (target → top).
+- **Key Pattern**: event.stopPropagation() bubbling rokta hai; event.preventDefault() default browser action rokta hai.
+- **Common Mistake**: stopPropagation() aur preventDefault() ko mix karna — dono alag kaam karte hain; ek bubbling rokta hai, dusra browser default.
 ## 19. Completion Checklist
 
 - [ ] I can describe capturing versus bubbling phases.

@@ -260,6 +260,13 @@ In the final chapter of this module, we will complete the debugging curriculum b
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Production bugs locally reproduce nahi hote — "works on my machine" problem.
+- **Concept**: Source Maps, Sentry/error tracking, structured logging, feature flags — production debugging toolkit.
+- **Key Pattern**: console.error se nahi — Sentry/Datadog jaisi tool use karo: Sentry.captureException(err).
+- **Common Mistake**: Source Maps ko public deploy karna — attackers original source code dekh sakte hain; server-side sirf rakho.
 ## 19. Completion Checklist
 
 - [ ] I understand the purpose of source maps in production environments.

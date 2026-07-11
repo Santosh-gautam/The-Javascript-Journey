@@ -278,6 +278,13 @@ In the next chapter, we will study the **Polyfill for debounce**. We will explor
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Promise.all internals implement karna — order preserve karna aur short-circuit on rejection.
+- **Concept**: Saare promises parallel start karo, results array mein position preserve karo, pehla rejection poora reject karta hai.
+- **Key Pattern**: promises.forEach((p, i) => Promise.resolve(p).then(v => { results[i] = v; if(++count === n) resolve(results); }, reject)).
+- **Common Mistake**: Results push karna instead of index assignment — async mein order guarantee nahi; index use karo.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Promise.all` polyfill.

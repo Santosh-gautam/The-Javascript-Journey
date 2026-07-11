@@ -289,6 +289,13 @@ In the next chapter, we will study **Proxy & Reflect**. We will explore meta-pro
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Scroll/resize/keypress events bahut baar fire hote hain — har event pe expensive operation karna performance ruin karta hai.
+- **Concept**: Debounce: events ka "burst" khatam hone ka wait karta hai; Throttle: fixed rate pe execute karta hai regardless of events.
+- **Key Pattern**: Search input ke liye debounce (300ms after typing stops); scroll handler ke liye throttle (max once per 100ms).
+- **Common Mistake**: Debounce aur throttle swap karna — search mein throttle lagane se last keystroke miss ho sakta hai.
 ## 19. Completion Checklist
 
 - [ ] I can write a custom debounce wrapper.

@@ -298,6 +298,13 @@ In the next chapter, we will study **Errors & Stack Traces**. We will explore Ja
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Bugs hone pe panic karna ya random changes karna — systematic approach nahi hoti.
+- **Concept**: Debugging ek scientific method hai — reproduce → isolate → hypothesize → test → fix — hamesha steps follow karo.
+- **Key Pattern**: console.log se pehle reproduce karo — agar reproduce nahi kar sakte to fix karna impossible hai.
+- **Common Mistake**: Fix karna bina root cause samjhe — symptom fix ho sakta hai but bug doosri jagah pop up karega.
 ## 19. Completion Checklist
 
 - [ ] I understand the steps of the Scientific Method of Debugging.

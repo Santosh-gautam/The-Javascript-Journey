@@ -266,6 +266,13 @@ In the final chapter of this module, we will study **Trick Questions & Output Pr
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Technical skills ke saath soft skills bhi demonstrate karne hote hain — sirf code kaafi nahi.
+- **Concept**: STAR method (Situation, Task, Action, Result) behavioral questions ke liye — structured storytelling.
+- **Key Pattern**: "Tell me about a time you..." → Situation (2 lines) → Task → Action (main part) → Result (measurable outcome).
+- **Common Mistake**: "We did this" bolna — interviewer "I" ka contribution dekhna chahta hai, "we" se individual impact unclear rehta hai.
 ## 19. Completion Checklist
 
 - [ ] I can structure behavioral answers using the STAR method.

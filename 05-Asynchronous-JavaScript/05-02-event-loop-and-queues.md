@@ -327,6 +327,13 @@ Now that we understand the Event Loop and task queues, we need to look at the mo
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: JavaScript single-threaded hai — blocking code poora page rok deta hai.
+- **Concept**: Event Loop Call Stack + Web APIs + Microtask Queue + Macrotask Queue ko manage karta hai.
+- **Key Pattern**: Microtasks (Promises) macrotasks (setTimeout) se pehle execute hote hain — order: Call Stack → Microtask → Render → Macrotask.
+- **Common Mistake**: setTimeout(fn, 0) ko "immediate" samajhna — ye macrotask queue mein jata hai, Promises se baad execute hoga.
 ## 19. Completion Checklist
 
 - [ ] I can describe the difference between Macrotasks and Microtasks.

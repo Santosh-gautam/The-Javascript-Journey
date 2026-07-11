@@ -261,6 +261,13 @@ In the next chapter, we will study **Lazy Loading**. We will explore code-splitt
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Large JavaScript bundles slow page load karte hain — users wait karte hain, bounce rate badh jaata hai.
+- **Concept**: Tree-shaking (unused code remove), code splitting (chunks), lazy imports — bundle size minimize karo.
+- **Key Pattern**: const module = await import('./heavy-module.js') — dynamic import sirf zarurat pe load hota hai.
+- **Common Mistake**: Entire library import karna: import _ from 'lodash' vs import debounce from 'lodash/debounce' — dusra bahut chhota bundle deta hai.
 ## 19. Completion Checklist
 
 - [ ] I can write tree-shakable ES Module code.

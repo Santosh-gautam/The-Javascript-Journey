@@ -296,6 +296,13 @@ In the final chapter of this module, we will study **Web Workers**. We will expl
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Sab resources ek saath load karna — initial page load slow, unused assets download waste bandwidth.
+- **Concept**: Lazy loading sirf tab load karta hai jab resource viewport mein aaye ya actually needed ho.
+- **Key Pattern**: <img loading="lazy" src="..."> HTML attribute; JS mein IntersectionObserver se detect karo viewport entry.
+- **Common Mistake**: Above-the-fold images lazy-load karna — LCP (Largest Contentful Paint) score kharab hota hai.
 ## 19. Completion Checklist
 
 - [ ] I can write code split chunks using dynamic imports.

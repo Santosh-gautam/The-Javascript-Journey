@@ -294,6 +294,15 @@ In the next chapter, we will study the **Polyfill for call**. We will explore dy
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Function.prototype.bind ko scratch se implement karna — 	his binding aur partial application dono banana hota hai.
+- **Concept**: ind(ctx, ...args) ek naya function return karta hai jo hamesha ctx ke saath call hoga aur rgs pre-fill honge.
+- **Key Pattern**: Function.prototype.myBind = function(ctx, ...args) { const fn = this; return function(...args2) { return fn.apply(ctx, [...args, ...args2]); }; }.
+- **Common Mistake**: 
+ew ke saath inded function call karne ka behavior ignore karna — 
+ew se 	his override ho jata hai.
 ## 19. Completion Checklist
 
 - [ ] I can write a spec-compliant `Function.prototype.bind` polyfill.

@@ -389,6 +389,13 @@ In the next chapter, we will study the **Star Rating** component. We will explor
 
 ---
 
+
+## 19. 🇮🇳 Hinglish Summary
+
+- **Problem**: Scroll event listener se bottom detect karna — expensive aur inaccurate.
+- **Concept**: IntersectionObserver ek sentinel element ko observe karta hai — jab viewport mein aaye to aur data load karo.
+- **Key Pattern**: const observer = new IntersectionObserver(entries => { if(entries[0].isIntersecting) loadMore(); }); observer.observe(sentinel).
+- **Common Mistake**: Loading state manage na karna — multiple simultaneous API calls ho sakte hain; flag se prevent karo.
 ## 19. Completion Checklist
 
 - [ ] I understand how the Intersection Observer API operates.
