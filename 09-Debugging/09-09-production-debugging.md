@@ -265,14 +265,16 @@ In the final chapter of this module, we will complete the debugging curriculum b
 
 ### Concept kya hai
 
-Production environment debugging complex tasks run check is. Production bundles minified, obfuscated aur split structures compile hotay hain jisse stack traces read variables lookup debugging options break variables. **Source Maps** (.map files) compiled production structures coordinates back to original scripts source files mapping registers. **Local Overrides** DevTools proxy overrides feature files networks response modify triggers.
+Production environment mein debugging karna bada headache hota hai. Performance optimize karne ke liye code ko minify (compress) aur obfuscate (variable names chota) kar diya jata hai. Is wajah se production errors aane par stack traces mein ajeeb se line numbers aur random single-letter variables (jaise a, b, c) dikhte hain. Is problem ko solve karne ke liye hum do cheezein use karte hain:
+1. **Source Maps**: Ye .map extensions wali files hoti hain, jo production code ke coordinates ko original development code se map karti hain. Isse error aane par directly original file ka wahi line number dikhta hai jo development mein tha.
+2. **Local Overrides**: DevTools ka ek awesome feature hai jisse hum production par chal rahi script ko local file se override karke live edit aur test kar sakte hain.
 
 ### Andar kya hota hai (Internal Working)
 
-Source mapping browser tracking internals:
-1. **MappingURL Directives mapping**: Bundler minified assets generation bottom comments inject: //# sourceMappingURL=main.min.js.map.
-2. **DevTools resolution integration**: If browser DevTools panel is open, browser fetches .map file dynamically, reads JSON mapping keys coordinates.
-3. **VLQ (Variable-Length Quantity) decoding**: Source mapping keys contain compressed VLQ codes mapping compiled character offsets directly to original file line, column, and variable name coordinates.
+Source mapping aur browser integration kaise kaam karta hai:
+1. **SourceMappingURL Directive**: Jab project build hota hai, bundler output file ke aakhir mein ek special comment line inject karta hai: //# sourceMappingURL=main.min.js.map.
+2. **On-Demand Loading**: Browser normal execution mein map files load nahi karta taaki user ka bandwidth bache. Par jaise hi aap DevTools panel open karte ho, browser us source map file ko download karke V8 runtime mapping engine ko de deta hai.
+3. **VLQ Decoding**: .map file ke andar ek mappings key hoti hai jisme Base64 VLQ (Variable-Length Quantity) format mein encoded details hoti hain. Browser ise decode karke minified characters ko dev files ke lines aur columns se match kar deta hai.
 
 ### Code Example samjho
 
@@ -294,19 +296,18 @@ Source mapping browser tracking internals:
 `
 
 **Line by line JSON parameters:**
-- "version": 3 — source map specification standard version key.
-- "sources" — relative original source files paths lists in development repository.
-- "names" — variable identifiers stripped/minified at build process.
-- "mappings" — Base64 VLQ encoded strings matching lines and characters coordinates between build bundle file and source directories.
+- "version": 3 — Source map standard ka current version key.
+- "sources" — Original development files ke relative paths, jahan se bundle bana hai.
+- "names" — Un variables aur functions ke actual names jo minification process ke dauran badle gaye the.
+- "mappings" — Base64 VLQ encoded mappings string, jo compiled code ke positions ko sources ke original positions se synchronize karti hai.
 
 ### Sabse badi galti log karte hain
 
-Source map files production build directly users access compile public servers serve. Public maps let anyone download and inspect original repository source code structures. Always host source maps on isolated secure private servers, or restrict access via internal development authorization firewalls.
+Source map files ko production public assets folder mein push kar dena, jisse koi bhi user aapke raw source code files ko Chrome DevTools se view/inspect kar sakta hai. Hamesha source maps ko publicly build server se delete kar do, aur unhe privately secure Sentry/Bugsnag jaise error reporting dashboards par direct upload karo.
 
 ### Yaad rakhne ki cheez
 
-**Source Maps translate minified production code paths back to clean development source file line coordinates.** Host maps securely to prevent source code leaks to public space.
-
+**Source maps minified production code ko readable dev code mein translate karte hain, par production par leaks se bachne ke liye in .map files ko publicly block kar dena chahiye.**
 ## 20. Completion Checklist
 
 - [ ] I understand the purpose of source maps in production environments.

@@ -387,17 +387,20 @@ In the next chapter, we will study the **Spec - Debounced Search**. We will expl
 
 ### Concept kya hai
 
-Todo Application Specification ek client-side web application project definition hai jisme core structures build requirements detailed hain. Is project features coordinates: event delegation (single parent listener elements mutations handle parameters), state synchronization with localStorage (JSON serialization structures data load/save coordinates) and clean decoupled modules organization (State logic separated from rendering UI structures).
+Todo Tracker humara pehla real-world vanilla JavaScript project hai. Ek achhi application banane ke liye hume tin important concepts ko master karna hota hai:
+1. **State-Driven UI**: UI ko manually update karne ke bajaye hum ek single data structure (state object) maintain karte hain jo pure application ka state hold karta hai. UI humesha is state ka direct reflection hoti hai.
+2. **Event Delegation**: Har ek individual list item (`<li>`) par event listener lagane ke bajaye hum sirf unke common parent (`<ul>`) par ek single listener lagate hain. Jab kisi child element par click hota hai, toh click event bubble up ho kar parent tak jata hai, aur hum `e.target` se identify karte hain ki kis element par click hua tha. Isse memory save hoti hai aur dynamic new items bina extra listener bind kiye kaam karte hain.
+3. **Data Persistence**: App data ko user sessions ke beech persist karne ke liye hum `localStorage` ka use karte hain.
 
 ### Andar kya hota hai (Internal Working)
 
-Todo app event and storage mechanisms:
-1. **Event Delegation bubbling interception**: Jab elements click (<button class="delete"> inside <li>) event bubble triggers upwards: utton -> li -> ul -> body. Ul parent element listener event.target intercept references detect checks correct target identification dynamic execution.
-2. **JSON persistence serialization**: localStorage synchronous engine blocking reads/writes SQLite databases level write calls run details. Stringify conversions required.
+Event propagation aur memory level par backend flow kaise chalta hai:
+1. **Event Delegation (Bubbling Interception)**: Jab list item ke delete button par click hota hai, toh event DOM hierarchy ke through upar travel karta hai: `button -> li -> ul -> body`. Hum parent level (ul) listener par event ko intercept karte hain aur `event.target.classList` check karte hain taaki sahi buttons toggle/delete handlers execute ho sakein.
+2. **JSON Serialization**: LocalStorage sirf strings store kar sakta hai. Isliye hum state array ko save karte waqt `JSON.stringify()` se serialize karte hain, aur load karte waqt `JSON.parse()` se deserialize karke JavaScript array object mein convert karte hain.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Decoupled architecture Todo App skeleton
 class TodoApp {
   constructor(containerId) {
@@ -413,22 +416,21 @@ class TodoApp {
     return raw ? JSON.parse(raw) : []; // Deserialize array
   }
 }
-`
+```
 
 **Line by line:**
-- 	his.container — root reference target element dynamically mapped.
-- 	his.state — single source of truth holds todos array.
-- localStorage.getItem("todos") — reads SQLite database.
-- JSON.parse(raw) — deserializes JSON string back to objects lists.
+- `this.container` — Application UI container ka HTML root element refer kiya.
+- `this.state` — Single source of truth hai jisme todos array aur selected filters stored hain.
+- `localStorage.getItem("todos")` — Browser disk se string formats value lookup read karta hai.
+- `JSON.parse(raw)` — String value ko process karke actual arrays aur nested object trees mein transform karta hai.
 
 ### Sabse badi galti log karte hain
 
-State updates bypass karke dynamic changes directly DOM structure nodes inject loops handle parameters updates. If DOM state and memory arrays get out of sync, application states display wrong counts. Always update state array first, then trigger render updates automatically.
+State updates ko skip karke directly DOM element nodes (jaise innerHTML ya textContent) ko modify karna. Isse aapka application state aur memory array out-of-sync ho jaate hain. Pehle hamesha state array (`this.state.todos`) update karo, storage sync karo, aur uske baad `render()` function call karke UI refresh karo.
 
 ### Yaad rakhne ki cheez
 
-**Sync state first, let renderer reflect variables to DOM tree structure. Keep storage operations JSON mapped.**
-
+**Hamesha data state ko primary maano aur UI ko use follow karne do, aur dynamic lists par performance bachane ke liye event delegation use karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write a state-driven Vanilla JS application.

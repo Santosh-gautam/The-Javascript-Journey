@@ -382,17 +382,20 @@ In the next chapter, we will study **Infinite Scroll**. We will explore Intersec
 
 ### Concept kya hai
 
-Carousel Widget Machine Coding problems standard frontend UI components building challenge is. Carousels image galleries auto-slides slides loops checks coordinates. Core cases: **Infinite looping loops** (sliding seamlessly from last image back to first image), **Layout performance** (animating offsets using CSS transforms instead of left positioning) and **Accessibility options** (Keyboard indicators tabs, aria controls labels).
+Carousel (ya Image Slider) ek standard component hai jo machine coding rounds mein bahut pucha jata hai. Isme hume teen main problems solve karni hoti hain:
+1. **Infinite Looping**: Jab user last image par click kare, toh use bina kisi jhatke (seamlessly) ke wapas pehli image par chale jana chahiye.
+2. **Animation Performance**: Sliding effect dene ke liye CSS transition properties use karna taaki animation smoothly chale.
+3. **Control States**: User jab next/prev buttons par click kare ya indicators dots par tap kare, toh correct slide active ho sake. Sath hi, automatic scroll (autoplay) pause-on-hover logic ke sath sync hona chahiye.
 
 ### Andar kya hota hai (Internal Working)
 
-Carousel optimization browser rendering level:
-1. **Compositor layers translation**: Sliding animations should use 	ransform: translateX(-100%) instead of left updates. Layout recalculations (reflows) skip directly to Compositor steps.
-2. **Dynamic DOM nodes insertions**: If lazy-loaded, slides images load only when active viewport intersection occurs.
+Browser rendering aur engine level optimization kaise hoti hai:
+1. **GPU Acceleration**: Sliding ke liye hamesha `transform: translate3d(x, 0, 0)` use karna chahiye na ki CSS `left` property. `left` mutate karne se browser ko har frame par pure page ka layout (reflow) recalculate karna padta hai, jabki `transform` direct GPU Compositor Layer par execute hota hai jo smooth 60fps animations deta hai.
+2. **Wrapping Indices**: Slides ko loop karne ke liye hum modulo operator (`%`) use karte hain. Index change logic: `(index + totalSlides) % totalSlides`. Isse index hamesha arrays bounds (0 se length-1) ke beech safe rehta hai.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 class Carousel {
   constructor(containerId, images) {
     this.container = document.getElementById(containerId);
@@ -403,24 +406,23 @@ class Carousel {
   showSlide(index) {
     this.currentIndex = (index + this.images.length) % this.images.length;
     const track = this.container.querySelector(".carousel-track");
-    // Compositor-only animation for 60fps smoothness!
-    track.style.transform = 	ranslateX(-%);
+    // GPU-accelerated transition
+    track.style.transform = `translate3d(-${this.currentIndex * 100}%, 0, 0)`;
   }
 }
-`
+```
 
 **Line by line:**
-- 	his.currentIndex = (index + len) % len — infinite looping index calculation wraps index boundaries.
-- 	rack.style.transform = translateX(...) — updates slider offset coordinates using composite properties to bypass browser paint cycles.
+- `(index + len) % len` — Modulo operation index boundaries ko wrap karta hai. Agar index negative ya extra length ho jaye, toh wapas ranges (0 to length-1) par index assign ho jata hai.
+- `track.style.transform = ...` — Slide container track ko animates karta hai offset offsets translate karke, bina browser reflow trigger kiye.
 
 ### Sabse badi galti log karte hain
 
-Sliding transitions implementation using dynamic CSS left changes. Left transitions invoke Layout updates, causing frames drops and choppy animations. Always use GPU-accelerated CSS transforms.
+Slides ko toggle karne ke liye `left` style properties ka use karna, aur dynamic autoplay `setInterval` timer ko handle karte waqt hover pause event cleanup ignore kar dena. Autoplay intervals leak hone se infinite timers back-to-back start ho jaate hain aur slider uncontrolled behavior dikhata hai.
 
 ### Yaad rakhne ki cheez
 
-**Use CSS transform properties for smooth sliding animations, handle indices wrap values via modulo (%) operations.**
-
+**Animations ke liye hamesha GPU-accelerated CSS `transform` coordinate updates use karo aur dynamic timers ko safely `clearInterval` se remove karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write a hardware-accelerated Carousel component in Vanilla JS.

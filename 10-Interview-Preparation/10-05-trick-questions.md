@@ -323,13 +323,13 @@ We have completed **Module 10: Interview Preparation**! You have mastered core c
 
 ### Concept kya hai
 
-Trick questions standard concepts edge conditions coordinate test variables. Commonly questions categories focus: **Variable Shadowing** (inner scope scope local name overlaps parent scope variables), **Floating-Point Precision Errors** (floating IEEE 754 representations precision gaps), **Loose comparisons coercion traps** ([] == false).
+JavaScript interviews mein aksar ajeeb aur unexpected output wale questions puche jaate hain, jinhe hum "trick questions" kehte hain. Inka main goal ye check karna hota hai ki aap JS engine ke unique behaviors aur edge cases ko kitne achhe se samajhte hain. Commonly inme variable shadowing (local block mein global variable ke same name se declare karna), floating-point precision errors (jaise 0.1 + 0.2 === 0.3 ka false aana), aur loose equality coercion traps (jaise [] == ![]) aate hain.
 
 ### Andar kya hota hai (Internal Working)
 
-Trick logic engine level internals:
-1. **IEEE 754 precision error**: Computers binary system base 2 numbers store registers. Fractional decimal values like  .1 binary conversion recurring infinite float representation compile. V8 64-bit boundaries pe value round offset generates inaccuracies. So  .1 + 0.2 evaluations output is  .30000000000000004 (not 0.3).
-2. **Arrow versus lexical 	his**: Arrow function calls bound dynamic contexts don't change parameters value since they evaluate 	his strictly lexically from creation time scope structures.
+In JavaScript trick behaviors ke peeche ka engine-level logic kya hai, aao samjhein:
+1. **IEEE 754 precision error**: JS numbers double-precision 64-bit binary format (IEEE 754) mein save hote hain. Decimal fraction values (jaise 0.1) ko binary system (base 2) mein accurately represent nahi kiya ja sakta, jis se ye repeating fraction ban jaati hain. V8 engine in decimals ko internally round karta hai, jisse dynamic output 0.30000000000000004 aata hai na ki standard 0.3.
+2. **Lexical this vs Dynamic this**: Arrow functions ka apna this bind nahi hota. Wo apne surrounding parent lexical context se this ko inherit karti hain. Is wajah se call/apply/bind use karne ke baad bhi arrow functions ka this re-bind nahi hota.
 
 ### Code Example samjho
 
@@ -339,17 +339,16 @@ console.log([] == false); // Output: true!
 `
 
 **Line by line:**
--  .1 + 0.2 === 0.3 — evaluates alse because binary decimals rounding limits at V8 registers result string offset mismatch.
-- [] == false — triggers Abstract Equality coercion checks steps: boolean alse converts to  , object [] string converts to "", empty string converts to number  , resulting in   === 0 which is 	rue.
+-  .1 + 0.2 === 0.3 — V8 double-precision numbers ko add karte waqt 0.30000000000000004 produce karta hai. Is wajah se comparisons strict checks mein fail ho kar false deti hain.
+- [] == false — Coercion pipeline ke rules triggers: Boolean false pehle number 0 banta hai. Array string convert ho kar empty string "" banti hai, jo coercion loop ke nested check mein number 0 ban kar final comparison 0 === 0 match karwa deti hai, jo ki true hai.
 
 ### Sabse badi galti log karte hain
 
-Ternary variables comparison structures values direct equal assumptions verify checks. Float compare values with margin (Number.EPSILON delta offset thresholds checks): Math.abs(num1 - num2) < Number.EPSILON.
+Floating-point decimal variables ko directly === se compare karna. Agar aap direct 0.1 + 0.2 === 0.3 check karoge toh loop fail ho jayega. Hamesha comparison ke liye ek safety margin (epsilon range) use karo: Math.abs(num1 - num2) < Number.EPSILON.
 
 ### Yaad rakhne ki cheez
 
-**Decimal numbers V8 binary rounding limits cause precision inaccuracies.** Use strict comparisons and epsilon deltas for safe code paths.
-
+**Decimals V8 binary conversion ke kaaran hamesha microscopic precision gaps generate karte hain, isliye floats ko directly strict checks mat karo.**
 ## 20. Completion Checklist
 
 - [ ] I understand how variable shadowing behaves in blocks.

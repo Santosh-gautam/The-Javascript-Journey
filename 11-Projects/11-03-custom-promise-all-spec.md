@@ -346,18 +346,21 @@ In the next chapter, we will study the **Spec - Event Emitter**. We will explore
 
 ### Concept kya hai
 
-Custom Promise.all Specification ka main objective hai — promises array parallel handle logic polyfill write steps design patterns coordinates. Promises parallel trigger parameters, **Index Pinning** (original promises arrays index positions preserve arrays output values mapping checks) aur **Short-Circuit Rejection** (first promise error rejection immediately aborts operation, discarding future resolve parameters).
+Custom `Promise.all` polyfill banana interviews ka ek bahut hi popular coding question hai. Iska objective multiple promises ko parallelly execute karna aur unke results ko handle karna hai. Hume teen main specifications implement karni hoti hain:
+1. **Parallel Execution**: Saari promises ek sath execute honi chahiye, sequentially nahi.
+2. **Index Pinning**: Promises alag-alag time par resolve hongi (jaise fast vs slow task). Lekin final output array mein unke results ki ordering exactly wahi honi chahiye jo input array mein thi.
+3. **Short-Circuit Rejection**: Agar koi bhi ek promise reject ho jati hai, toh custom `Promise.all` ko immediately usi rejection error ke sath reject ho jana chahiye (bina baaki promises ke resolve hone ka wait kiye).
 
 ### Andar kya hota hai (Internal Working)
 
-Promise.all implementation internals:
-1. **Closure array mapping**: Promises loop arrays map target checks, V8 scope closures index references preserve.
-2. **Atomic resolve checks**: Internally counter variable tracks resolved count. When count matches input array length parameters, final Promise resolves with results array.
-3. **Short-circuit exit path**: If any promise calls eject(), returning promise immediately triggers rejection handler.
+V8 memory aur task execution loop level par hum ise kaise orchestrate karte hain:
+1. **Closure Index Pinning**: Hum array par `forEach` loop chalate hain aur index ko callback function ke closure scope mein pin (preserve) kar dete hain. Isse jab bhi koi promise resolve hoti hai, uska value `results[index] = value` par assign ho jata hai.
+2. **Atomic Counter**: Ek simple local variable `completedCount` rakhte hain jo track karta hai ki kitni promises successfully resolve hui hain. Jab `completedCount === promises.length` ho jata hai, tabhi hum main promise ko `resolve(results)` ke sath resolve karte hain.
+3. **Short-Circuit**: Hum direct `reject` callback function reference pass karte hain, taaki agar koi bhi promise fail ho, toh wo custom main Promise ke reject handler ko trigger kar de.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Parallel processing with index pinning
 function customPromiseAll(promises) {
   return new Promise((resolve, reject) => {
@@ -369,28 +372,29 @@ function customPromiseAll(promises) {
         (value) => {
           results[index] = value; // Index Pinning!
           completedCount++;
-          if (completedCount === promises.length) resolve(results);
+          if (completedCount === promises.length) {
+            resolve(results);
+          }
         },
         reject // Short-circuit rejection
       );
     });
   });
 }
-`
+```
 
 **Line by line:**
-- esults[index] = value — index parameter is closed over in the callback scope. Ensure results array values positions match input array sequence.
-- completedCount === promises.length — resolves final promise only when all tasks finish.
-- eject — direct error path bubble.
+- `results[index] = value` — Promise ka resolution index, scope closure variable se access hota hai. Isse order preserve rehta hai, bhale hi index 2 wali promise index 0 se pehle resolve ho jaye.
+- `completedCount === promises.length` — Jab saari tasks successfully resolve ho jaati hain, tabhi final array resolve hota hai.
+- `reject` — Agar input array ki koi bhi task fail ho, toh error yahan se fail-fast return ho jata hai.
 
 ### Sabse badi galti log karte hain
 
-Sequential or...of loops use with wait promises. It runs tasks one after another, destroying concurrency performance advantages. Always trigger promises simultaneously and resolve them via index mappings.
+Promises list ko resolve karne ke liye sequential `for...of` loop ke andar `await` keyword use karna. Isse promises sequentially chalti hain (ek khatam hogi tab dusri shuru hogi), jo ki concurrency and parallel execution ko kill kar deta hai. Hamesha `forEach` ya map use karke sabhi promises ko ek sath trigger karo aur fir unhe callback structures ke through count/track karo.
 
 ### Yaad rakhne ki cheez
 
-**Concurrency requires starting promises together, index pinning preserves input array sequence in output values.**
-
+**Concurrency badhane ke liye promises ko ek sath start karo aur output order coordinate karne ke liye index pinning use karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write a custom `Promise.all` polyfill from scratch.

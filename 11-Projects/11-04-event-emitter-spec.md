@@ -357,24 +357,29 @@ In the final chapter of this module, we will study the **Spec - Virtual DOM**. W
 
 ### Concept kya hai
 
-Event Emitter Specification publish-subscribe patterns code architectures decoupling structures targets coordinate. Emitter object coordinates: events registries dictionary (mapping event names to array of callback function references), **Subscribe APIs** (register callbacks), **Emit triggers** (execute callback arrays values) and **Once subscriptions** (single-fire triggers).
+Event Emitter ka simple matlab hai ek custom **Publish-Subscribe (Pub/Sub)** pattern banana. Iske through hum components ya modules ko aapas mein decouple kar sakte hain, jisse wo bina ek doosre par directly depend kiye communication kar sakein. Isme teen main features hote hain:
+1. **Subscribe (Listen)**: Jab hum ek callback register karte hain ki "jab ye event ho, toh is function ko chalao". Ye subscription ek object return karti hai jisme `unsubscribe()` method hota hai.
+2. **Emit (Publish)**: Jab hum event trigger karte hain aur us event se registered saare callbacks ko sequence mein data ke sath call karte hain.
+3. **Once**: Aise subscriptions jo sirf ek baar chalne ke baad automatically unsubscribe ho jayein.
 
 ### Andar kya hota hai (Internal Working)
 
-Event Emitter registry internals:
-1. **Events arrays collections**: Emitter stores variables references 	his.events = {}. Keys are names, values are arrays of function objects.
-2. **Unsubscribe closures scoping**: Subscribing returns unsubscribe function reference containing closure with event name and callback pointer reference. unsubscribe() call runs array filters on event key collections.
-3. **Execution copy loops**: Emitting copy arrays pointers loops bypasses dynamic subscription additions side effects.
+Event emitter ke data registry aur execution process ko samjho:
+1. **Registry Dictionary**: Emitter internally ek simple object (`this.events = {}`) use karta hai jisme keys event names hote hain (jaise `"userLogin"`) aur values callback functions ke arrays hote hain.
+2. **Closure Scoping**: Jab hum subscribe karte hain, toh return hone wala `unsubscribe()` method ek closure hota hai. Wo parent function context ke event name aur callback function references ko internally lock kar leta hai. Jab user `unsubscribe()` call karta hai, toh closure environment is callback ko registry array se remove kar deta hai.
+3. **Loop Copying**: Emit loop ke dauran hamesha original list ki copy (`[...this.events[event]]`) par iterate karo. Agar koi listener call ke dauran hi `unsubscribe` call kar dega, toh original array length badalne par indices jump hone ke bugs aa sakte hain.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 class EventEmitter {
   constructor() {
     this.events = {};
   }
   subscribe(event, callback) {
-    if (!this.events[event]) this.events[event] = [];
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
     this.events[event].push(callback);
     return {
       unsubscribe: () => {
@@ -383,21 +388,20 @@ class EventEmitter {
     };
   }
 }
-`
+```
 
 **Line by line:**
-- 	his.events = {} — key value pair dictionary for event categories.
-- 	his.events[event].push(callback) — stores callback function reference in arrays collection.
-- unsubscribe() — uses closure scope to filter out target callback reference safely.
+- `this.events = {}` — Emitter data registry jisme event categories mappings saved hain.
+- `this.events[event].push(callback)` — Callback pointer reference ko list array mein save kiya.
+- `unsubscribe()` — Closure scope ka use karke filter ke through target function pointers array se unique callback remove kiya.
 
 ### Sabse badi galti log karte hain
 
-Emit processing loop inside emitter directly mutations execute. If subscriber calls unsubscribe inside handler callback, original array length shifts mid-loop causing iterations index skipping errors. Always loop on a copied array slice [...this.events[event]].
+Emit method run karte waqt direct active listeners array ko iterate karna. Agar koi dynamic callback execution ke dauran hi unsubscribe call kar deta hai, toh array mid-loop mutate ho jata hai aur nested elements execute hona miss ho jaate hain. Hamesha array ko shallow copy (`[...array]`) karke loop chalao.
 
 ### Yaad rakhne ki cheez
 
-**Use closure scopes to return unsubscribe handlers, always shallow copy listener arrays during emissions loops.**
-
+**Event Emitter decouple pattern coordinate karta hai, unsubscribe ke liye closures return karo aur loop safety ke liye arrays copy karke iterate karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write a custom Event Emitter class.

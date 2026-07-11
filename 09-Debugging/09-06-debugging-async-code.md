@@ -311,48 +311,45 @@ In the next chapter, we will study **DOM & Event Debugging**. We will explore ho
 
 ### Concept kya hai
 
-Async JavaScript debugging tricky hoti hai kyunki callback event loops scheduling original execution frames context stack trace boundaries break kar deta hai. Modern engines **Async Stack Traces** (Zero-cost stack trace) support karte hain jo asynchronous callback errors aur execution origins stack points links reconstruct dynamically map kar trace print deta hai.
+Asynchronous JavaScript (jaise `setTimeout`, Promises, ya `async/await`) ko debug karna thoda mushkil hota hai. Jab koi asynchronous callback chalta hai, toh original stack trace (jisne use schedule kiya tha) call stack se hat chuka hota hai. Is wajah se, agar error aaye, toh stack trace adhura dikhta hai aur context samajh nahi aata. V8 engine is problem ko solve karne ke liye **Async Stack Traces** (Zero-cost stack traces) use karta hai, jo async boundaries ke paar ke original call stack ko reconstruct karke full path show karta hai.
 
 ### Andar kya hota hai (Internal Working)
 
-V8 async frames tracking internals:
-1. **Async context mapping preservation**: Promises instantiation aur wait suspend target executions coordinate, V8 current Call Stack return address, local registers state points Heap variables metadata slot parameters save checks links setup store compile.
-2. **Stack reconstruction**: Rejected state callbacks execution errors stack prints invoke triggers. V8 engine active trace references pointers checks read memory, appends previous suspension origin pointers paths back to printed error stack representation structures.
-3. **Task Queue bounds debugger hooks**: Task scheduling hooks debugger integration protocols trigger breakpoints async jumps context track checks run coordinates.
+V8 engine internally async stack traces kaise handle karta hai:
+1. **Context Preservation**: Jab hum `await` keyword use karte hain ya Promise banate hain, toh V8 current call stack ke pointers (return address wagera) ko Heap memory mein chal rahe Promise object ke sath tag kar deta hai.
+2. **Stack Reconstruction**: Jab program error throw karta hai, toh V8 in saved pointers ko check karta hai aur unhe current callback stack frame ke sath merge (stitch) karke print karta hai.
+3. **Promise State Inspector**: V8 internal slots jaise `[[PromiseState]]` aur `[[PromiseResult]]` ko maintain karta hai jo sirf debugger panel se inspect kiye ja sakte hain (hum code se inhe direct access nahi kar sakte).
 
 ### Code Example samjho
 
-`javascript
-// Good: Error with Promise wrapping preserving stack tracing
+```javascript
+// Good: Preserving stack trace via custom Error object
 function fetchUser(userId) {
   return new Promise((resolve, reject) => {
-    // If setTimeout throws or rejects, V8 async stack trace maps it back
     setTimeout(() => {
-      reject(new Error(Failed to fetch user: ));
+      // rejection mein new Error object pass kiya
+      reject(new Error(`Failed to fetch user: ${userId}`));
     }, 100);
   });
 }
 
 fetchUser(101).catch(err => {
-  console.error(err.stack); // Trace links back to fetchUser call context!
+  console.error(err.stack); // Prints full stack trace!
 });
-`
+```
 
 **Line by line:**
-- 
-ew Promise((resolve, reject) => { ... }) — Promise heap representation created.
-- setTimeout(...) — schedules timer. Call stack clear.
-- Rejection triggers error stack. V8 reads async stack trace maps, reconstructs file lines calling sequence from etchUser activation line in main script file. Debugging is precise.
+- `new Promise((resolve, reject) => { ... })` — Ek new Promise object Heap pe allocate hota hai.
+- `setTimeout(...)` — Ek asynchronous timer schedule hota hai aur call stack immediately clear ho jata hai.
+- `reject(new Error(...))` — 100ms baad callback chalta hai aur error throw karta hai. Kyunki humne `new Error()` use kiya, V8 async stack mappings ko follow karke trace output print karega ki ye error `fetchUser` call se shuru hui thi.
 
 ### Sabse badi galti log karte hain
 
-Async code rejections check ignore target loops run callbacks (.catch() missing). Promises rejection warnings without stack traces print trace parameters trace context break details lost context. Always ensure error constructors are instantiated immediately (
-ew Error()) so they record the stack location instantly.
+Promise reject karte waqt generic strings throw karna: `reject("Failed to load")`. String primitive value hoti hai aur uske paas stack frames aur line coordinates registry data nahi hota, isliye stack trace cut ho jata hai. Hamesha proper `new Error("msg")` use karo rejection pathways mein.
 
 ### Yaad rakhne ki cheez
 
-**Use 
-ew Error() inside Promise rejection pathways to ensure stack frames capture creation contexts accurately.** Async stack traces support engine properties trace connection points.
+**Promises ko reject karte waqt hamesha `new Error()` throw/reject karo taaki async stack trace clean aur complete mile.**
 
 ## 20. Completion Checklist
 

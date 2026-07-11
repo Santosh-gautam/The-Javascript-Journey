@@ -394,17 +394,20 @@ In the next chapter, we will study the **Star Rating** component. We will explor
 
 ### Concept kya hai
 
-Infinite Scroll frontend UI performance optimization structures ka key part hai. Page scroll check boundaries dynamic elements injection coordinates. Core cases: **Throttled scroll event listeners checks** (preventing layout updates spamming), **Intersection Observer API usage** (observing target end-of-list sentinel element) and **Dynamic data fetching with loading locks**.
+Infinite Scroll web apps mein data-loading optimize karne ki ek popular technique hai. Isme jaise hi user list ke aakhir tak scroll karta hai, naya data automatically fetch aur append ho jata hai. Is page transition ko performant banane ke liye hum teen main factors control karte hain:
+1. **Intersection Observer API**: Scroll event handlers ki jagah browser level helper use karna jo bata sake ki list ke aakhir mein rakha "sentinel" div viewport mein aaya ya nahi.
+2. **Loading Lock**: Jab tak ek API call chal rahi hai, tab tak dynamic duplicate calls block karna.
+3. **DocumentFragment Insertion**: DOM par directly multiple append elements likhne ke bajaye single memory fragment updates run karna.
 
 ### Andar kya hota hai (Internal Working)
 
-Infinite scroll engine coordinates:
-1. **Sentinel Intersection checks**: IntersectionObserver sentinel node viewport exit/enter monitor check runs on a separate browser layout thread without impacting JavaScript execution.
-2. **State Locking mechanisms**: Flag parameters block duplicate fetches while pending network responses resolve.
+Browser rendering level par iska mechanics:
+1. **Asynchronous Sentinel Monitoring**: `IntersectionObserver` sentinel node ke view intersection ko event loop blocking thread se hatakar alag browser thread par verify karta hai. Isse page scrolling smooth rehti hai.
+2. **Loading Locks (Gatekeeping)**: Jab call pending state mein ho, toh `isLoading = true` variable state lock kar deta hai taaki fast scroll karne par 10-15 duplicate calls na chali jayein.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Good: Infinite scroll sentinel observer pattern
 const observer = new IntersectionObserver((entries) => {
   const [entry] = entries;
@@ -414,22 +417,20 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 1.0 });
 
 observer.observe(document.getElementById("sentinel"));
-`
+```
 
 **Line by line:**
-- 
-ew IntersectionObserver(...) — browser level intersection tracking setup.
-- entry.isIntersecting — resolves true only when sentinel element enters viewport.
-- !isLoading — state loading lock verification prevents duplicate redundant fetch calls.
+- `new IntersectionObserver(...)` — Browser level layout tracking setup.
+- `entry.isIntersecting` — Returns `true` jab browser detect karta hai ki sentinel list target component screen view par enter ho chuka hai.
+- `!isLoading` — State loading lock. Is check ke bina scroll ticks redundant network calls trigger kar dengi.
 
 ### Sabse badi galti log karte hain
 
-Scroll event listeners check coordinates calculation loops using window.scrollY and element bounds. Native scroll listener triggers spam CPU thread constantly, degrading performance. Always use IntersectionObserver patterns.
+Scroll position coordinate check karne ke liye `window.addEventListener('scroll', ...)` lagana aur `getBoundingClientRect()` calculate karna. Scroll event loop har pixel movement par fire hota hai, jisse CPU spam ho jata hai aur animation stutter hone lagti hai. Hamesha `IntersectionObserver` use karo.
 
 ### Yaad rakhne ki cheez
 
-**Intersection Observer processes viewport entry checks asynchronously without main thread scroll performance overheads.**
-
+**Intersection Observer background thread par triggers detect karta hai, jisse main JavaScript thread refresh operations smoothly coordinate kar pata hai.**
 ## 20. Completion Checklist
 
 - [ ] I understand how the Intersection Observer API operates.

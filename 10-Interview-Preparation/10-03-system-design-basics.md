@@ -307,13 +307,13 @@ In the next chapter, we will study **Behavioral & Technical Strategy**. We will 
 
 ### Concept kya hai
 
-Frontend System Design ka matlab hai — ek scaleable, fast, aur bug-free web application ka architecture plan karna. Isme features: state structure, component communications, modularity, modules security boundaries aur data synchronization flows. **Unidirectional Data Flow** (data moves in single direction: Action -> State Update -> View Render) pattern design updates ko predictable aur testable banata hai.
+Frontend System Design ka matlab hai ek scalable, high-performance aur bug-free web application ka structure architecture level par design karna. Jaise-jaise frontend apps badi hoti hain, data flow aur components ki coupling complex ho jati hai. Is chapter mein hum unidirectional data flow (jaise React/Redux mein hota hai: Action -> State Update -> View Render), component decoupling (taaki child components directly parent state ko modify na karein), aur Optimistic UI updates (API call complete hone se pehle hi screen par changes dikha dena aur fail hone par rollback karna) jaise core systems design topics seekhte hain.
 
 ### Andar kya hota hai (Internal Working)
 
-System design and browser internals:
-1. **State-View synchronization loop**: Central state change (state.unreadCount++) modules listeners registry notify events run registers. Render engines DOM values updates dynamically coordinate elements.
-2. **Micro-Frontend Sandboxing**: Large systems split bundles dynamically load, V8 namespaces isolated interfaces runtime environment. Sandbox environments communication APIs event brokers (CustomEvent objects) coordinate.
+System level par modules aur state updates kaise sync hote hain:
+1. **State-View Sync Loop**: Central store ke variables update hote hi, store internally un sabhi components ke listener functions ko execute karta hai jo state slice se subscribed hain.
+2. **Micro-Frontend Sandboxing**: Jab badi enterprise applications ko alag-alag teams ke dynamically loaded micro-apps (like payments, accounts) mein split kiya jata hai, tab V8 global scope namespace pollution se bachne ke liye custom sandboxing use karta hai. In modules ke beech dynamic messaging ke liye window-level Custom Events (CustomEvent APIs) use kiye jaate hain.
 
 ### Code Example samjho
 
@@ -335,18 +335,17 @@ class NotificationSystem {
 `
 
 **Line by line:**
-- 	his.listeners — listeners pointers registration list context array.
-- dispatch(action) — state updates single location logic controller check trigger operations.
-- 	his.listeners.forEach(...) — state modification finished notifications triggers views updates automatically. Decoupled code architecture.
+- this.listeners = [] — Subscriber functions ka register array.
+- dispatch(action) — State update karne ka single entry point. Koi bhi component state ko directly mutate nahi kar sakta, unhe dispatch ke through batana hoga.
+- this.listeners.forEach(...) — Jaise hi data update complete hota hai, saare components ko notify karke UI trigger run kiya jata hai. Isse business logic aur UI completely decouple rehte hain.
 
 ### Sabse badi galti log karte hain
 
-Child components to parent arrays directly modify operations parameters execute updates bugs parameters. Two-way binds structure complex layout designs tracking errors cause render cycles loops infinite. Always enforce unidirectional flow.
+Child component ke andar direct parent component ki array structures ko index pointer level par splice/modify kar dena. Isse unpredictable bugs aate hain aur data flows ka structure tracing block ho jata hai. Hamesha state changes ko global actions dispatching ke through handle karo.
 
 ### Yaad rakhne ki cheez
 
-**Keep state management unidirectional, decouple business logic from UI rendering engines.**
-
+**Hamesha unidirectional data flow rule follow karo, aur state modification logic ko visual UI code se door (decouple) rakho.**
 ## 20. Completion Checklist
 
 - [ ] I understand the principles of modular component design.

@@ -523,49 +523,51 @@ We have completed **Module 13: Machine Coding**! You have mastered Vanilla JS ca
 
 ### Concept kya hai
 
-File Explorer (Nested Comments) Widget recursive structures display and state manipulation controls setup is. Nested hierarchical folder structures state tree (JSON object structure) maintain mapping data render coordinates. Core cases: **Recursive DOM rendering** (generating elements arrays recursively from children nodes data), **State updates via DFS searches** (traversing state trees to locate folders matching target IDs to insert new files/folders) and **Expanded states toggles**.
+File Explorer (ya nested comments system) widget machine coding ka ek standard advanced problem hai. Iska main objective hierarchical folder structure ya comments list ko recursively screen par render karna aur state manage karna hai. Isme teen main problems hum solve karte hain:
+1. **Recursive DOM Rendering**: Folder structure nested hota hai (folder ke andar folder, uske andar file). Iske liye hum ek function banate hain jo child nodes par loop karke khud ko hi recursively call karta hai jab tak base file node na mil jaye.
+2. **State Mutation via DFS**: Tree mein kisi nested folder ke andar new file add ya delete karne ke liye hume pure nested JSON state tree ko traverse karna padta hai. Iske liye hum Depth-First Search (DFS) recursive search algorithm run karte hain taaki target folder ID ko dhoondh kar change apply kar sakein.
+3. **Expand / Collapse Toggle**: Kisi folder ke open/closed state ko coordinate karna.
 
 ### Andar kya hota hai (Internal Working)
 
-Nested state tracking mechanisms:
-1. **Target IDs dataset attributes**: DOM elements contain data-attributes pointers tracking unique nodes identifiers (data-id="src").
-2. **Recursive state insertion updates**: When a node is created/deleted, controllers execute DFS recursion searches on the state tree. V8 call stack frames nesting increases during DFS traversals.
+Nested state management aur browser event tracking details:
+1. **Unique Data Attributes ID Mappings**: DOM elements render karte waqt hum unke dataset attributes (`data-id="123"`) set kar dete hain taaki click event trigger hone par target folder key identify ki ja sake.
+2. **Call Stack recursion limits**: DFS search ke dauran V8 stack frame size nested steps ke along build hota hai. Hum state tree update hone par memory references change karte hain aur pure component view ko current state tree ke mutabik re-render karte hain.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Recursive rendering of state tree nodes
 function renderTree(node) {
   if (node.type === "file") {
-    return <div class="file-item"></div>;
+    return `<div class="file-item">${node.name}</div>`;
   }
   
   // Folder layout: recursively render children arrays
   const childrenHTML = node.children.map(child => renderTree(child)).join("");
-  return 
+  return `
     <div class="folder-item">
-      <div class="folder-header" data-id=""></div>
-      <div class="folder-children" style="display: ">
-        
+      <div class="folder-header" data-id="${node.id}">${node.name}</div>
+      <div class="folder-children" style="display: ${node.isExpanded ? 'block' : 'none'}">
+        ${childrenHTML}
       </div>
     </div>
-  ;
+  `;
 }
-`
+```
 
 **Line by line:**
-- if (node.type === "file") — base case: halts recursion, returning plain file element string templates.
-- 
-ode.children.map(child => renderTree(child)) — recursive call: maps children nodes through the same renderer function to generate nested tree output structure.
-- data-id="" — attaches state identifier keys directly to DOM elements for easy click mappings.
+- `if (node.type === "file")` — Base case: Recursion ko halt karta hai aur directly text/file HTML string template return karta hai.
+- `node.children.map(...)` — Recursive call: Har child node ko usi `renderTree` logic se pass karke nested HTML trees generate karta hai.
+- `data-id="${node.id}"` — DOM elements ko dynamic state node IDs ke sath sync karta hai.
 
 ### Sabse badi galti log karte hain
 
-State updates ignore parameters. Creating files/folders inside local DOM scopes directly without updating central state tree. State and views drift, causing future render passes to wipe dynamic changes. Always update state tree first, then trigger recursive render pass.
+State updates ko skip karke directly DOM structures mein (jaise parent element append child se) new folder or file HTML inject kar dena. Aisa karne se aapka local DOM layout aur primary JSON state tree out-of-sync ho jayenge, aur next re-render hone par aapke dynamic elements disappear ho jayenge. Hamesha state tree update karo, aur wahan se component re-render flow trigger karo.
 
 ### Yaad rakhne ki cheez
 
-**Update nested JSON state structures via recursive searches first, then re-render UI views dynamically.**
+**Nested folders/structures ko manage karne ke liye pehle recursive DFS se state tree update karo, fir pure VDOM/DOM tree ko state ke state value ke through re-render karo.**
 
 ## 20. Completion Checklist
 

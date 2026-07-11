@@ -405,17 +405,20 @@ In the next chapter, we will study the **Spec - Custom Promise.all**. We will ex
 
 ### Concept kya hai
 
-Debounced Search Specification autocomplete API integrations build specs maps key patterns features: **Debouncing** (fast input keypress timeouts clear parameters delays triggers), **In-Memory Query Cache** (Map memory dictionary caches results) and **Race Condition protection** (latest requested query tracks discarded stale async outputs).
+Debounced Search component ko standard search bars (jaise Google ya Amazon search) mein optimize karne ke liye design kiya jata hai. Isme teen important features hote hain:
+1. **Debouncing**: Jab user type kar raha hota hai, toh har ek keypress par API call karne ke bajaye hum ek timer (jaise 300ms) set karte hain. Jab user typing pause karta hai, tabhi actual API request send hoti hai. Isse server load bachta hai.
+2. **In-Memory Cache**: Jo search queries user pehle kar chuka hai (jaise "apple"), unhe hum ek `Map` mein store kar lete hain, taaki dubara wahi word search karne par network request bypass ho sake.
+3. **Race Condition Protection**: Asynchronous requests alag-alag speeds par chal sakti hain. Agar user ne pehle "a" search kiya aur fir fast type karke "ab" search kiya, toh "a" ka response late aa kar "ab" ke fresh results ko overwrite kar sakta hai. Is problem se bachne ke liye hum latest search tracker maintain karte hain.
 
 ### Andar kya hota hai (Internal Working)
 
-Search coordinating mechanisms:
-1. **Timer clearing scavenger**: Input keys trigger debounced callbacks. V8 engine calls clearTimeout(timeoutId) removing macrotask references from event loops queue and schedules a fresh setTimeout timer.
-2. **Race condition state lock**: ctiveQuery variable records string parameter representing latest search query. When network response resolves, callback checks if response query matches latest input value parameter, if mismatch → discard stale result.
+V8 event loop aur memory level par optimization process kaise kaam karti hai:
+1. **Debounce Timer Cleaning**: Har new keypress event par hum V8 event loop queue se purana pending timer `clearTimeout(timeoutId)` call karke clear kar dete hain, aur ek naya `setTimeout` timer schedule kar dete hain. Isse macrotask queue mein redundant fetch tasks enqueue nahi hote.
+2. **Active Query Tracker**: Jab hum fetch API call trigger karte hain, toh current query string ko `this.activeQuery` variable mein lock kar dete hain. Jab network call back-end se resolve hoti hai, tab callback validation check karta hai: `if (responseQuery === this.activeQuery)`. Agar match nahi hota, toh callback response ko discard kar deta hai.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 class SearchController {
   constructor(input, results, status) {
     this.input = input;
@@ -425,20 +428,19 @@ class SearchController {
     this.activeQuery = "";
   }
 }
-`
+```
 
 **Line by line:**
-- 	his.cache = new Map() — in-memory map mapping search keys to results values. Prevents duplicate network requests.
-- 	his.activeQuery — string reference variable tracking latest search parameters to intercept and discard stale responses.
+- `this.cache = new Map()` — In-memory map query aur response mappings ko store karta hai taaki redundant calls na hon.
+- `this.activeQuery` — String state tracker jo user ki latest dynamic input query ko hold karta hai taaki stale asynchronous responses ko drop kiya ja sake.
 
 ### Sabse badi galti log karte hain
 
-Race conditions check and cancellation templates skip run validations. Older slow response overwrites newer results. Always verify response context parameters values before UI renders.
+Race conditions checks ko implement na karna. Agar user back-to-back fast search query inputs bhejta hai, toh internet latency ke karan purani slow query naye search output ke upar show ho sakti hai. Hamesha check karo ki resolve hone wala request parameter active query se match kar raha ho tabhi UI render karo.
 
 ### Yaad rakhne ki cheez
 
-**Use in-memory maps to cache requests, verify response queries match active query parameters to avoid race condition bugs.**
-
+**Hamesha search inputs par debounce timer lagao, in-memory Map se search results cache karo, aur response aane par active query check karke race conditions ko avoid karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write input listeners with debounce wrappers.

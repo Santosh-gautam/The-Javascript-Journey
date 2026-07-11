@@ -275,14 +275,16 @@ In the next chapter, we will study **Production Debugging**. We will explore pro
 
 ### Concept kya hai
 
-Heap Snapshot Analysis memory leaks troubleshoot target core tool parameters detail run check is. Heap snapshot browser memory state allocation graph representation snapshot targets verify check save. Snapshots comparison memory nodes **Shallow Size** (object own footprint memory) and **Retained Size** (memory footprints freed if target object is garbage collected) values output profiles key tracking metrics parameters report checks run compile targets.
+Jab aapki web app long run mein slow ho rahi ho ya tab crash ho raha ho, toh iska main reason memory leak ho sakta hai. Memory leak tab hoti hai jab objects ab kaam ke nahi rahe, par JavaScript unhe delete (garbage collect) nahi kar pa rahi hai. Is problem ko locate karne ke liye hum **Heap Snapshot** use karte hain. Heap Snapshot browser tab ki memory ka ek live graph snapshot hota hai. Isme hume do key metrics milti hain:
+1. **Shallow Size**: Object ka apna personal memory weight (bina uske children/references ko add kiye).
+2. **Retained Size**: Wo memory jo is object ko delete karne par free ho jayegi (isme is object ka shallow size aur iske internal references jo is par dependencies rakhte hain, sab ka total memory weight hota hai).
 
 ### Andar kya hota hai (Internal Working)
 
-V8 memory heap tracing internals:
-1. **Object Graph generation**: V8 compiles objects references directed graph layout coordinates (Nodes are instances, edges are references/pointers).
-2. **GC Roots reachability mapping**: Heap snapshots traversal runs shortest-paths searches starting GC Roots nodes (global variable scopes, DOM trees, call stacks) mapping distances coordinates details variables.
-3. **Retention Chains resolution**: Distance parameters determine reachability chains. If object has distance < infinity, GC cannot free memory slots.
+V8 heap structure aur snapshots generation:
+1. **Object Graph**: V8 engine heap memory ko ek directed graph ki tarah track karta hai, jahan variables nodes hote hain aur reference variables/properties directed edges (pointers) hote hain.
+2. **GC Roots**: Jab hum snapshot lete hain, debugger root objects (window, local stack call execution, ya DOM tree) se trace starting path find karta hai. Agar kisi object se root tak ki reachability distance finite hai, toh GC use delete nahi kar sakta.
+3. **Dominator resolution**: Dominator nodes chain analysis se debugger check karta hai ki agar root object aur target element ke beech ka path break kar diya jaye, toh kitni memory drop hogi.
 
 ### Code Example samjho
 
@@ -302,18 +304,17 @@ initializeService(); // largePayload retained by requestLogger closure!
 `
 
 **Line by line:**
-- largePayload array allocation memory requires significant Heap size.
-- equestLogger function variable references outer lexical scope variables largePayload.
-- V8 preserves largePayload inside closure Heap memory block because equestLogger is global and holds a strong reference path to it. Retained size of equestLogger equals array size plus scope context object overhead size.
+- const largePayload = new Array(...) — Memory block allocate kiya heap par.
+- equestLogger global pointer scope outer function variables largePayload ko target closure function ke through point kar raha hai.
+- Kyunki equestLogger global variable hai jo directly GC Root se connected hai, isliye iske reference path ke karan largePayload GC safe target list par rahega. Is case mein equestLogger ka shallow size chota hoga par retained size 1 Million entries array ke jitna bada hoga.
 
 ### Sabse badi galti log karte hain
 
-Heap snapshot profiles comparisons without triggering explicit manual GC sweep checks triggers beforehand. DevTools trash icon click trigger sweeps garbage collector before snapshots save, otherwise short-lived temporary objects pollute snapshot analysis data.
+Heap snapshots comparison run karte waqt, explicit manual Garbage Collection (GC) trigger na karna. DevTools memory profiles lene se pehle clear trash icon button press karke GC run karo. Agar GC run nahi karoge, toh short-lived memory allocations snapshots data ko pollute kar degi aur comparison results galat milenge.
 
 ### Yaad rakhne ki cheez
 
-**Shallow Size is own object size, Retained Size is total memory released if object is GC cleared.** Always run manual GC sweeps before capturing heap snapshots.
-
+**Shallow Size object ka apna weight hota hai, jabki Retained Size wo weight hai jo us object ko delete karne par overall memory se free hoga.**
 ## 20. Completion Checklist
 
 - [ ] I can take heap snapshots in Chrome DevTools.

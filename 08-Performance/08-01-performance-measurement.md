@@ -296,46 +296,43 @@ In the next chapter, we will study **Code Optimization Techniques**. We will exp
 
 ### Concept kya hai
 
-Performance measurement ka matlab hai — code execute hone mein kitna time le raha hai ya browser layout processing mein kitna time lag raha hai isse measure karna. Standard Date.now() unreliable hai benchmark ke liye kyunki ye microsecond level time measurement support nahi karta aur clock drift se change ho sakta hai. Best practice hai **User Timing API** (performance.now(), performance.mark(), performance.measure()) use karna jo hardware high-resolution clock provide karta hai.
+Performance measurement ka simple matlab hai ye check karna ki hamara code chalne mein kitna time le raha hai ya browser page ko render karne mein kitna lag raha hai. Bahut log iske liye Date.now() use karte hain, jo ki galat hai. Date.now() hume millisecond accuracy deta hai jo bahut low hai, aur ye system clock par depend karta hai jo kabhi bhi adjust ho sakti hai. Iski jagah hume **User Timing API** (performance.now()) use karna chahiye, jo computer ke hardware clock se microsecond level tak ka accurate time nikal kar deta hai.
 
 ### Andar kya hota hai (Internal Working)
 
-Browser performance timers implementation details:
-1. **Monotonic Clock**: performance.now() browser navigation timing specification use karta hai — clock drift-free, system changes se non-affected. Time microseconds precision (floating format) mein monotonic duration detail deta hai.
-2. **Timeline Registry**: Marks (performance.mark(name)) browser's central Performance Timeline Registry mein register hote hain.
-3. **Execution Profiling**: CPU profiling runtime parameters measure karne ke liye call stacks analyze karta hai. DevTools runtime timeline capture calls layout reflow benchmarks, scripts executions aur garbage collection sweeps tracking run karti hai.
+Jab hum performance.now() call karte hain:
+1. **Monotonic Clock**: Ye system ke hardware clock se time calculate karta hai jo hamesha aage badhta hai (monotonic). System time change hone se is par koi asar nahi padta.
+2. **Timeline Registry**: Jab hum performance.mark(name) karte hain, toh browser is timestamp ko ek internal registry mein save kar leta hai.
+3. **Difference Calculation**: Jab hum performance.measure() chalate hain, toh ye pehle wale aur baad wale marks ka difference nikalta hai, jisse exact execution time milta hai. DevTools isi data ko use karke time charts banata hai.
 
 ### Code Example samjho
 
 `javascript
-// Bad: Coarse date usage
-const start = Date.now();
-runHeavyLoop();
-const end = Date.now();
-console.log(Duration: ms); // Imprecise!
-
 // Good: User Timing API
 performance.mark("loop-start");
 runHeavyLoop();
 performance.mark("loop-end");
 
+// Dono points ka gap measure karo
 performance.measure("Heavy Loop Duration", "loop-start", "loop-end");
 const [measure] = performance.getEntriesByName("Heavy Loop Duration");
-console.log(Precise Time: ms); // Sub-millisecond!
+console.log(Precise Time: ms); // Sub-millisecond accuracy!
 `
 
 **Line by line:**
-- performance.mark("loop-start") — navigation registry entry for start duration save keyword base.
-- performance.measure(...) — start mark se end mark tak ka difference compute karke timeline structure register compile.
-- performance.getEntriesByName(...) — exact registry reference capture properties read (.duration microsecond range accuracy).
+- performance.mark("loop-start") — Loop chalne se theek pehle ek marker lagata hai.
+- unHeavyLoop() — Wo heavy loop ya code jo hume test karna hai.
+- performance.mark("loop-end") — Loop khatam hote hi dusra marker lagata hai.
+- performance.measure(...) — Dono markers ke beech ka time difference calculate karta hai aur timeline pe store karta hai.
+- performance.getEntriesByName(...) — Hamare test name se entries nikalta hai aur .duration property se exact time milliseconds mein de deta hai.
 
 ### Sabse badi galti log karte hain
 
-Timing calculations microsecond levels pe sync variables and functions context run-time change ignore kar benchmark scale check setup karna. Profiling runs single loop benchmarks execution context compile cache setup test checks invalid details record karti hai — V8 optimized paths warm-ups tests multiple loops check average setup baseline.
+Sabse badi galti log ye karte hain ki single execution run ko measure karke performance assume kar lete hain. V8 engine shuru mein code ko interpret karta hai aur warm hone par use optimize karta hai. Isliye agar pehli baar execution measure karoge, toh wo hamesha slow aayega. Sahi benchmark ke liye code ko 1000+ times run karke uska average time nikalna chahiye.
 
 ### Yaad rakhne ki cheez
 
-**performance.now() and user timings exact, precise microsecond evaluations output custom checks control.** Date clock adjustments sync fail patterns measurement skew checks break block.
+**Hamesha performance.now() use karo microsecond-level timing ke liye.** Date.now() systems clocks change hone par galat results de sakta hai.
 
 ## 20. Completion Checklist
 

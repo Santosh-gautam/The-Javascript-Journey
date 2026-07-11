@@ -294,13 +294,16 @@ In the next chapter, we will study **System Design Basics**. We will explore sca
 
 ### Concept kya hai
 
-Coding patterns algorithms solve karne ke structured frameworks hain. JavaScript interviews mein kuch basic patterns bar-bar pooche jaate hain: **Two Pointers** (do index variable arrays ke different corners se start karke element compare karna), **Sliding Window** (contiguous subarrays ka subarray sum ya max lengths trace karne ke liye dynamic frame bounds adjust karna), aur **DFS/BFS** (deep structure lookup traversals).
+JavaScript coding interviews mein algorithmic problems ko solve karne ke liye kuch standard patterns use hote hain, jo code ki complexity ko drastically kam kar dete hain. Inme main teen patterns hain:
+1. **Two Pointers**: Jab hum sorted array mein dono ends (left aur right) se pointers shuru karte hain aur unhe condition ke basis par paas laate hain. Ye nested loops ke O(N^2) time ko reduce karke O(N) kar deta hai.
+2. **Sliding Window**: contiguous subarray ya substring ke problems ko solve karne ke liye hum ek "window" (frame) ka size dynamically expand ya shrink karte hain, jisse redundant iterations nahi karni padti.
+3. **DFS / BFS**: Tree ya nested objects ko traverse karne ke techniques hain. DFS depth mein explore karta hai jabki BFS levels ko traverse karta hai.
 
 ### Andar kya hota hai (Internal Working)
 
-Coding patterns and V8 compilation:
-1. **Pointer offset indexing optimization**: Standard pointer variables (let left = 0) regular numeric variables hote hain. Array items lookup execution (rr[left]) compile time pe V8 parameters check offset addresses memory pointer direct references map checks registers.
-2. **Call stack limits**: DFS recursion frames V8 call stack size exhaust errors (Stack Overflow) raise kar sakte hain agar nested depths recursion limit exceed kare. BFS iteration arrays memory size bounds trace registers.
+V8 memory aur structures in patterns ko kaise execute karte hain:
+1. **Pointer offset indexing**: Pointer variables (let left = 0) memory level par sirf numeric integers hote hain. Jab hum rr[left] likhte hain, toh V8 engine ise direct memory address offsets lookup mein convert kar deta hai, jo constant O(1) time leta hai.
+2. **Call stack vs Memory limits**: DFS recursion frames V8 call stack size exhaust (maximum call stack size exceeded error) raise kar sakte hain agar recursion deep trees par chale. Jabki BFS Queue array use karta hai, jo call stack to save kar leta hai par Heap space consume karta hai.
 
 ### Code Example samjho
 
@@ -320,18 +323,17 @@ function findTargetPair(arr, target) {
 `
 
 **Line by line:**
-- left = 0, right = arr.length - 1 — pointers starting aur end positions register indexes are pointers.
-- sum = arr[left] + arr[right] — indexes values lookup operations V8 fast array offsets read.
-- sum < target ? left++ : right-- — values smaller bounds shifts pointers rightwards to increase sum parameters.
+- left = 0, right = arr.length - 1 — Pointers ko array ke dono extreme ends par register kiya.
+- rr[left] + arr[right] — V8 directly index offsets lookups se values read karke unhe compare karta hai.
+- sum < target ? left++ : right-- — Agar sum target se chota hai, toh left pointer ko aage badha kar sum badhayein, nahi toh right pointer ko peeche khiska kar sum kam karein.
 
 ### Sabse badi galti log karte hain
 
-Sliding window algorithms mein static array frames resize validation criteria bypass run logic write validation error check logic. Edge condition check loops fail coordinate. Write clear checks for zero boundaries.
+Sliding window mein array boundaries ya index offsets ka dhyan na rakhna (off-by-one error). Jaise i - k compute karte waqt negative boundaries check na karna jisse undefined values calculation mein inject ho jati hain aur bugs bante hain. Edge cases jaise empty array ya k > array.length ko hamesha pehle handle karo.
 
 ### Yaad rakhne ki cheez
 
-**Two pointer sorted datasets checks run speed O(N) optimizations support dynamic pointer loops.**
-
+**Sorted arrays mein target elements pairs search karne ke liye Two Pointers lagao, isse performance O(N^2) se O(N) ho jati hai.**
 ## 20. Completion Checklist
 
 - [ ] I can write target search algorithms using the Two Pointers pattern.

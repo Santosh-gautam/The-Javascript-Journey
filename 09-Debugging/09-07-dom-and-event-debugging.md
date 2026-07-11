@@ -287,18 +287,22 @@ In the next chapter, we will study **Heap Snapshot Analysis**. We will explore m
 
 ### Concept kya hai
 
-DOM and Event Debugging browser UI mutations issues track down methods configure validation keys tools hai. Chrome DevTools elements layout **DOM Breakpoints** support, breakpoints three categories features target checks support: **Subtree Modifications** (child node additions/deletes), **Attribute Modifications** (style, classes dynamic mutations), **Node Removal** (elements deletions). getEventListeners(el) console utility elements bound event listeners lists return targets.
+Kai baar bade projects mein page par koi element achanak gayab ho jata hai, uska color badal jata hai, ya koi class dynamically add ho jati hai, aur hume samajh nahi aata ki ye kis script ki wajah se ho raha hai. Is situation mein hum **DOM Breakpoints** use karte hain. DevTools mein ja kar hum kisi bhi DOM element par direct "alarms" set kar sakte hain:
+1. **Subtree Modifications**: Jab koi child element add ya remove ho.
+2. **Attribute Modifications**: Jab class, id, ya inline styles badle ja rahe hon.
+3. **Node Removal**: Jab poora element hi DOM se delete ho jaye.
+Jab ye mutation hoti hai, browser debugger code ko usi line par pause kar deta hai jo is change ke liye responsible hai. Sath hi, DevTools console ka special command `getEventListeners(element)` hume us element par lage saare listeners aur unki function definitions dikha deta hai.
 
 ### Andar kya hota hai (Internal Working)
 
-DOM mutation monitoring browser internals:
-1. **Blink mutation interceptors**: Browser C++ layout render core (Blink engine) DOM modifications methods execute checks parameters validation registers (e.g. class edits).
-2. **CDP protocol event triggers**: If DevTools registered a DOM breakpoint coordinate on a target DOM node instance, Blink halts layout recalculation, pauses JS execution loops immediately on V8 runtime.
-3. **Listener registries**: DevTools elements registry queries element event handler array pointers from V8 garbage collector heap lists representation.
+Browser aur debugger milkar is mutation interception ko kaise handle karte hain:
+1. **Blink Engine Hooks**: Browser ka HTML/CSS rendering engine (Blink) jab bhi koi DOM change execute karta hai, toh wo checks run karta hai ki kya is element par DevTools Protocol (CDP) ke through koi breakpoint active hai.
+2. **Execution Halt**: Agar breakpoint active hai, toh Blink dynamic layout updates ko pause karta hai aur V8 compiler thread ko instructions bhejkar execution ko exactly us code line par freeze kar deta hai.
+3. **Listener Lookup**: DevTools jab `getEventListeners` run karta hai, toh wo V8 ke internal structures se event listener pointers aur references fetch karke console par unki source locations line coordinates ke sath direct map kar deta hai.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Good: Debugging dynamic DOM classes mutation
 const modal = document.getElementById("auth-modal");
 
@@ -306,24 +310,21 @@ const modal = document.getElementById("auth-modal");
 function toggleState() {
   modal.setAttribute("data-state", "active"); // Mutation point!
 }
-
-// Instead of searching thousands lines for "data-state",
-// Set "Attribute Modification" breakpoint on modal node in DevTools Elements tab.
-// V8 pauses exactly on setAttribute line!
-`
+```
 
 **Line by line:**
-- Object modal dynamic attribute data-state modified.
-- Setting attribute mutation breakpoint intercept on element.
-- V8 execution suspends at the exact line mutating modal element properties, letting you read current scope parameters instantly.
+- `modal` object ka reference capture kiya.
+- `modal.setAttribute("data-state", "active")` chalte hi attribute change trigger hota hai.
+- Agar humne browser Elements tab mein modal par "Attribute modifications" breakpoint lagaya hua hai, toh jaise hi ye line execute hogi, browser is change ko detect karke execution pause kar dega. Hum call stack pane mein ja kar check kar sakte hain ki kis library ne `toggleState` ko call kiya.
 
 ### Sabse badi galti log karte hain
 
-Code base search terms strings loops for events. Dynamic event attachments and callbacks variables references trace coordinates dynamic imports runtime lost tracking bugs. DOM attribute breakpoints help trace variables directly.
+Codebase mein variables check karne ke liye manual search karna. Agar koi class `active` dynamic elements par apply ho rahi hai aur code mein use 100 jagah use kiya gaya hai, toh manual search se buggy function dhoondhna lagbhag namumkin ho jata hai. DOM breakpoints is lookup ko instantaneous aur direct bana dete hain. Dusri galti, application code files ke andar `getEventListeners()` call karna — ye function sirf browser console mein kaam karta hai, custom scripts mein ReferenceError dega.
 
 ### Yaad rakhne ki cheez
 
-**DOM attribute modification breakpoints find where CSS class modifications occur in javascript files.** getEventListeners(element) lists event handlers bound to elements.
+**DOM attribute breakpoints se check karo ki CSS classes kaun badal raha hai, aur browser console mein `getEventListeners(element)` run karke active handlers find karo.**
+
 
 ## 20. Completion Checklist
 

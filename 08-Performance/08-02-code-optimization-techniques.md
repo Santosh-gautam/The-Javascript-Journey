@@ -298,46 +298,44 @@ In the next chapter, we will study **Memory Leaks**. We will learn about JavaScr
 
 ### Concept kya hai
 
-V8 Engine code ko run karte waqt optimized **Machine Code** generate karta hai. Agar code write style inconsistent ho (jaise same object properties different order mein insert karna), V8 optimization layers bypass ho jaati hain. Optimization techniques ka main principle hai **Hidden Classes (Shapes)** ko predictable rakhna taaki CPU properties direct offset memory read call handle kar sake — dynamic search loops skip.
+V8 Engine runtime par hamare JavaScript code ko optimize karke fast **Machine Code** banata hai. Is optimization ka sabse bada rule hai: Objects ka shape/structure consistent hona chahiye. Agar do objects mein same properties hain lekin tum unhe alag-alag order mein ya dynamically initialize karte ho, toh V8 unhe different **Hidden Classes** (Shapes) manta hai. Isse V8 ki optimizations fail ho jaati hain aur code slow ho jata hai.
 
 ### Andar kya hota hai (Internal Working)
 
-V8 optimization details:
-1. **Hidden Classes (Maps)**: Jab tum const obj = { x: 1 } create karte ho, V8 internal class structure assign karta hai. Agar structural keys order same ho, multiple objects same hidden class reference share karenge.
-2. **Inline Caching (IC)**: Function checks property lookup values base optimization. getName(user) call check, if user structure matches previous cached hidden class, memory offset target offset direct return base.
-3. **Deoptimization**: Agar type variables change ho (e.g. object dynamic addition), hidden class mismatch engine dynamic slow (deoptimized) path check switch.
+V8 engine ke andar three steps important hain:
+1. **Hidden Classes (Shapes)**: Jab tum object define karte ho, V8 use ek hidden shape assignment deta hai. Agar properties ka addition order consistent hai, toh multiple objects same hidden class share karte hain, jo memory access ko super fast banata hai.
+2. **Inline Caching (IC)**: V8 function call ke property lookup ko cache kar leta hai. Agar shapes same hain, toh engine dynamic property check skip karke seedha memory address se fast lookup karta hai.
+3. **Deoptimization**: Agar property dynamically delete kar di jaye ya initialization order badal jaye, toh shape change hone ke karan V8 optimized path chhodkar slow dynamic checks path par chala jata hai (deoptimization).
 
 ### Code Example samjho
 
 `javascript
-// Bad: Shape pollution — Different hidden classes generated
+// Bad: Shape changes dynamically - V8 creates different hidden classes
 const u1 = {};
 u1.name = "Ravi";
 u1.age = 25;
 
 const u2 = {};
-u2.age = 30; // Age initialized first!
+u2.age = 30; // age first!
 u2.name = "Pooja";
 
-// Good: Consistent layout — Shares same hidden class
+// Good: Consistent layout - Shares the same hidden class
 const u1Fixed = { name: "Ravi", age: 25 };
 const u2Fixed = { name: "Pooja", age: 30 };
 `
 
 **Line by line:**
-- u1.name = "Ravi"; u1.age = 25; — Hidden class state transitions: {} -> {name} -> {name, age}.
-- u2.age = 30; u2.name = "Pooja"; — Hidden class state transitions: {} -> {age} -> {age, name}. Different layout!
-- V8 compiles two separate shape paths in memory. Inline caches fail to share optimization structures.
-- u1Fixed, u2Fixed objects directly match 
-ame first, ge second shape class schema — optimized path reuse!
+- Bad code mein u1 ka order hai {name, age} aur u2 ka {age, name}. V8 ke liye ye dono objects alag shapes ke hain.
+- Good code mein u1Fixed aur u2Fixed dono same structure follow karte hain: {name, age}.
+- Same structure hone se, V8 dono ke liye same inline caching optimization reuse karega, jisse performance top rahegi.
 
 ### Sabse badi galti log karte hain
 
-Objects initialization ke baad properties delete karna (delete obj.key). Delete use karne se V8 object layout ko **dictionary mode** (slow hash map storage) mein transition kar deta hai, isse optimization loops completely break. Property remove ke liye value undefined assign karo, delete avoid karo.
+Sabse badi galti hai properties ko dynamically delete (delete obj.key) karna. delete keyword use karte hi V8 us object ko optimized layout se hata kar slow dynamic hash map ("dictionary mode") mein convert kar deta hai. Agar property remove karni hi hai, toh use obj.key = undefined set karo na ki delete chalao.
 
 ### Yaad rakhne ki cheez
 
-**Objects properties hamesha consistent sequence mein initialize karo.** Constructor patterns use classes template definition lock for V8 performance benefits.
+**Objects ke saare properties hamesha consistent order mein aur constructor level par hi initialize karo.**
 
 ## 20. Completion Checklist
 

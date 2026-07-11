@@ -271,38 +271,39 @@ In the final chapter of this module, we will study **Trick Questions & Output Pr
 
 ### Concept kya hai
 
-Behavioral aur Technical communication interview process ka critical part hai. Sirf code likhna kaafi nahi hai, use logically explain karna zaroori hai. **STAR Method** (Situation, Task, Action, Result) behavioral answers structure tools hai. **Think-Out-Loud (TOL)** coding rounds mein assumptions aur constraints (memory limits, time bounds) verbal explain karne ki performance approach keys hai.
+Interviews mein sirf code likh lena hi kaafi nahi hota, interviewers aapka communication style aur problem-solving approach bhi check karte hain. Iske liye do important tools hain:
+1. **STAR Method** (Situation, Task, Action, Result): Jab aapse behavioral questions puche jayein (jaise: "Tell me about a time you fixed a critical bug"), toh is framework ke sequence mein answer do. Ye aapke experience ko ek clear, structured, aur metrics-driven tarike se present karta hai.
+2. **Think-Out-Loud (TOL)**: Coding rounds ke dauran silently code likhne ke bajaye, jo bhi aap soch rahe ho (jaise complexity tradeoffs, variable naming choices, edge cases), use bol kar interviewer ke sath share karo.
 
 ### Andar kya hota hai (Internal Working)
 
-Communication process interview dynamics:
-1. **Collaborative engineering signal**: Developer logic explanations V8 engine understanding coordinates verify check maps pointers register. Interviewer captures engineer team compatibility metrics directly.
-2. **State and constraints verification**: Code compile execution limits assumptions trace: "I assume array length is within maximum limits and fit inside Heap memory". Align parameters with interviewer before execution scripts logic starts.
+Interviews ke dauran structured communication kyun zaroori hai, iske rules samjho:
+1. **Collaborative Signal**: Software engineering ek team sport hai. Jab aap apna logic explain karte ho, toh interviewer ko samajh aata hai ki aapke sath kaam karna kitna easy hoga. Agar aap kahin fans bhi jaoge, toh interviewer aapki soch samajh kar sahi direction mein hint de payega.
+2. **State and Constraints Verification**: Code likhna shuru karne se pehle assumptions ko clear karna. Jaise: "Main assume kar raha hoon ki input array memory mein fit ho jayega aur custom empty values validate karne ki zaroorat nahi hai." Isse requirements compile mismatch nahi hotin.
 
 ### Code Example samjho
 
 `markdown
 // STAR Method template example
-- **Situation**: Mobile checkout screen load duration 6 seconds tha, cart bounce rate 15% ho gaya.
-- **Task**: Load performance optimize karke mobile FCP target speed under 2 seconds laana.
-- **Action**: DevTools Performance snapshots analyze kiye. Large unused packages lazy load hooks check script dynamic imports split config parameters registers.
-- **Result**: FCP speed 1.8 seconds down metrics success cart conversions 12% rise check.
+- **Situation**: Mobile checkout screen ka load time 6 seconds tha, jiski wajah se cart bounce rate 15% ho gaya.
+- **Task**: Load performance optimize karke load time ko under 2 seconds laana.
+- **Action**: DevTools Performance panel se CPU profile report check ki. Pata chala ki aakhri receipt template generate karne ke liye hum 150KB ka unused PDF package compile kar rahe the. Maine use dynamic imports (import()) se lazy-load kiya aur bundle size split kiya.
+- **Result**: Page load time reduction ke baad 1.8 seconds ho gaya aur mobile transactions check conversions 12% rise ho gaye.
 `
 
 **Line by line details:**
-- **Situation**: Context parameters details metric base verify setup.
-- **Task**: Responsibility and concrete optimization targets clear numbers definition.
-- **Action**: Engineering actions details step-by-step logic.
-- **Result**: Business and technical quantitative metrics validation results.
+- **Situation**: Problem ka actual context aur business details background set karo.
+- **Task**: Aapko is case mein kya specific results lane ke liye assign kiya gaya tha.
+- **Action**: Aapne kaunsi technical steps, profiling, aur libraries modification actions liye.
+- **Result**: Optimize hone ke baad exact numerical measurements aur success feedback kya mila.
 
 ### Sabse badi galti log karte hain
 
-Interviewers questions answer targets binary direct code write setup, constraints discuss kiye bina coding start karna is bad. Always check boundary inputs first.
+Question milte hi bina koi sawal puche ya constraints clear kiye seedha code likhna shuru kar dena. Edge cases aur constraints jaise "kya array sorted hai?" ya "kya elements negative ho sakte hain?" hamesha coding shuru karne se pehle clear karo.
 
 ### Yaad rakhne ki cheez
 
-**Use STAR method framework for behavioral scenarios, verbalize assumptions via Think-Out-Loud (TOL) coding.**
-
+**Behavioral answers dene ke liye STAR framework use karo, aur coding round mein chup rehne ki jagah hamesha Think-Out-Loud (TOL) approach follow karo.**
 ## 20. Completion Checklist
 
 - [ ] I can structure behavioral answers using the STAR method.

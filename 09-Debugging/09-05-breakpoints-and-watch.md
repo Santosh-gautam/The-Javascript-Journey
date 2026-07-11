@@ -281,41 +281,44 @@ In the next chapter, we will study **Debugging Async Code**. We will explore asy
 
 ### Concept kya hai
 
-Advanced Breakpoints debugging workflows check operations speed and scale up tools hain. **Conditional Breakpoints** — execution tabhi pause hoga jab conditional checks statement expression truthy outputs trigger kare. **Logpoints** — execution pause nahi hota, debug message console logs parameters write automatically print, code change/editing requirements zero. **Watch Pane** — key expressions values loop tracking pane runtime updates monitors.
+Jab hum loops ya complex functions debug karte hain, toh har bar `console.log()` likhna ya simple breakpoint lagana time-consuming ho sakta hai. Agar loop 1000 bar chal raha hai, aur hume sirf 900th item par check karna hai, toh standard breakpoint har index par pause karega. Iske liye hum advanced breakpoints use karte hain:
+1. **Conditional Breakpoints**: Ye tabhi pause hote hain jab hamari likhi hui condition (jaise `i === 900`) true hoti hai.
+2. **Logpoints**: Ye code ko pause nahi karte, par jab bhi us line par execution pahunchta hai, console mein automatically data print kar dete hain.
+3. **Watch Panel**: Isme hum kisi specific variable ko add kar dete hain taaki poore debugging flow ke dauran uski value par nazar rakh sakein.
 
 ### Andar kya hota hai (Internal Working)
 
-Debugger injection engine details:
-1. **VM Code compile Injection**: Conditional breakpoints registered coordinate hit target parameters V8 engine compile logic inject wrapper checks function registers.
-2. **Bytecode check evaluation**: Target coordinates instructions call checks execution conditional logic. V8 evaluates expression value in active context frame. If falsy, breakpoint halts bypass step next command instantly.
-3. **Logpoint execution logic**: Log statement triggers inline evaluation parameters formats, outputs message data dynamically print and continues execution cycles without halting script thread.
+V8 engine in advanced breakpoints ko internally handle karta hai:
+1. **Helper Function Injection**: Jab aap conditional breakpoint lagate ho, debugger us condition (jaise `i === 15`) ko ek temporary anonymous function mein wrap karke runtime par inject kar deta hai.
+2. **Bytecode check**: Jab V8 compiler us line par pahunchta hai, wo pehle is helper function ko execute karta hai. Agar output `false` aata hai, toh check bypass ho jata hai aur code full speed mein chalta rehta hai. Agar output `true` ho, toh debugger ko pause signal chala jata hai.
+3. **Logpoint formatting**: Logpoint ke time V8 execution ko hold nahi karta, balki scope variables ko string formats ke sath evaluate karke console log thread par output print karke aage badh jata hai.
 
 ### Code Example samjho
 
-`javascript
-// Good: debugging loops with conditional breakpoints
+```javascript
+// Good: Debugging heavy loops via conditional breakpoint
 function calculateSalaries(employees) {
   employees.forEach((emp, index) => {
-    // If bug happens only for index 15, we can set conditional breakpoint on: index === 15
-    // No code changes needed! Debugger automatically pauses execution here only when index is 15.
+    // Agar bug sirf index 15 wale employee par aa raha hai:
+    // Hum editor mein line 301 par condition set karenge: index === 15
     processPayroll(emp);
   });
 }
-`
+```
 
-**Line by line explanation:**
-- Standard debugging pauses every loop item — O(N) debug steps. 1000 employees = 1000 steps click.
-- Setting conditional breakpoint index === 15 on processPayroll(emp) line.
-- V8 loop iteration 0-14 runs at full native speed.
-- At iteration 15, index === 15 resolves 	rue. V8 pauses thread. Developer inspects emp state context immediately.
+**Line by line:**
+- `calculateSalaries` hazaaron records ko loop karta hai.
+- `index === 15` conditional check hum editor UI ke through breakpoint par set karte hain (humne original code mein koi code nahi badla).
+- V8 loop 0 se 14 tak standard native performance par run karega (koi delay nahi).
+- Jaise hi loop index 15 par pahunchega, condition True ho jayegi, aur V8 code execution ko yahin freeze kar dega taaki hum state variables inspect kar sakein.
 
 ### Sabse badi galti log karte hain
 
-Temporary logs injection directly inside production files (console.log("DEBUG", x)). Committing these print parameters to git repositories is bad code style and impacts bundle delivery metrics. Always use logpoints and conditional breakpoints directly from your IDE and DevTools UI panels.
+Log ya check karne ke liye file ke andar temporary console logs ya dummy variables inject karna aur debugging ke baad unhe delete karna bhool jana. Iski jagah DevTools/VS Code ke built-in logpoints use karo, jisse aapka dynamic log console mein print ho jayega bina source code file ko modify kiye.
 
 ### Yaad rakhne ki cheez
 
-**Conditional breakpoints loop index bugs target, logpoints run prints without editing original scripts files.** Watch Pane runtime calculations trace parameters variables monitoring.
+**Conditional breakpoints se dynamic loops target karo aur logpoints se bina code modify kiye prints generate karo.**
 
 ## 20. Completion Checklist
 

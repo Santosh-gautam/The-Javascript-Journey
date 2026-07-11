@@ -264,18 +264,18 @@ In the next chapter, we will study **Breakpoints & Watch**. We will explore cond
 
 ### Concept kya hai
 
-VS Code Debugger ka benefit ye hai ki hum editor windows leave kiye bina directly local workspace breakpoints aur step debug options use kar sakte hain. Node process debug run setups ke liye configuration standard file format **.vscode/launch.json** configure parameters save karti hai, jisme compile, launch, environment attributes control setup control save parameters manage ho sakein.
+VS Code Debugger ka simple matlab ye hai ki bina editor chhode, aap directly VS Code ke andar breakpoints laga sakte ho, variables check kar sakte ho, aur code ko line-by-line chala sakte ho. Har baar `console.log()` likh kar code ko restart karna bahut frustrating hota hai, aur isse code bhi ganda hota hai. VS Code mein debug configurations manage karne ke liye hum ek special file create karte hain jiska naam hai `.vscode/launch.json`. Isme hum configure karte hain ki hamara debug session kaise chalega.
 
 ### Andar kya hota hai (Internal Working)
 
-VS Code V8 execution bridge:
-1. **Inspector websocket initialization**: Launch processes Node.js configurations --inspect=9229 ya options flags targets enable call run execution triggers. Node engine localhost port WebSocket client service open registers.
-2. **Editor communication connection**: VS Code debugger adapter client target WebSocket client link handshake registers. Line locations breakpoint markers translate files paths lines coordinate requests push.
-3. **Execution maps mappings**: Source files configurations code breakpoints active map records execution status. VS Code local maps resolve script variables updates.
+VS Code debugger do modes mein chalta hai:
+1. **Launch Mode**: Jab debugger khud hamare program ka process fresh start karta hai aur use attach ho jata hai.
+2. **Attach Mode**: Jab hum pehle se chal rahe program (jaise koi production server ya docker container) se debug target connect karte hain.
+Under the hood, Node.js ke pass ek internal debugging utility hoti hai jise **V8 Inspector Protocol** kehte hain. Jab hum Node ko `--inspect` flag ke sath chalate hain, toh ye port `9229` par WebSocket connection open karta hai. VS Code is WebSocket port se connect ho jata hai aur hume editor mein variables ki value live dikhata hai. `{ "skipFiles": ["node_modules/**"] }` specify karne se debugger node internal files ya external packages ke andar pause nahi karta, directly execute kar deta hai.
 
 ### Code Example samjho
 
-`json
+```json
 // .vscode/launch.json
 {
   "version": "0.2.0",
@@ -284,29 +284,29 @@ VS Code V8 execution bridge:
       "type": "node",
       "request": "launch",
       "name": "Launch Current File",
-      "program": "",
+      "program": "${file}",
       "skipFiles": [
         "<node_internals>/**",
-        "/node_modules/**"
+        "${workspaceFolder}/node_modules/**"
       ]
     }
   ]
 }
-`
+```
 
 **Line by line JSON parameters:**
-- "type": "node" — configuration Node runtime environment debugging use targeting setup.
-- "request": "launch" — debug session starting target new script execution automatically. Alternative "attach" options ports connects.
-- "" — active open file tab focus run check runtime pass coordinate.
-- "skipFiles" — target paths libraries Node internal modules call files step steps ignore. Debugger steps loop bypass node libraries source locations, skipping libraries details context focus.
+- `"type": "node"` — Batata hai ki hum ek Node.js application debug karne wale hain.
+- `"request": "launch"` — Matlab debugger khud program ko run aur launch karega.
+- `"${file}"` — Batata hai ki jo file abhi editor mein active hai, use hi run karna hai.
+- `"skipFiles"` — In files/folders ko debug karte waqt skip karna hai (hum node core files aur third-party libraries debug nahi karna chahte, isliye unhe list mein daal diya).
 
 ### Sabse badi galti log karte hain
 
-Dynamic ports configurations conflicts settings check settings block code setup run. Multi-file execution setup standard modules launch mappings ignore paths parameters. Node node_modules paths steps debugging checks clean control exclude skip parameters save setup structure skip files configurations targets check verify run.
+Log server ka dynamic debug request port galat set kar dete hain. Agar aapka server client-side port `3000` par chal raha hai par attach debugger configure karte waqt port config `3000` likh diya, toh debugger fail ho jayega kyunki V8 inspector default port `9229` par chalta hai, client port `3000` par nahi. Hamesha attach configurations mein inspector port `9229` define karo.
 
 ### Yaad rakhne ki cheez
 
-**Use .vscode/launch.json with skipFiles to skip debugging node internal libs and external package files.**
+**Hamesha `skipFiles` configure karo taaki debug karte waqt debugger `node_modules` ki libraries ke andar ghus kar aapka time waste na kare.**
 
 ## 20. Completion Checklist
 

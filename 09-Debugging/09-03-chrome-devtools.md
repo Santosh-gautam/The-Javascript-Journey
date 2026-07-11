@@ -259,14 +259,14 @@ In the next chapter, we will study the **VS Code Debugger**. We will explore lau
 
 ### Concept kya hai
 
-Chrome DevTools web application compile metrics profile karne aur variables debug karne ki standard power keys hai. Har page debugging and exploration tab features deta hai: **Console** (runtime expressions eval), **Sources** (code break, values trace, workspace syncing), **Network** (request status, throttling slow modes). Basic console.log arrays output print clean display nahi karte, hume console.table() ya console.dir() structure APIs use karna seekhna chahiye.
+Chrome DevTools sirf elements dekhne ya dynamic logs print karne ka tool nahi hai. Ye poori application state, memory, network calls aur CPU performance check karne ka sabse power keys dashboard hai. Bahut log simple console.log use karte hain jahan complicated objects ya tables ko manually expand karna padta hai. DevTools hume console.table() aur console.dir() jaise tools deta hai jisse arrays aur structures clean and readable form mein directly analysis dashboard pe dikhte hain.
 
 ### Andar kya hota hai (Internal Working)
 
-Chrome DevTools and V8 bridge operation layers:
-1. **Chrome DevTools Protocol (CDP)**: DevTools window browser tab runtime and V8 engine instance se WebSocket connections link communication channel use karke communicate karta hai.
-2. **Breakpoints registration**: Debugger panel lines click trigger execution check targets set Debugger.setBreakpoint CDP protocol calls forward karta hai. V8 engine targets bytecode register settings lock coordinates check parameters verify karta hai.
-3. **Execution pause**: Breakpoint instruction trigger check stack thread complete hold, register values copy WebSocket context details DevTools panel paint updates trigger compile.
+DevTools aur browser runtime ka bridge:
+1. **Chrome DevTools Protocol (CDP)**: DevTools window browser ke V8 engine process se WebSocket connections ke through baat karti hai.
+2. **Breakpoints Registry**: Jab tum sources tab mein kisi line pe click karke breakpoint lagate ho, DevTools internal Debugger.setBreakpoint call bhejta hai. V8 us line ke bytecode ko intercept tag kar deta hai.
+3. **Execution Pause**: Jab code execute hote hue us bytecode par pahunchta hai, toh V8 thread ko pause kar deta hai aur saare variables ki live variables context and memory values WebSocket ke through DevTools panel ko forward kar deta hai.
 
 ### Code Example samjho
 
@@ -276,24 +276,24 @@ const users = [
   { id: 2, name: "Sara", role: "Editor" }
 ];
 
-// Bad: requires expanding nested arrows manually
+// Bad: Prints messy raw array
 console.log("Users: ", users);
 
-// Good: outputs structured table layout
+// Good: Prints clean tabular interface
 console.table(users);
 `
 
 **Line by line:**
-- console.log("Users: ", users) — raw browser object print run structure. Logs array representation nested expand clicks demands trace readability overhead.
-- console.table(users) — outputs table column layouts with indexes instantly. Clean representation metadata details.
+- console.log output pure text form ya nested format mein aayega jisme data check karne ke liye manual arrows click karne padenge.
+- console.table(users) data ko automatically tabular representation format mein indexes ke saath render kar deta hai. Developer ke liye values padhna easy ho jata hai.
 
 ### Sabse badi galti log karte hain
 
-Production code debugging ke liye manual script files mein temporary prints write and clean processes setup run loop. DevTools UI breakpoints console statements inject directly runtime support run checking handles bypass changes compile triggers dynamic edits save cycles.
+Debugging ke liye files mein temporary loggers (console.log) daalna aur use cleanup karna bhool jana. Production code mein extra console statements bundle size badhate hain aur execution time consume karte hain. Hamesha breakpoints aur logpoints use karo bina original source scripts files ko edit kiye.
 
 ### Yaad rakhne ki cheez
 
-**Use console.table() for structures, sources breakpoint debuggers for run checks without dirtying scripts files.** Throttling profile tabs speed and response times.
+**Objects and lists ko visually inspect karne ke liye console.table() aur dynamic tracing ke liye browser breakpoints use karo.**
 
 ## 20. Completion Checklist
 

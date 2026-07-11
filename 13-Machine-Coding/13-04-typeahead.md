@@ -470,55 +470,41 @@ In the next chapter, we will study **File Explorer / Nested Comments**. We will 
 
 ### Concept kya hai
 
-Typeahead / Autocomplete UI widget dynamic query suggestion selections controls specifications maps keys. Search queries matching lists dropdown render steps coordinate parameters. Core cases: **Query substring bold highlights** (wrapping matching queries in html bold tags safely), **Dynamic debounce integrations** and **Click outside closures** (closing dropdowns if click targets are outside widget container bounds).
+Typeahead (ya Autocomplete search bar) ek bahut hi common UI component hai jise search queries ko speed up karne aur options select karne ke liye build kiya jata hai. Isme hume teen main features implement karne hote hain:
+1. **Highlight Matching Substrings**: User jo text type kare, suggestions dropdown mein wo matched characters bold ho jaane chahiye taaki search matches readable lagein.
+2. **Keyboard Navigation**: Mouse ke bina, user ArrowDown aur ArrowUp keys se list items ke beech select/navigate kar sake, aur Enter key press karne par targeted value selected input field mein confirm ho sake.
+3. **Click Outside Closure**: Dropdown open hone ke baad, agar user dropdown ke bahar screen par kahin bhi click kare, toh suggestions list automatically close ho jani chahiye.
 
 ### Andar kya hota hai (Internal Working)
 
-Autocomplete coordination internals:
-1. **RegExp safe matches escapes**: Query string matches build escape sequences `replace(/[.*+?^${}()|[\]\\]/g, "\\## 19. 🇮🇳 Hinglish Summary
-
-- **Problem**: Search input pe suggestions dikhana — keyboard navigation, accessibility, debounce sab sath.
-- **Concept**: Debounce + filter/fetch → suggestions list render → ArrowUp/Down/Enter keyboard handlers → selection on Enter.
-- **Key Pattern**: input.addEventListener('keydown', e => { if(e.key === 'ArrowDown') selectNext(); else if(e.key === 'Enter') confirmSelection(); }).
-- **Common Mistake**: Accessibility ignore karna — ria-activedescendant, 
-ole="listbox", 
-ole="option" — screen readers ke liye zaruri hain.
-")` to protect compiler engines from regex injections crashes.
-2. **Dropdown close event listeners**: Global document root click intercept filters targets check: `if (!container.contains(e.target)) dropdown.hide()`.
+Component internal implementation steps:
+1. **RegExp Escaping**: Query input strings ko matching regex template mein pass karne se pehle hum special characters (jaise `.` ya `*`) ko replace function se escape (`\\$&`) karte hain. Agar escape nahi karenge, toh custom user input regex compile process ko crash/exploit kar sakta hai (XSS/Regex Injection).
+2. **Click Outside Interception**: Document root (window level) click handler run kiya jata hai jo `e.target` checks check karta hai: `if (!container.contains(e.target)) { list.hide() }`.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 // Highlight matching substrings safely
 function highlightMatch(text, query) {
   if (!query) return text;
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\## 19. 🇮🇳 Hinglish Summary
-
-- **Problem**: Search input pe suggestions dikhana — keyboard navigation, accessibility, debounce sab sath.
-- **Concept**: Debounce + filter/fetch → suggestions list render → ArrowUp/Down/Enter keyboard handlers → selection on Enter.
-- **Key Pattern**: input.addEventListener('keydown', e => { if(e.key === 'ArrowDown') selectNext(); else if(e.key === 'Enter') confirmSelection(); }).
-- **Common Mistake**: Accessibility ignore karna — ria-activedescendant, 
-ole="listbox", 
-ole="option" — screen readers ke liye zaruri hain.
-"); // RegExp character escape
-  const regex = new RegExp((), "gi");
-  return text.replace(regex, "<b>## 19. 🇮🇳 Hinglish Summary
-</b>"); // Wrap in bold tag safely
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // RegExp character escape
+  const regex = new RegExp(`(${escaped})`, "gi");
+  return text.replace(regex, "<b>$1</b>"); // Wrap in bold tag safely
 }
-`
+```
 
 **Line by line:**
-- `query.replace(...)` — escapes special characters like dots, stars, preventing dynamic regexp engine from evaluating inputs as code expressions.
-- `new RegExp(..., "gi")` — constructs case-insensitive global regular expression instance.
-- `text.replace(...) — replaces matches with bold html wrapper strings safely.
+- `query.replace(...)` — RegExp control characters ko escape karke string literal banata hai.
+- `new RegExp(..., "gi")` — Case-insensitive dynamic regex instance create kiya.
+- `text.replace(regex, "<b>$1</b>")` — Matched portion ko capture group `$1` ke through target karke secure bold tag HTML string wrapper mein replace kar deta hai.
 
 ### Sabse badi galti log karte hain
 
-User query inputs directly innerHTML interpolation strings set run. Unescaped html dynamic inputs trigger XSS vulnerabilities. Always sanitize inputs, or use regexp character escape blocks.
+User search query ko bina escape aur sanitize kiye direct `innerHTML` string format mein render kar dena. Isse severe security vulnerability (Cross-Site Scripting - XSS) create ho sakti hai. Hamesha input characters ko filter aur escape karke hi template strings ke andar render karo.
 
 ### Yaad rakhne ki cheez
 
-**Escape search query special characters before generating highlight Regexes, handle click outside to close suggestion dropdowns.**
+**RegExp search string ko hamesha escape karo, aur dropdown closing ke liye window-level outside click delegation check run karo.**
 
 ## 20. Completion Checklist
 

@@ -385,17 +385,20 @@ In the next chapter, we will study the **Typeahead / Autocomplete** component. W
 
 ### Concept kya hai
 
-Star Rating Widget machine coding rounds basic widget build challenge is. Stars rendering, hover selection highlights, click locking rating selection aur Custom events bubble hooks detailed setup is. Core cases: **Hover vs Click states transitions** (saving intermediate states, restoring locked selections on mouse leave) and **Accessibility controls** (slider roles keyboard increments).
+Star Rating Widget machine coding rounds ka ek standard, highly interactive problem hai. Isme hume do main states ko manage aur sync karna hota hai:
+1. **Hover Preview State**: Jab user stars ke upar mouse move kare, toh active state temporarily mouse hover positions tak dikhni chahiye.
+2. **Locked Click State**: Jab user kisi star par click kare, toh rating lock ho jani chahiye, aur mouse out hone par bhi rating maintain rehni chahiye.
+Sath hi, hum custom events use karte hain taaki selection ke baad current rating value parent component ko notify kiye ja sake, aur accessibility keyboard controls (Arrow keys se value badhana) implement kiye ja sakein.
 
 ### Andar kya hota hai (Internal Working)
 
-Star rating calculations details:
-1. **Active hover priority values**: Render loops prioritize hover state previews: `hoveredRating !== 0 ? hoveredRating : activeRating`.
-2. **Keyboard focus event propagation**: Keyboard listeners map left/right arrows to rating values.
+Component states coordination:
+1. **Hover over Click Priority**: Render loops mein hum hover rating ko click rating ke upar priority dete hain: `const activeStars = this.hoverRating !== 0 ? this.hoverRating : this.rating`.
+2. **Keyboard focus propagation**: Keyboard event listeners check karte hain aur left/right arrow ticks ko values increments/decrements se map karte hain, fir new score value update karke render call trigger karte hain.
 
 ### Code Example samjho
 
-`javascript
+```javascript
 class StarRating {
   constructor(containerId, count = 5) {
     this.container = document.getElementById(containerId);
@@ -411,20 +414,20 @@ class StarRating {
     });
   }
 }
-`
+```
 
 **Line by line:**
-- `this.rating` — stores locked rating values.
-- `highlightStars(value)` — loops stars checking data-values. Classes toggle active elements conditionally.
+- `this.rating = 0` — Click locked rating score value track karta hai.
+- `this.hoverRating = 0` — Temporary mouse-over rating score pointer track karta hai.
+- `highlightStars(value)` — Saare star DOM nodes par iterate karta hai, unke data attributes verify karta hai, aur active CSS classes toggle karta hai.
 
 ### Sabse badi galti log karte hain
 
-Hover status checks values state tracking missing variables. If mouse out event leaves elements without restoring original click locked values, UI ratings state breaks. Always track hover states explicitly.
+Mouse leave event trigger hone par hover state (`this.hoverRating = 0`) reset na karna aur locked clicked state (`this.rating`) ko restore na karna. Is wajah se click karne ke baad jab mouse side mein jata hai, toh stars clean up nahi hote aur UI rating representation break ho jati hai. Hamesha mouseleave listener configure karo.
 
 ### Yaad rakhne ki cheez
 
-**Hover previews should override locked values temporarily, mouse leaves should restore locked ratings.**
-
+**Hover events ko temporarily active ratings par preference do, aur mouse out event aane par hamesha click-locked original values ko restore karo.**
 ## 20. Completion Checklist
 
 - [ ] I can write a complete, accessible Star Rating component.
